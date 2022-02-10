@@ -1,0 +1,45 @@
+<meta property="og:url" content="https://dev.to/jacobmgevans" />
+
+<p align="center">
+<a href="https://www.instagram.com/jacobmgevans"><img alt="Instagram Icon" src="http://assets.stickpng.com/images/580b57fcd9996e24bc43c521.png" height="30">
+</a>&nbsp;
+<a href="https://www.linkedin.com/in/jacob-m-g-evans/"><img alt="Linkedin Icon" src="https://www.freepnglogos.com/uploads/linkedin-blue-style-logo-png-0.png" height="30">
+</a>&nbsp;
+<a href="https://twitter.com/JacobMGEvans?ref_src=twsrc%5Etfw" class="twitter-follow-button">
+<img src="https://img.shields.io/twitter/follow/JacobMGEvans?style=social" />
+</a>
+</p>
+
+Greetings!
+
+A little about myself, I create blog posts, volunteer in tech communities (KCD, <a href="https://discord.gg/urQuPURusm">Open Source Raid Guild</a>, VetsWhoCode,  Testing Library, etc...) and contribute to open source software. All part of my continous learning and improvement.
+
+---
+
+<h3> OSS & Community 🛰️</h3>
+<span>
+<a href="https://dev.to/jacobmgevans"><img src="./assets/hacktoberfest.png" height="60"/></a> 
+<a href="https://dev.to/jacobmgevans"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--Lojm4XAD--/c_imagga_scale,f_auto,fl_progressive,h_900,q_auto,w_1600/https://dev-to-uploads.s3.amazonaws.com/i/9g2loqfoe84qeh8qqpa4.png" height="60"/></a>
+<a href="https://dev.to/jacobmgevans"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--S16JKqF1--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/usrb72jmn6idi0121np5.png" height="60"/></a>
+<a href="https://osrg.t3.gg"> <img src="https://osrg.t3.gg/assets/logo-full.svg" height="60"/> </a> 
+</span>
+
+**Part of my OSS work and learning in public** efforts involve writing technical and technical adjacent, Blogs for people to benefit from, including myself.
+
+<details open>
+<summary>A Few Cherrypicked Blog Articles 🗃️ </summary>
+<br />
+
+- [JavaScript Resources Podcasts, Books, Videos, and Tutorials](https://dev.to/jacobmgevans/javascript-resources-podcasts-books-videos-and-tutorials-4a6e)
+- [More Podcasts and Video Resources](https://dev.to/jacobmgevans/more-podcasts-and-video-programming-resources-5a8k)
+- [Should you listen to Podcasts?](https://dev.to/jacobmgevans/should-you-listen-to-podcasts-4m5j)
+- [Writing Immutable and Functional JavaScript](https://dev.to/jacobmgevans/writing-immutable-javascript-why-how-3if6)
+</details>
+
+---
+
+<!-- <h3>Tools & Technologies</h3> -->
+
+<br />
+
+[![Jacob's github stats](https://github-readme-stats.vercel.app/api?username=JacobMGEvans)](https://github.com/JacobMGEvans/github-readme-stats)
