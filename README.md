@@ -28,10 +28,10 @@ A little about myself, I create blog posts, volunteer in tech communities (KCD, 
 <summary>A Few Cherrypicked Blog Articles 🗃️ </summary>
 <br />
 
-- [JavaScript Resources Podcasts, Books, Videos, and Tutorials](https://dev.to/jacobmgevans/javascript-resources-podcasts-books-videos-and-tutorials-4a6e)
-- [More Podcasts and Video Resources](https://dev.to/jacobmgevans/more-podcasts-and-video-programming-resources-5a8k)
-- [Should you listen to Podcasts?](https://dev.to/jacobmgevans/should-you-listen-to-podcasts-4m5j)
-- [Writing Immutable and Functional JavaScript](https://dev.to/jacobmgevans/writing-immutable-javascript-why-how-3if6)
+- <a href="https://dev.to/jacobmgevans/javascript-resources-podcasts-books-videos-and-tutorials-4a6e">JavaScript Resources Podcasts, Books, Videos, and Tutorials</a>
+- <a href="https://dev.to/jacobmgevans/more-podcasts-and-video-programming-resources-5a8k">More Podcasts and Video Resources</a>
+- <a href="https://dev.to/jacobmgevans/should-you-listen-to-podcasts-4m5j">Should you listen to Podcasts?</a>
+- <a href="https://dev.to/jacobmgevans/writing-immutable-javascript-why-how-3if6">Writing Immutable and Functional JavaScript</a>
 </details>
 
 <hr/>
