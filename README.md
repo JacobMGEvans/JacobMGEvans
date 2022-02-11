@@ -29,8 +29,11 @@ A little about myself, I create blog posts, volunteer in tech communities (KCD, 
 <br />
 
 - <a href="https://dev.to/jacobmgevans/javascript-resources-podcasts-books-videos-and-tutorials-4a6e">JavaScript Resources Podcasts, Books, Videos, and Tutorials</a>
+  <br />
 - <a href="https://dev.to/jacobmgevans/more-podcasts-and-video-programming-resources-5a8k">More Podcasts and Video Resources</a>
+  <br />
 - <a href="https://dev.to/jacobmgevans/should-you-listen-to-podcasts-4m5j">Should you listen to Podcasts?</a>
+  <br />
 - <a href="https://dev.to/jacobmgevans/writing-immutable-javascript-why-how-3if6">Writing Immutable and Functional JavaScript</a>
 </details>
 
