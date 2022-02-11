@@ -7,7 +7,11 @@ export default {
     const readmeContent = await unified()
       .use(remarkParse)
       .use(remarkHtml)
-      .process(await fetch("../README.md").then((r) => r.text()));
+      .process(
+        await fetch(
+          "https://raw.githubusercontent.com/JacobMGEvans/JacobMGEvans/main/README.md"
+        ).then((r) => r.text())
+      );
 
     return new Response(String(readmeContent));
   },
