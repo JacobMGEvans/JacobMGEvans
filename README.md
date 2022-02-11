@@ -1,8 +1,6 @@
 <meta property="og:url" content="https://dev.to/jacobmgevans" />
 
 <p align="center">
-<a href="https://www.instagram.com/jacobmgevans"><img alt="Instagram Icon" src="http://assets.stickpng.com/images/580b57fcd9996e24bc43c521.png" height="30">
-</a>&nbsp;
 <a href="https://www.linkedin.com/in/jacob-m-g-evans/"><img alt="Linkedin Icon" src="https://www.freepnglogos.com/uploads/linkedin-blue-style-logo-png-0.png" height="30">
 </a>&nbsp;
 <a href="https://twitter.com/JacobMGEvans?ref_src=twsrc%5Etfw" class="twitter-follow-button">
@@ -12,9 +10,9 @@
 
 Greetings!
 
-A little about myself, I create blog posts, volunteer in tech communities (KCD, <a href="https://discord.gg/urQuPURusm">Open Source Raid Guild</a>, VetsWhoCode,  Testing Library, etc...) and contribute to open source software. All part of my continous learning and improvement.
+A little about myself, I create blog posts, volunteer in tech communities (KCD, <a href="https://discord.gg/urQuPURusm">Open Source Raid Guild</a>, VetsWhoCode, Testing Library, etc...) and contribute to open source software. All part of my continous learning and improvement.
 
----
+<hr/>
 
 <h3> OSS & Community 🛰️</h3>
 <span>
@@ -36,10 +34,7 @@ A little about myself, I create blog posts, volunteer in tech communities (KCD, 
 - [Writing Immutable and Functional JavaScript](https://dev.to/jacobmgevans/writing-immutable-javascript-why-how-3if6)
 </details>
 
----
-
-<!-- <h3>Tools & Technologies</h3> -->
-
+<hr/>
 <br />
 
-[![Jacob's github stats](https://github-readme-stats.vercel.app/api?username=JacobMGEvans)](https://github.com/JacobMGEvans/github-readme-stats)
+<img src="https://github-readme-stats.vercel.app/api?username=JacobMGEvans">
