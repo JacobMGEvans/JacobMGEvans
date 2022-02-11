@@ -8,16 +8,12 @@
 </a>
 </p>
 
-Greetings!
-
-<p>
-A little about myself,
 <center>
 FullStack Cloudflare Workers | Father | Autistic | Air Force Veteran | Hardware Enthusiast | Camping & Hiking 🏕️ | Trekkie | D&D | OSS Enthusiast | 
-@O_S_R_G
+<a href="https://twitter.com/O_S_R_G">@O_S_R_G</a>
+ <br />
+ I create blog posts, volunteer in tech communities (KCD, <a href="https://discord.gg/urQuPURusm">Open Source Raid Guild</a>, VetsWhoCode, etc...) and contribute to open source software. All part of my continous learning and improvement.
 </center>
- I create blog posts, volunteer in tech communities (KCD, <a href="https://discord.gg/urQuPURusm">Open Source Raid Guild</a>, VetsWhoCode, Testing Library, etc...) and contribute to open source software. All part of my continous learning and improvement.
-</p>
 
 <hr/>
 
@@ -29,7 +25,6 @@ FullStack Cloudflare Workers | Father | Autistic | Air Force Veteran | Hardware 
 <a href="https://osrg.t3.gg"> <img src="https://osrg.t3.gg/assets/logo-full.svg" height="60"/> </a> 
 </span>
 <br />
-
 <b>Part of my OSS work and learning in public</b> efforts involve writing technical and technical adjacent, blogs for people to benefit from, including myself.
 
 <details open>
