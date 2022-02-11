@@ -22,7 +22,7 @@ A little about myself, I create blog posts, volunteer in tech communities (KCD, 
 <a href="https://osrg.t3.gg"> <img src="https://osrg.t3.gg/assets/logo-full.svg" height="60"/> </a> 
 </span>
 
-**Part of my OSS work and learning in public** efforts involve writing technical and technical adjacent, Blogs for people to benefit from, including myself.
+<b>Part of my OSS work and learning in public</b> efforts involve writing technical and technical adjacent, blogs for people to benefit from, including myself.
 
 <details open>
 <summary>A Few Cherrypicked Blog Articles 🗃️ </summary>
