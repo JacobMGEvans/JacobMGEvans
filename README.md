@@ -11,11 +11,12 @@
 Greetings!
 
 <p>
+A little about myself,
 <center>
 FullStack Cloudflare Workers | Father | Autistic | Air Force Veteran | Hardware Enthusiast | Camping & Hiking 🏕️ | Trekkie | D&D | OSS Enthusiast | 
 @O_S_R_G
 </center>
-A little about myself, I create blog posts, volunteer in tech communities (KCD, <a href="https://discord.gg/urQuPURusm">Open Source Raid Guild</a>, VetsWhoCode, Testing Library, etc...) and contribute to open source software. All part of my continous learning and improvement.
+ I create blog posts, volunteer in tech communities (KCD, <a href="https://discord.gg/urQuPURusm">Open Source Raid Guild</a>, VetsWhoCode, Testing Library, etc...) and contribute to open source software. All part of my continous learning and improvement.
 </p>
 
 <hr/>
