@@ -8,7 +8,12 @@
   },
   "private": true,
   "scripts": {
-    "start": "wrangler dev src/index.ts",
-    "deploy": "wrangler publish src/index.ts"
+    "start": "npx wrangler dev src/index.ts",
+    "deploy": "npx wrangler publish src/index.ts"
+  },
+  "dependencies": {
+    "remark-html": "^15.0.1",
+    "remark-parse": "^10.0.1",
+    "unified": "^10.1.1"
   }
 }

@@ -1,15 +1,14 @@
-/**
- * Welcome to Cloudflare Workers! This is your first worker.
- *
- * - Run `wrangler dev src/index.ts` in your terminal to start a development server
- * - Open a browser tab at http://localhost:8787/ to see your worker in action
- * - Run `wrangler publish src/index.ts --name my-worker` to deploy your worker
- *
- * Learn more at https://developers.cloudflare.com/workers/
- */
+import { unified } from "unified";
+import remarkParse from "remark-parse";
+import remarkHtml from "remark-html";
 
 export default {
   async fetch(request: Request): Promise<Response> {
-    return new Response("Hello World!");
+    const readmeContent = await unified()
+      .use(remarkParse)
+      .use(remarkHtml)
+      .process(await fetch("../README.md").then((r) => r.text()));
+
+    return new Response(String(readmeContent));
   },
 };
