@@ -8,6 +8,8 @@
 </a>
 </p>
 
+Greetings!
+
 <center>
 FullStack Cloudflare Workers | Father | Autistic | Air Force Veteran | Hardware Enthusiast | Camping & Hiking 🏕️ | Trekkie | D&D | OSS Enthusiast | 
 <a href="https://twitter.com/O_S_R_G">@O_S_R_G</a>
