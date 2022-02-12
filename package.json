@@ -8,9 +8,10 @@
   "private": true,
   "scripts": {
     "start": "npx wrangler dev src/index.ts",
-    "deploy": "npx wrangler publish src/index.ts"
+    "deploy": "npx wrangler publish src/index.ts",
+    "update": "rm -rf package-lock.json node_modules && npm i wrangler@alpha"
   },
   "dependencies": {
-    "wrangler": "^0.0.0-78acd24"
+    "wrangler": "^0.0.0-8f47712"
   }
 }
