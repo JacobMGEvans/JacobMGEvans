@@ -1,12 +1,13 @@
 <meta property="og:url" content="https://dev.to/jacobmgevans" />
 <meta name="description" content="Jacob MG Evans GitHub profile. Describing personal passions and accomplishments."/>
+<meta name="viewport" />
 
 <title> JacobMGEvans profile </title>
 <p align="center">
 <a href="https://www.linkedin.com/in/jacob-m-g-evans/"><img alt="Linkedin Icon" src="https://www.freepnglogos.com/uploads/linkedin-blue-style-logo-png-0.png" height="30">
 </a>
 <a href="https://twitter.com/JacobMGEvans?ref_src=twsrc%5Etfw" class="twitter-follow-button">
-<img src="https://img.shields.io/twitter/follow/JacobMGEvans?style=social" />
+<img src="https://img.shields.io/twitter/follow/JacobMGEvans?style=social" alt="follow JacobMGEvans on Twitter"/>
 </a>
 </p>
 
@@ -47,4 +48,4 @@ FullStack Cloudflare Workers | Father | Autistic | Air Force Veteran | Hardware 
 <hr/>
 <br />
 
-<img src="https://github-readme-stats.vercel.app/api?username=JacobMGEvans">
+<img src="https://github-readme-stats.vercel.app/api?username=JacobMGEvans" alt="JacobMGEvans GitHub Stats card">

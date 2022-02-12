@@ -6,7 +6,7 @@ export default {
     const readmeContent = await fetch(
       "https://raw.githubusercontent.com/JacobMGEvans/JacobMGEvans/main/README.md"
     ).then((r) => r.text());
-    const html = `<!DOCTYPE html>
+    const html = `<!DOCTYPE html lang="en">
       <center>
         ${readmeContent}
       </center>`;
