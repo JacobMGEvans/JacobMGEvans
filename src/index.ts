@@ -6,12 +6,11 @@ export default {
     const readmeContent = await fetch(
       "https://raw.githubusercontent.com/JacobMGEvans/JacobMGEvans/main/README.md"
     ).then((r) => r.text());
-
     const html = `
     <!DOCTYPE html>
     <html lang="en">
         <body>
-            ${readmeContent}
+            ${readmeContent.replaceAll(/<!--/g, "").replaceAll(/-->/g, "")}
         </body>
     </html>
     `;
