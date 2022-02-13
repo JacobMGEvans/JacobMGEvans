@@ -1,9 +1,11 @@
+<head>
 <meta property="og:url" content="https://dev.to/jacobmgevans" />
 <meta name="description" content="Jacob MG Evans GitHub profile. Describing personal passions and accomplishments."/>
 <meta name="viewport" content="initial-scale=1, maximum-scale=1" />
 <meta name="theme-color" content="#000000" />
+<script async  src="https://cdn.tailwindcss.com" ></script>
+</head>
 
-<title> JacobMGEvans profile </title>
 <p align="center">
 <a href="https://www.linkedin.com/in/jacob-m-g-evans/"><img alt="Linkedin Icon" src="https://www.freepnglogos.com/uploads/linkedin-blue-style-logo-png-0.png" height="30">
 </a>
