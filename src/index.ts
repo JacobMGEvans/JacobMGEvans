@@ -6,6 +6,8 @@ export default {
     const readmeContent = await fetch(
       "https://raw.githubusercontent.com/JacobMGEvans/JacobMGEvans/main/README.md"
     ).then((r) => r.text());
+
+    //TODO Create a slicable/gettable Head from README and drop it into template <head> tag here
     const html = `
     <!DOCTYPE html>
     <head>
@@ -13,7 +15,7 @@ export default {
       <meta name="description" content="Jacob MG Evans GitHub profile. Describing personal passions and accomplishments."/>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta name="theme-color" content="#000000" />
-      <script async  src="https://cdn.tailwindcss.com" ></script> 
+      <script src="https://cdn.tailwindcss.com" ></script> 
       <title> JacobMGEvans profile </title> 
     </head>
     <html lang="en">
