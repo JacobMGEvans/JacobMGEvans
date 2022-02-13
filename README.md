@@ -26,7 +26,7 @@ FullStack Cloudflare Workers | Father | Autistic | Air Force Veteran | Hardware 
 
 <hr/>
 
-<h3> OSS & Community 🛰️</h3>
+<h2> OSS & Community 🛰️</h2>
 <span>
 <a href="https://dev.to/jacobmgevans"><img src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/assets/hacktoberfest.png"  alt="2019 Hacktoberfest Logo" height="60"/></a> 
 <a href="https://dev.to/jacobmgevans" ><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--Lojm4XAD--/c_imagga_scale,f_auto,fl_progressive,h_900,q_auto,w_1600/https://dev-to-uploads.s3.amazonaws.com/i/9g2loqfoe84qeh8qqpa4.png" alt="2020 Hacktoberfest Logo" height="60"/></a>
