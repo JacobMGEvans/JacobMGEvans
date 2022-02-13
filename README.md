@@ -1,7 +1,7 @@
 <meta property="og:url" content="https://dev.to/jacobmgevans" />
 <meta name="description" content="Jacob MG Evans GitHub profile. Describing personal passions and accomplishments."/>
-<meta name="viewport" />
-<script src="https://cdn.tailwindcss.com" />
+<meta name="viewport" content="initial-scale=1, maximum-scale=1" />
+<meta name="theme-color" content="#000000" />
 
 <title> JacobMGEvans profile </title>
 <p align="center">
