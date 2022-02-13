@@ -8,6 +8,7 @@ export default {
     ).then((r) => r.text());
 
     //TODO Create a slicable/gettable Head from README and drop it into template <head> tag here
+    // TODO: TailwindCSS needs to be accessible on the website as an asset AND locally for the README.md file
     const html = `
     <!DOCTYPE html>
     <head>
