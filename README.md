@@ -1,6 +1,7 @@
 <meta property="og:url" content="https://dev.to/jacobmgevans" />
 <meta name="description" content="Jacob MG Evans GitHub profile. Describing personal passions and accomplishments."/>
 <meta name="viewport" />
+<script src="https://cdn.tailwindcss.com"></script>
 
 <title> JacobMGEvans profile </title>
 <p align="center">
@@ -11,7 +12,7 @@
 </a>
 </p>
 
-<h1> Welcome to My Profile! </h1>
+<h1 class="text-3xl font-bold underline"> Welcome to My Profile! </h1>
 
 <center>
 FullStack Cloudflare Workers | Father | Autistic | Air Force Veteran | Hardware Enthusiast | Camping & Hiking 🏕️ | Trekkie | D&D | OSS Enthusiast | 
