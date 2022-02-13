@@ -3,8 +3,8 @@
 <meta name="description" content="Jacob MG Evans GitHub profile. Describing personal passions and accomplishments."/>
 <meta name="viewport" content="initial-scale=1, maximum-scale=1" />
 <meta name="theme-color" content="#000000" />
-## <script async  src="https://cdn.tailwindcss.com" ></script>
-## <title> JacobMGEvans profile </title>
+<!-- <script async  src="https://cdn.tailwindcss.com" ></script> -->
+<!-- <title> JacobMGEvans profile </title> -->
 </head>
 
 <p align="center">
