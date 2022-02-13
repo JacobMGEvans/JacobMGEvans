@@ -8,7 +8,7 @@ export default {
     ).then((r) => r.text());
     const html = `
     <!DOCTYPE html>
-    <script defer  src="https://cdn.tailwindcss.com"> </script>
+    <script async  src="https://cdn.tailwindcss.com" />
     <html lang="en">
     <body>
       <center>
