@@ -10,8 +10,6 @@ export default {
     const html = `
     <!DOCTYPE html>
     <html lang="en">
-      
-      <title> JacobMGEvans profile </title>
         <body>
             ${readmeContent}
         </body>
