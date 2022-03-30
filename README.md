@@ -44,3 +44,4 @@ FullStack Cloudflare Workers | Father | Autistic | Air Force Veteran | Hardware 
 <br />
 
 <img src="https://github-readme-stats.vercel.app/api?username=JacobMGEvans" alt="JacobMGEvans GitHub Stats card">
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=jacobmgevans&layout=compact" alt="Top Languages Used">
