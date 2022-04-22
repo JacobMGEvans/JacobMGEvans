@@ -1,5 +1,5 @@
 <p align="center">
-<a href="https://www.linkedin.com/in/jacob-m-g-evans/"><img alt="Linkedin Icon" src="https://www.freepnglogos.com/uploads/linkedin-blue-style-logo-png-0.png" height="25">
+<a href="https://www.linkedin.com/in/jacob-m-g-evans/"><img alt="Linkedin Icon" src="https://www.freepnglogos.com/uploads/linkedin-blue-style-logo-png-0.png" height="20">
 </a>
 <a href="https://twitter.com/JacobMGEvans?ref_src=twsrc%5Etfw" class="twitter-follow-button">
 <img src="https://img.shields.io/twitter/follow/JacobMGEvans?style=social" alt="follow JacobMGEvans on Twitter"/>
