@@ -9,7 +9,8 @@
 <h1 class="text-3xl font-bold underline"> Welcome to My Profile! </h1>
 
 <center>
-FullStack Cloudflare Workers | Father | Autistic | Air Force Veteran | Hardware Enthusiast | Camping & Hiking 🏕️ | Trekkie | D&D | OSS Enthusiast | 
+Father | FullStack @Cloudflare Workers | Autistic | AF Veteran | Hardware | Camping & Hiking 🏕️ | Trekkie |<a href="http://twitch.tv/jacobmgevans" >D&D</a> | OSS | 
+@O_S_R_G 
 <a href="https://twitter.com/O_S_R_G">@O_S_R_G</a>
  <br />
  I create blog posts, volunteer in tech communities (KCD, <a href="https://discord.gg/urQuPURusm">Open Source Raid Guild</a>, VetsWhoCode, etc...) and contribute to open source software. All part of my continous learning and improvement.

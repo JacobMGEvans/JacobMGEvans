@@ -3,9 +3,11 @@ export default {
     const headers = new Headers();
     headers.set("Content-Type", "text/html;charset=UTF-8");
 
-    const readmeContent = await fetch(
-      "https://raw.githubusercontent.com/JacobMGEvans/JacobMGEvans/main/README.md"
-    ).then((r) => r.text());
+    const readmeContent = await (
+      await fetch(
+        "https://raw.githubusercontent.com/JacobMGEvans/JacobMGEvans/main/README.md"
+      )
+    ).text();
 
     //TODO Create a slicable/gettable Head from README and drop it into template <head> tag here
     // TODO: TailwindCSS needs to be accessible on the website as an asset AND locally for the README.md file
