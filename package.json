@@ -12,6 +12,6 @@
     "update": "rm -rf package-lock.json node_modules && npm i wrangler@alpha"
   },
   "dependencies": {
-    "wrangler": "^0.0.0-8f47712"
+    "wrangler": "^2.0.14"
   }
 }

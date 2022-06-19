@@ -1,2 +1,4 @@
+main = "./src/index.ts"
 compatibility_date = "2022-02-10"
-name = "website" 
+name = "website"
+route = "jacobmgevans.com"

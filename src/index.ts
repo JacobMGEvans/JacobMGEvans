@@ -16,16 +16,16 @@ export default {
       <meta name="description" content="Jacob MG Evans GitHub profile. Describing personal passions and accomplishments."/>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta name="theme-color" content="#000000" />
-      <script src="https://cdn.tailwindcss.com" ></script> 
       <title> JacobMGEvans profile </title> 
     </head>
     <html lang="en">
-        <body>
+        <body align="center">
             ${readmeContent}
         </body>
     </html>
     `;
 
+    console.log(JSON.stringify(readmeContent));
     return new Response(html, { headers });
   },
 };
