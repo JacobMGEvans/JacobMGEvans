@@ -9,7 +9,7 @@
 <h1 class="text-3xl font-bold underline"> Welcome to My Profile! </h1>
 
 <center>
-Father | FullStack @Cloudflare Workers | Autistic | AF Veteran | Hardware | Camping & Hiking 🏕️ | Trekkie |<a href="http://twitch.tv/jacobmgevans" >D&D</a> | OSS | 
+Father | FullStack @Cloudflare Workers | Autistic | AF Veteran | Hardware | Camping & Hiking 🏕️ | Trekkie | <a href="http://twitch.tv/jacobmgevans" >D&D</a> | OSS | 
 @O_S_R_G 
 <a href="https://twitter.com/O_S_R_G">@O_S_R_G</a>
  <br />
