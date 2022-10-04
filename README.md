@@ -44,6 +44,6 @@ Father | FullStack @Cloudflare Workers | Autistic | AF Veteran | Hardware | Camp
 <br />
 
 <span>
-![Jacob MG Evans GitHub stats](https://github-readme-stats.vercel.app/api?username=JacobMGEvans&show_icons=true&theme=synthwave)
+<img src="https://github-readme-stats.vercel.app/api?username=JacobMGEvans&show_icons=true&theme=synthwave" height="150"> 
 <img src="https://github-readme-stats.vercel.app/api?username=JacobMGEvans" alt="JacobMGEvans GitHub Stats card" height="150">
 </span>
