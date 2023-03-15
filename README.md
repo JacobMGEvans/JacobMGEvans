@@ -43,6 +43,4 @@ Father | FullStack @Cloudflare Workers | Autistic | AF Veteran | Hardware | Camp
 <hr/>
 <br />
 
-<span>
-<img src="https://github-readme-stats.vercel.app/api?username=JacobMGEvans&show_icons=true&theme=synthwave" height="150" alt="JacobMGEvans GitHub Stats card"> 
-</span>
+
