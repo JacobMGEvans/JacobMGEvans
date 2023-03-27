@@ -20,16 +20,10 @@
 <h1 class="text-3xl font-bold underline">Welcome to My Profile!</h1>
 
 <center>
-  Father | FullStack @Cloudflare Workers | Autistic | AF Veteran | Hardware |
-  Camping & Hiking 🏕️ | Trekkie |
-  <a href="http://twitch.tv/jacobmgevans">D&D</a> | OSS |
-  <a href="https://twitter.com/O_S_R_G">@O_S_R_G</a>
-  <br />
-  I create blog posts, volunteer in tech communities (
-  <a href="t3.gg/discord">Theo (T3 community)</a>, KCD,
-  <a href="https://discord.gg/urQuPURusm">Open Source Raid Guild (Discord)</a>,
-  VetsWhoCode, etc...) and contribute to open source software. All part of my
-  continous learning and improvement.
+Father | FullStack @Cloudflare Workers | Autistic | AF Veteran | Hardware | Camping & Hiking 🏕️ | Trekkie | <a href="http://twitch.tv/jacobmgevans" >D&D</a> | OSS | 
+<a href="https://twitter.com/O_S_R_G">@O_S_R_G</a>
+ <br />
+ I create blog posts, volunteer in tech communities ( <a href="https://discord.gg/xQsq2JzcUM">Theo's TypeSafe Cult (T3 Discord community)</a>, KCD, <a href="https://discord.gg/urQuPURusm">Open Source Raid Guild (Discord)</a>, VetsWhoCode, etc...) and contribute to open source software. All part of my continous learning and improvement.
 </center>
 
 <hr />
@@ -98,15 +92,3 @@ myself.
 <hr />
 <br />
 
-<span>
-  <img
-    src="https://github-readme-stats.vercel.app/api/top-langs/?username=jacobmgevans&layout=compact"
-    alt="Top Languages Used"
-    height="150"
-  />
-  <img
-    src="https://github-readme-stats.vercel.app/api?username=JacobMGEvans"
-    alt="JacobMGEvans GitHub Stats card"
-    height="150"
-  />
-</span>
