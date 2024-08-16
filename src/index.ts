@@ -1,8 +1,7 @@
-const TAILWIND_URL = 'https://cdn.tailwindcss.com';
-const CACHE_KEY = 'tailwind-script';
-
 const handler = {
   async fetch(): Promise<Response> {
+    const TAILWIND_URL = 'https://cdn.tailwindcss.com';
+    const CACHE_KEY = new Request(TAILWIND_URL);
     const cache = await caches.open('tailwind-cache');
 
     let tailwindScript = await cache.match(CACHE_KEY);
@@ -12,14 +11,22 @@ const handler = {
         await cache.put(CACHE_KEY, tailwindScript.clone());
       }
     }
+    const tailwind = tailwindScript ? await tailwindScript.text() : '';
 
     const headers = new Headers();
     headers.set('Content-Type', 'text/html;charset=UTF-8');
 
     // Fetch the HTML content from the GitHub README -> its Raw endpoint because grabbing it relative to the repo isnt working... Yet.
     const response = await fetch(
-      'https://raw.githubusercontent.com/JacobMGEvans/JacobMGEvans/main/readme.html'
+      'https://raw.githubusercontent.com/JacobMGEvans/JacobMGEvans/main/readme.html',
+      {
+        cf: {
+          cacheEverything: true,
+          cacheTtl: 600, // 10 minute
+        },
+      }
     );
+
     const html = await response.text();
 
     const rewriter = new HTMLRewriter()
@@ -32,7 +39,7 @@ const handler = {
             <meta name="description" content="Jacob MG Evans GitHub profile. Describing personal passions and accomplishments." />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <meta name="theme-color" content="#000000" />
-            <script src="${TAILWIND_URL}"></script>
+            <script>${tailwind}</script>
             <script defer>
               tailwind.config = {
                 theme: {
