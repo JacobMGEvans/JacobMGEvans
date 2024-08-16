@@ -16,23 +16,24 @@ const handler = {
     const headers = new Headers();
     headers.set('Content-Type', 'text/html;charset=UTF-8');
 
-    // Fetch the HTML content from the GitHub README -> its Raw endpoint because grabbing it relative to the repo isnt working... Yet.
+    // Fetch the HTML content from the GitHub README's raw endpoint -> because I cant get the relative fetch from the repo working... Yet
     const response = await fetch(
       'https://raw.githubusercontent.com/JacobMGEvans/JacobMGEvans/main/README.md',
       {
         cf: {
           cacheEverything: true,
-          cacheTtl: 600, // 10 minute
+          cacheTtl: 600, // Cache for 10 minutes
         },
       }
     );
 
     const html = await response.text();
 
+    // Use HTMLRewriter to modify the fetched HTML
     const rewriter = new HTMLRewriter()
       .on('head', {
         element(element) {
-          // Add the TailwindCSS Play CDN script
+          // Inject the cached Tailwind CSS Play CDN script with custom configuration
           element.append(
             `
             <meta property="og:url" content="https://dev.to/jacobmgevans" />
@@ -46,7 +47,7 @@ const handler = {
                   extend: {
                     colors: {
                       slate: '#1f2937',
-                      primary: '#6366F1', 
+                      primary: '#6366F1',
                       accent: '#D97706',
                     }
                   }
@@ -153,7 +154,6 @@ const handler = {
     return new Response(await transformedResponse.text(), {
       headers: {
         'content-type': 'text/html;charset=UTF-8',
-        'cache-control': 'public, max-age=3600',
       },
     });
   },
