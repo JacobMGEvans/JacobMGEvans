@@ -3,7 +3,7 @@
     <img
       alt="Linkedin Icon"
       src="https://www.freepnglogos.com/uploads/linkedin-blue-style-logo-png-0.png"
-      height="60"
+      height="30"
     />
   </a>
   <a
@@ -13,7 +13,7 @@
     <img
       src="https://img.shields.io/twitter/follow/JacobMGEvans?style=social"
       alt="follow JacobMGEvans on Twitter"
-      height="60"
+      height="30"
     />
   </a>
 </div>
