@@ -4,7 +4,8 @@
     "noEmit": true,
     "resolveJsonModule": true,
     "target": "esnext",
-    "module": "esnext",
+    "moduleResolution": "NodeNext",
+    "module": "NodeNext",
     "lib": ["esnext"],
     "types": ["@cloudflare/workers-types"]
   }

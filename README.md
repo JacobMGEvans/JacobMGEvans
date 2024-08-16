@@ -1,21 +1,22 @@
-<p align="center">
-  <a href="https://www.linkedin.com/in/jacob-m-g-evans/"
-    ><img
+<div class="flex justify-center space-x-4 my-4">
+  <a href="https://www.linkedin.com/in/jacob-m-g-evans/" class="inline-block">
+    <img
       alt="Linkedin Icon"
       src="https://www.freepnglogos.com/uploads/linkedin-blue-style-logo-png-0.png"
-      height="20"
+      class="h-5 w-auto"
     />
   </a>
   <a
     href="https://twitter.com/JacobMGEvans?ref_src=twsrc%5Etfw"
-    class="twitter-follow-button"
+    class="inline-block"
   >
     <img
       src="https://img.shields.io/twitter/follow/JacobMGEvans?style=social"
       alt="follow JacobMGEvans on Twitter"
+      class="h-5 w-auto"
     />
   </a>
-</p>
+</div>
 
 <h1 class="text-3xl font-bold underline">Welcome to My Profile!</h1>
 
@@ -75,4 +76,3 @@ myself.
 
 <hr />
 <br />
-
