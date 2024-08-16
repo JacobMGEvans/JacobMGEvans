@@ -55,7 +55,7 @@ Father | FullStack @ClerkInc Workers | Autistic | AF Veteran | Hardware | Campin
   /></a>
   <a href="https://osrg.t3.gg">
     <img
-      src="https://osrg.t3.gg/public/logo-full.svg"
+      src="https://osrg.t3.gg/assets/logo-full.svg"
       alt="Open Source Raid Guild Logo"
       height="60"
     />
