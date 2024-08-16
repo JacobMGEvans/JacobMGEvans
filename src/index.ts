@@ -76,10 +76,10 @@ const handler = {
           );
         },
       })
-      .on('center', {
+      .on('section', {
         element(element) {
           element.setAttribute('class', 'text-center text-lg my-6');
-          element.tagName = 'div'; // TODO: Replace <center> with <div>, just change that in HTML
+          element.tagName = 'div';
         },
       })
       .on('span', {
