@@ -18,7 +18,7 @@ const handler = {
 
     // Fetch the HTML content from the GitHub README -> its Raw endpoint because grabbing it relative to the repo isnt working... Yet.
     const response = await fetch(
-      'https://raw.githubusercontent.com/JacobMGEvans/JacobMGEvans/main/readme.html',
+      'https://raw.githubusercontent.com/JacobMGEvans/JacobMGEvans/main/README.md',
       {
         cf: {
           cacheEverything: true,

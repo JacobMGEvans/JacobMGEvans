@@ -58,9 +58,9 @@ Father | FullStack @ClerkInc Workers | Autistic | AF Veteran | Hardware | Campin
   </a>
 </span>
 <br />
-<b>Part of my OSS work and learning in public</b> efforts involve writing
+<p>Part of my OSS work and learning in public efforts involve writing
 technical and technical adjacent, blogs for people to benefit from, including
-myself.
+myself.</p>
 
 <details open>
   <summary>A Few Cherrypicked Blog Articles 🗃️</summary>
