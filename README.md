@@ -9,15 +9,11 @@
   <a
     href="https://twitter.com/JacobMGEvans?ref_src=twsrc%5Etfw"
     class="inline-block"
-    rel="preconnect"
-    crossorigin
   >
     <img
       src="https://img.shields.io/twitter/follow/JacobMGEvans?style=social"
       alt="follow JacobMGEvans on Twitter"
       height="30"
-      rel="preconnect"
-      crossorigin 
     />
   </a>
 </div>
