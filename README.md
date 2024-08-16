@@ -1,9 +1,9 @@
-<div class="flex justify-center space-x-4 my-4">
+<div>
   <a href="https://www.linkedin.com/in/jacob-m-g-evans/" class="inline-block">
     <img
       alt="Linkedin Icon"
       src="https://www.freepnglogos.com/uploads/linkedin-blue-style-logo-png-0.png"
-      class="h-5 w-auto"
+      height="60"
     />
   </a>
   <a
@@ -13,7 +13,7 @@
     <img
       src="https://img.shields.io/twitter/follow/JacobMGEvans?style=social"
       alt="follow JacobMGEvans on Twitter"
-      class="h-5 w-auto"
+      height="60"
     />
   </a>
 </div>

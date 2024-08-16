@@ -1,9 +1,22 @@
+const TAILWIND_URL = 'https://cdn.tailwindcss.com';
+const CACHE_KEY = 'tailwind-script';
+
 const handler = {
   async fetch(): Promise<Response> {
+    const cache = await caches.open('tailwind-cache');
+
+    let tailwindScript = await cache.match(CACHE_KEY);
+    if (!tailwindScript) {
+      tailwindScript = await fetch(TAILWIND_URL);
+      if (tailwindScript.ok) {
+        await cache.put(CACHE_KEY, tailwindScript.clone());
+      }
+    }
+
     const headers = new Headers();
     headers.set('Content-Type', 'text/html;charset=UTF-8');
 
-    // Fetch the HTML content from the GitHub README
+    // Fetch the HTML content from the GitHub README -> its Raw endpoint because grabbing it relative to the repo isnt working... Yet.
     const response = await fetch(
       'https://raw.githubusercontent.com/JacobMGEvans/JacobMGEvans/main/readme.html'
     );
@@ -19,7 +32,7 @@ const handler = {
             <meta name="description" content="Jacob MG Evans GitHub profile. Describing personal passions and accomplishments." />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <meta name="theme-color" content="#000000" />
-            <script src="https://cdn.tailwindcss.com" ></script>
+            <script src="${TAILWIND_URL}"></script>
             <script defer>
               tailwind.config = {
                 theme: {
@@ -44,6 +57,11 @@ const handler = {
           `,
             { html: true }
           );
+        },
+      })
+      .on('div:first-of-type', {
+        element(element) {
+          element.setAttribute('class', 'flex justify-center space-x-4 my-4');
         },
       })
       .on('body', {
