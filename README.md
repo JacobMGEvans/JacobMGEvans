@@ -2,7 +2,7 @@
   <a href="https://www.linkedin.com/in/jacob-m-g-evans/" class="inline-block">
     <img
       alt="Linkedin Icon"
-      src="./assets/linkedin.avif"
+      src="./assets/linkedin.png"
       height="30"
     />
   </a>
