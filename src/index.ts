@@ -83,7 +83,15 @@ const handler = {
         element(element) {
           element.setAttribute(
             'class',
-            'text-4xl font-extrabold text-primary mt-8 mb-4 tracking-tight text-slate-100'
+            'text-4xl font-extrabold text-primary mt-8 mb-4 tracking-tight'
+          );
+        },
+      })
+      .on('h2', {
+        element(element) {
+          element.setAttribute(
+            'class',
+            'text-2xl font-extrabold text-primary mt-8 mb-4 tracking-tight'
           );
         },
       })
