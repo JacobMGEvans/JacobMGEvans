@@ -27,7 +27,16 @@ const handler = {
       }
     );
 
-    const html = await response.text();
+    const markdown = await response.text();
+    const html = `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head></head>
+    <body>
+      ${markdown}
+    </body>
+    </html>
+    `;
 
     // Use HTMLRewriter to modify the fetched HTML
     const rewriter = new HTMLRewriter()
@@ -36,6 +45,7 @@ const handler = {
           // Inject the cached Tailwind CSS Play CDN script with custom configuration
           element.append(
             `
+            <meta charset="UTF-8">
             <meta property="og:url" content="https://dev.to/jacobmgevans" />
             <meta name="description" content="Jacob MG Evans GitHub profile. Describing personal passions and accomplishments." />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
