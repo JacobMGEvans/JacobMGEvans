@@ -3,15 +3,15 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "wrangler dev src/index.ts",
-    "deploy": "wrangler publish src/index.ts",
-    "update": "rm -rf package-lock.json node_modules && pnpm i"
+    "start": "wrangler dev src/index.ts --experimental-json-config ",
+    "deploy": "wrangler publish src/index.ts --experimental-json-config",
+    "update": "rm -rf pnpm-lock.yaml node_modules && pnpm i"
   },
   "dependencies": {
-    "wrangler": "^2.13.0"
+    "wrangler": "^3.72.0"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20230321.0",
-    "typescript": "^5.0.2"
+    "@cloudflare/workers-types": "^4.20240815.0",
+    "typescript": "^5.5.4"
   }
 }
