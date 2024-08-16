@@ -2,7 +2,7 @@
   <a href="https://www.linkedin.com/in/jacob-m-g-evans/" class="inline-block">
     <img
       alt="Linkedin Icon"
-      src="./assets/linkedin.png"
+      src="./public/linkedin.png"
       height="30"
     />
   </a>
@@ -37,7 +37,7 @@ Father | FullStack @ClerkInc Workers | Autistic | AF Veteran | Hardware | Campin
 <span>
   <a href="https://dev.to/jacobmgevans"
     ><img
-      src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/assets/hacktoberfest.png"
+      src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktoberfest.png"
       alt="2019 Hacktoberfest Logo"
       height="60"
   /></a>
@@ -55,7 +55,7 @@ Father | FullStack @ClerkInc Workers | Autistic | AF Veteran | Hardware | Campin
   /></a>
   <a href="https://osrg.t3.gg">
     <img
-      src="https://osrg.t3.gg/assets/logo-full.svg"
+      src="https://osrg.t3.gg/public/logo-full.svg"
       alt="Open Source Raid Guild Logo"
       height="60"
     />
