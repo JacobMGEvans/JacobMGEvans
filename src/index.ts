@@ -1,10 +1,18 @@
 const handler = {
-  async fetch(): Promise<Response> {
+  async fetch(
+    request: Request,
+    env: any,
+    ctx: ExecutionContext
+  ): Promise<Response> {
+    const headers = new Headers();
+    const imageUrls = new Set<string>();
+
     const TAILWIND_URL = 'https://cdn.tailwindcss.com';
     const CACHE_KEY = new Request(TAILWIND_URL);
     const cache = await caches.open('tailwind-cache');
 
     let tailwindScript = await cache.match(CACHE_KEY);
+
     if (!tailwindScript) {
       tailwindScript = await fetch(TAILWIND_URL);
       if (tailwindScript.ok) {
@@ -13,7 +21,6 @@ const handler = {
     }
     const tailwind = tailwindScript ? await tailwindScript.text() : '';
 
-    const headers = new Headers();
     headers.set('Content-Type', 'text/html;charset=UTF-8');
 
     // Fetch the HTML content from the GitHub README's raw endpoint -> because I cant get the relative fetch from the repo working... Yet
@@ -111,6 +118,16 @@ const handler = {
           element.setAttribute('class', 'flex justify-center space-x-4 my-8');
         },
       })
+      .on('img', {
+        element(element) {
+          const src = element.getAttribute('src');
+          if (src) {
+            imageUrls.add(src);
+          }
+          element.setAttribute('loading', 'lazy');
+          element.setAttribute('decoding', 'async');
+        },
+      })
       .on('a img', {
         element(element) {
           // Style the images inside <a> tags
@@ -152,6 +169,19 @@ const handler = {
           element.setAttribute('class', 'border-gray-600 my-6');
         },
       });
+
+    const earlyHints = new Response(null, {
+      status: 103,
+      headers: {
+        Link: Array.from(imageUrls)
+          .map((url) => `<${url}>; rel=preload; as=image`)
+          .join(', '),
+      },
+    });
+    ctx.waitUntil(
+      // @ts-ignore
+      request.signal.aborted ? Promise.resolve() : request.cf?.send(earlyHints)
+    );
 
     const transformedResponse = rewriter.transform(
       new Response(html, {
