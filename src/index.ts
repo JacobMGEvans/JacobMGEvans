@@ -25,13 +25,13 @@ const handler = {
 
     // Fetch the HTML content from the GitHub README's raw endpoint -> because I cant get the relative fetch from the repo working... Yet
     const response = await fetch(
-      'https://raw.githubusercontent.com/JacobMGEvans/JacobMGEvans/main/README.md',
-      {
-        cf: {
-          cacheEverything: true,
-          cacheTtl: 600, // Cache for 10 minutes
-        },
-      }
+      'https://raw.githubusercontent.com/JacobMGEvans/JacobMGEvans/main/README.md'
+      // {
+      //   cf: {
+      //     cacheEverything: true,
+      //     cacheTtl: 600, // Cache for 10 minutes
+      //   },
+      // }
     );
 
     const markdown = await response.text();

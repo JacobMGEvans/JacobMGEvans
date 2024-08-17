@@ -1,5 +1,5 @@
 <div>
-  <!-- <a href="https://www.linkedin.com/in/jacob-m-g-evans/" class="inline-block">
+  <a href="https://www.linkedin.com/in/jacob-m-g-evans/" class="inline-block">
     <img
       alt="Linkedin Icon"
       src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/linkedin.png"
@@ -15,7 +15,7 @@
       alt="follow JacobMGEvans on Twitter"
       height="30"
     />
-  </a> -->
+  </a>
 </div>
 
 <h1 class="text-3xl font-bold underline">Welcome to My Profile!</h1>
