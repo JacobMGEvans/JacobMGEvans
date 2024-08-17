@@ -181,6 +181,7 @@ const handler = {
     return new Response(await transformedResponse.text(), {
       headers: {
         'content-type': 'text/html;charset=UTF-8',
+        'cache-control': 'public, max-age=0',
       },
     });
   },
