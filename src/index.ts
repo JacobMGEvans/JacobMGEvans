@@ -57,6 +57,7 @@ const handler = {
             <meta name="description" content="Jacob MG Evans GitHub profile. Describing personal passions and accomplishments." />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <meta name="theme-color" content="#000000" />
+            <meta name="robots" content="index, follow" />
             <script>${tailwind}</script>
             <script defer>
               tailwind.config = {
@@ -128,6 +129,11 @@ const handler = {
           element.setAttribute('decoding', 'async');
         },
       })
+      .on('a', {
+        element(element) {
+          element.setAttribute('class', 'text-blue-500 underline');
+        },
+      })
       .on('a img', {
         element(element) {
           // Style the images inside <a> tags
@@ -170,26 +176,7 @@ const handler = {
         },
       });
 
-    const earlyHints = new Response(null, {
-      status: 103,
-      headers: {
-        Link: Array.from(imageUrls)
-          .map((url) => `<${url}>; rel=preload; as=image`)
-          .join(', '),
-      },
-    });
-    ctx.waitUntil(
-      // @ts-ignore
-      request.signal.aborted ? Promise.resolve() : request.cf?.send(earlyHints)
-    );
-
-    const transformedResponse = rewriter.transform(
-      new Response(html, {
-        headers: {
-          'content-type': 'text/html',
-        },
-      })
-    );
+    const transformedResponse = rewriter.transform(new Response(html));
 
     return new Response(await transformedResponse.text(), {
       headers: {
