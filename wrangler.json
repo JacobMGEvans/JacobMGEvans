@@ -2,5 +2,16 @@
   "main": "./src/index.ts",
   "compatibility_date": "2023-03-26",
   "name": "website",
-  "route": "jacobmgevans.com"
+  "route": "jacobmgevans.com",
+  "kv_namespaces": [
+    {
+      "binding": "tailwind-css",
+      "preview_id": "tailwind-css",
+      "id": "tailwind-css"
+    }
+  ],
+  "env": {
+    "TAILWIND_URL": "https://cdn.tailwindcss.com",
+    "KV_KEY": "tailwind-css"
+  }
 }

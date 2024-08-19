@@ -1,25 +1,26 @@
+interface Env {
+  KV_TAILWIND: KVNamespace;
+  TAILWIND_URL: string;
+  KV_KEY: string;
+}
+
 const handler = {
-  async fetch(
-    request: Request,
-    env: any,
-    ctx: ExecutionContext
-  ): Promise<Response> {
+  async fetch(request: Request, env, ctx: ExecutionContext): Promise<Response> {
     const headers = new Headers();
     const imageUrls = new Set<string>();
+    const TAILWIND_URL = env.TAILWIND_URL;
+    const KV_KEY = env.KV_KEY;
+    const KV_TAILWIND = env.KV_TAILWIND;
 
-    const TAILWIND_URL = 'https://cdn.tailwindcss.com';
-    const CACHE_KEY = new Request(TAILWIND_URL);
-    const cache = await caches.open('tailwind-cache');
-
-    let tailwindScript = await cache.match(CACHE_KEY);
+    let tailwindScript = await KV_TAILWIND.get(KV_KEY);
 
     if (!tailwindScript) {
-      tailwindScript = await fetch(TAILWIND_URL);
-      if (tailwindScript.ok) {
-        await cache.put(CACHE_KEY, tailwindScript.clone());
+      const response = await fetch(TAILWIND_URL);
+      if (response.ok) {
+        tailwindScript = await response.text();
+        await KV_TAILWIND.put(KV_KEY, tailwindScript);
       }
     }
-    const tailwind = tailwindScript ? await tailwindScript.text() : '';
 
     headers.set('Content-Type', 'text/html;charset=UTF-8');
 
@@ -58,7 +59,7 @@ const handler = {
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <meta name="theme-color" content="#000000" />
             <meta name="robots" content="index, follow" />
-            <script>${tailwind}</script>
+            <script>${tailwindScript ? tailwindScript : ''}</script>
             <script defer>
               tailwind.config = {
                 theme: {
@@ -184,6 +185,6 @@ const handler = {
       },
     });
   },
-} satisfies ExportedHandler;
+} satisfies ExportedHandler<Env>;
 
 export default handler;
