@@ -36,6 +36,7 @@ const handler = {
     );
 
     const markdown = await response.text();
+    // The markdown HTML from GitHub doesnt have Head tags
     const html = `
     <!DOCTYPE html>
     <html lang="en">

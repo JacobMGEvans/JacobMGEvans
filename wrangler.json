@@ -5,12 +5,12 @@
   "route": "jacobmgevans.com",
   "kv_namespaces": [
     {
-      "binding": "tailwind-css",
+      "binding": "KV_TAILWIND",
       "preview_id": "tailwind-css",
-      "id": "tailwind-css"
+      "id": "d9cb2229574441cfb709311e59b91fd9"
     }
   ],
-  "env": {
+  "vars": {
     "TAILWIND_URL": "https://cdn.tailwindcss.com",
     "KV_KEY": "tailwind-css"
   }
