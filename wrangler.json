@@ -13,5 +13,6 @@
   "vars": {
     "TAILWIND_URL": "https://cdn.tailwindcss.com",
     "KV_KEY": "tailwind-css"
-  }
+  },
+  "compatibility_flags": ["nodejs_compat"]
 }

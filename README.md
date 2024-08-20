@@ -2,7 +2,7 @@
   <a href="https://www.linkedin.com/in/jacob-m-g-evans/" class="inline-block">
     <img
       alt="Linkedin Icon"
-      src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/linkedin.png"
+      src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/linkedin.webp"
       height="30"
     />
   </a>
@@ -24,7 +24,7 @@
 Father | FullStack @ClerkInc Workers | Autistic | AF Veteran | Hardware | Camping & Hiking 🏕️ | Trekkie | <a href="http://twitch.tv/jacobmgevans" >D&D</a> | OSS | 
 <a href="https://twitter.com/O_S_R_G">@O_S_R_G</a>
  <br />
- I create content, volunteer in tech communities (<a href="https://discord.gg/xQsq2JzcUM">Theo's TypeSafe Cult (T3 Discord community)</a>, <a href="https://kentcdodds.com/discord"> KCD (Now Epic Web)</a>, <a href="https://discord.gg/urQuPURusm">Open Source Raid Guild (Discord)</a>, VetsWhoCode, etc...) and contribute to open source software. All part of my continous learning and improvement.
+ I create content, volunteer in tech communities (<a href="https://discord.gg/xQsq2JzcUM">Theo's TypeSafe Cult (T3 Discord community, Twitch & YT moderation)</a>, <a href="https://kentcdodds.com/discord"> KCD (Now Epic Web)</a>, <a href="https://osrg.t3.gg/">Open Source Raid Guild (Discord)</a>, <a href="https://vetswhocode.io/">VetsWhoCode</a>, etc...) and contribute to open source software. All part of my continous learning and improvement.
 </section>
 
 <hr />

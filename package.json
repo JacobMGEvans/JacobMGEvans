@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "wrangler dev src/index.ts --experimental-json-config ",
+    "start": "wrangler dev --experimental-json-config",
     "deploy": "wrangler deploy src/index.ts --experimental-json-config",
     "update": "rm -rf pnpm-lock.yaml node_modules && pnpm i"
   },

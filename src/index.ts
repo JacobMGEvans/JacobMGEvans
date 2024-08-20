@@ -2,18 +2,17 @@ interface Env {
   KV_TAILWIND: KVNamespace;
   TAILWIND_URL: string;
   KV_KEY: string;
+  ASSETS: Fetcher;
 }
 
-const handler = {
+export default {
   async fetch(request: Request, env, ctx: ExecutionContext): Promise<Response> {
-    const headers = new Headers();
     const imageUrls = new Set<string>();
     const TAILWIND_URL = env.TAILWIND_URL;
     const KV_KEY = env.KV_KEY;
     const KV_TAILWIND = env.KV_TAILWIND;
 
     let tailwindScript = await KV_TAILWIND.get(KV_KEY);
-
     if (!tailwindScript) {
       const response = await fetch(TAILWIND_URL);
       if (response.ok) {
@@ -21,8 +20,6 @@ const handler = {
         await KV_TAILWIND.put(KV_KEY, tailwindScript);
       }
     }
-
-    headers.set('Content-Type', 'text/html;charset=UTF-8');
 
     // Fetch the HTML content from the GitHub README's raw endpoint -> because I cant get the relative fetch from the repo working... Yet
     const response = await fetch(
@@ -47,7 +44,6 @@ const handler = {
     </html>
     `;
 
-    // Use HTMLRewriter to modify the fetched HTML
     const rewriter = new HTMLRewriter()
       .on('head', {
         element(element) {
@@ -141,7 +137,15 @@ const handler = {
           // Style the images inside <a> tags
           element.setAttribute(
             'class',
-            'h-8 filter drop-shadow-lg transition-transform transform hover:scale-110'
+            'h-16 filter drop-shadow-lg transition-transform transform hover:scale-150'
+          );
+        },
+      })
+      .on('div a img', {
+        element(element) {
+          element.setAttribute(
+            'class',
+            'h-6 filter drop-shadow-lg transition-transform transform hover:scale-110'
           );
         },
       })
@@ -176,16 +180,30 @@ const handler = {
         element(element) {
           element.setAttribute('class', 'border-gray-600 my-6');
         },
+      })
+      .on('p', {
+        element(element) {
+          element.setAttribute('class', 'text-lg text-center');
+        },
       });
 
     const transformedResponse = rewriter.transform(new Response(html));
+    const rewrittenHTML = await transformedResponse.text();
 
-    return new Response(await transformedResponse.text(), {
+    const images = Array.from(imageUrls).filter(
+      (image) => image.includes('.png') || image.includes('.webp')
+    );
+
+    return new Response(rewrittenHTML, {
       headers: {
-        'content-type': 'text/html;charset=UTF-8',
+        'Content-Type': 'text/html;charset=UTF-8',
+        ETag: request.cf?.country as string,
+        'Cache-Control': 'public: max-age=3600',
+        /** until I figure out how to load the images up as assets without Worker Sites or completely Pages conversion */
+        Link: images
+          .map((image) => `<${image}>; rel="preload"; as="image"`)
+          .join(', '),
       },
     });
   },
 } satisfies ExportedHandler<Env>;
-
-export default handler;
