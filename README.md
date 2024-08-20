@@ -33,19 +33,19 @@ Father | FullStack @ClerkInc Workers | Autistic | AF Veteran | Hardware | Campin
 <span>
   <a href="https://dev.to/jacobmgevans"
     ><img
-      src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktoberfest.png"
+      src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktober2019.png"
       alt="2019 Hacktoberfest Logo"
       height="60"
   /></a>
   <a href="https://dev.to/jacobmgevans"
     ><img
-      src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktoberfest2020.png"
+      src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktober2020.png"
       alt="2020 Hacktoberfest Logo"
       height="60"
   /></a>
   <a href="https://dev.to/jacobmgevans"
     ><img
-      src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktoberfest2021.png"
+      src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktober2021.png"
       alt="2021 Hacktoberfest Logo"
       height="60"
   /></a>
