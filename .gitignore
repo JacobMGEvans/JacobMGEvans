@@ -1,3 +1,6 @@
+#Wrangler cache
+.wrangler*
+
 # Logs
 logs
 *.log
