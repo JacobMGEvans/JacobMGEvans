@@ -24,7 +24,7 @@
 Father | FullStack @ClerkInc Workers | Autistic | AF Veteran | Hardware | Camping & Hiking 🏕️ | Trekkie | <a href="http://twitch.tv/jacobmgevans" >D&D</a> | OSS | 
 <a href="https://twitter.com/O_S_R_G">@O_S_R_G</a>
  <br />
- I create content, volunteer in tech communities ( <a href="https://discord.gg/xQsq2JzcUM">Theo's TypeSafe Cult (T3 Discord community)</a>, <a href="https://kentcdodds.com/discord"> KCD (Now Epic Web)</a>, <a href="https://discord.gg/urQuPURusm">Open Source Raid Guild (Discord)</a>, VetsWhoCode, etc...) and contribute to open source software. All part of my continous learning and improvement.
+ I create content, volunteer in tech communities (<a href="https://discord.gg/xQsq2JzcUM">Theo's TypeSafe Cult (T3 Discord community)</a>, <a href="https://kentcdodds.com/discord"> KCD (Now Epic Web)</a>, <a href="https://discord.gg/urQuPURusm">Open Source Raid Guild (Discord)</a>, VetsWhoCode, etc...) and contribute to open source software. All part of my continous learning and improvement.
 </section>
 
 <hr />
@@ -39,19 +39,19 @@ Father | FullStack @ClerkInc Workers | Autistic | AF Veteran | Hardware | Campin
   /></a>
   <a href="https://dev.to/jacobmgevans"
     ><img
-      src="https://res.cloudinary.com/practicaldev/image/fetch/s--Lojm4XAD--/c_imagga_scale,f_auto,fl_progressive,h_900,q_auto,w_1600/https://dev-to-uploads.s3.amazonaws.com/i/9g2loqfoe84qeh8qqpa4.png"
+      src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktoberfest2020.png"
       alt="2020 Hacktoberfest Logo"
       height="60"
   /></a>
   <a href="https://dev.to/jacobmgevans"
     ><img
-      src="https://res.cloudinary.com/practicaldev/image/fetch/s--S16JKqF1--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/usrb72jmn6idi0121np5.png"
+      src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktoberfest2021.png"
       alt="2021 Hacktoberfest Logo"
       height="60"
   /></a>
   <a href="https://osrg.t3.gg">
     <img
-      src="https://osrg.t3.gg/assets/logo-full.svg"
+      src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/osrg.svg"
       alt="Open Source Raid Guild Logo"
       height="60"
     />
