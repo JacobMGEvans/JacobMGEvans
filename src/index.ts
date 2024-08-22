@@ -115,12 +115,15 @@ export default {
       .on('img', {
         element(element) {
           const src = element.getAttribute('src');
-
+          if (src) {
+            imageUrls.add(src);
+          }
           if (src?.includes('.png') || src?.includes('.webp')) {
             const newSrc = src.replace(
               'https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/',
               ''
             );
+            //! Now retrieving the images from Cloudflare Pages assets, eventually going to put the Pages on the same domain on /public route
             element.setAttribute(
               'src',
               `https://website-assets-dco.pages.dev/${newSrc}`
@@ -204,9 +207,7 @@ export default {
       headers: {
         'Content-Type': 'text/html;charset=UTF-8',
         ETag: request.cf?.country as string,
-        // 10 min cache - 600 seconds
-        'Cache-Control': 'public: max-age=600, stale-while-revalidate=30',
-        /** until I figure out how to load the images up as assets without Worker Sites or completely Pages conversion */
+        'Cache-Control': 'public: max-age=60, stale-while-revalidate=30',
         Link: images
           .map((image) => `<${image}>; rel="preload"; as="image"`)
           .join(', '),
