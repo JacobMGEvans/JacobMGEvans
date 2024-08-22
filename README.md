@@ -3,7 +3,7 @@
     <img
       alt="Linkedin Icon"
       src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/linkedin.webp"
-      height="60"
+      height="50"
       width="50"
     />
   </a>
