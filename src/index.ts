@@ -2,7 +2,6 @@ interface Env {
   KV_TAILWIND: KVNamespace;
   TAILWIND_URL: string;
   KV_KEY: string;
-  ASSETS: Fetcher;
 }
 
 export default {
@@ -24,13 +23,9 @@ export default {
     // Fetch the HTML content from the GitHub README's raw endpoint -> because I cant get the relative fetch from the repo working... Yet
     const response = await fetch(
       'https://raw.githubusercontent.com/JacobMGEvans/JacobMGEvans/main/README.md'
-      // {
-      //   cf: {
-      //     cacheEverything: true,
-      //     cacheTtl: 600, // Cache for 10 minutes
-      //   },
-      // }
+      //** Should I cache this on the CF CDN? */
     );
+    // Cloudflare Pages fetch assets from `https://website-assets-dco.pages.dev/`
 
     const markdown = await response.text();
     // The markdown HTML from GitHub doesnt have Head tags
@@ -120,8 +115,16 @@ export default {
       .on('img', {
         element(element) {
           const src = element.getAttribute('src');
-          if (src) {
-            imageUrls.add(src);
+
+          if (src?.includes('.png') || src?.includes('.webp')) {
+            const newSrc = src.replace(
+              'https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/',
+              ''
+            );
+            element.setAttribute(
+              'src',
+              `https://website-assets-dco.pages.dev/${newSrc}`
+            );
           }
           element.setAttribute('loading', 'lazy');
           element.setAttribute('decoding', 'async');
@@ -134,7 +137,6 @@ export default {
       })
       .on('a img', {
         element(element) {
-          // Style the images inside <a> tags
           element.setAttribute(
             'class',
             'h-16 filter drop-shadow-lg transition-transform transform hover:scale-150'
@@ -193,12 +195,17 @@ export default {
     const images = Array.from(imageUrls).filter(
       (image) => image.includes('.png') || image.includes('.webp')
     );
+    const assets = await fetch(
+      `https://website-assets-dco.pages.dev/hacktober2019.webp`
+    ).then((res) => res.blob());
+    console.log(assets);
 
     return new Response(rewrittenHTML, {
       headers: {
         'Content-Type': 'text/html;charset=UTF-8',
         ETag: request.cf?.country as string,
-        'Cache-Control': 'public: max-age=3600',
+        // 10 min cache - 600 seconds
+        'Cache-Control': 'public: max-age=600, stale-while-revalidate=30',
         /** until I figure out how to load the images up as assets without Worker Sites or completely Pages conversion */
         Link: images
           .map((image) => `<${image}>; rel="preload"; as="image"`)
