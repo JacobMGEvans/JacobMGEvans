@@ -1,12 +1,10 @@
 <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-  <a href="https://www.linkedin.com/in/jacob-m-g-evans">
-    <img
+  <a href="https://www.linkedin.com/in/jacob-m-g-evans"><img
       alt="Linkedin Icon"
       src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/linkedin.webp"
       height="50"
       width="50"
-    />
-  </a>
+    /></a>
   <a href="https://twitter.com/JacobMGEvans?ref_src=twsrc%5Etfw">
     <img
       src="https://img.shields.io/twitter/follow/JacobMGEvans?style=social"
