@@ -1,4 +1,5 @@
 <div style="display: flex; align-items: center; justify-content: center;">
+<div>
   <a href="https://www.linkedin.com/in/jacob-m-g-evans"><img
       alt="Linkedin Icon"
       src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/linkedin.webp"
@@ -13,6 +14,7 @@
       width="314"
     />
   </a>
+</div>
 </div>
 
 <h1>Welcome to My Profile!</h1>
