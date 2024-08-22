@@ -4,7 +4,7 @@
       alt="Linkedin Icon"
       src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/linkedin.webp"
       height="30"
-      width="50%"
+      width="20%"
     />
   </a>
   <a
@@ -14,7 +14,7 @@
     <img
       src="https://img.shields.io/twitter/follow/JacobMGEvans?style=social"
       alt="follow JacobMGEvans on Twitter"
-      height="50%"
+      height="20%"
       width="30"
     />
   </a>
@@ -38,7 +38,7 @@ Father | FullStack @ClerkInc Workers | Autistic | AF Veteran | Hardware | Campin
       src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktober2019.webp"
       alt="2019 Hacktoberfest Logo"
       height="60"
-      width="50%"
+      width="20%"
   />
   </a>
   <a href="https://dev.to/jacobmgevans"
@@ -46,21 +46,21 @@ Father | FullStack @ClerkInc Workers | Autistic | AF Veteran | Hardware | Campin
       src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktober2020.webp"
       alt="2020 Hacktoberfest Logo"
         height="60"
-      width="50%"
+      width="20%"
   /></a>
   <a href="https://dev.to/jacobmgevans"
     ><img
       src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktober2021.webp"
       alt="2021 Hacktoberfest Logo"
       height="60"
-      width="50%"
+      width="20%"
   /></a>
   <a href="https://osrg.t3.gg">
     <img
       src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/osrg.svg"
       alt="Open Source Raid Guild Logo"
       height="60"
-      width="50%"
+      width="20%"
     />
   </a>
 </span>
