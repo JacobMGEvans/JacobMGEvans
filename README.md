@@ -1,4 +1,4 @@
-<div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+<div style="display: flex; align-items: center; justify-content: center;">
   <a href="https://www.linkedin.com/in/jacob-m-g-evans"><img
       alt="Linkedin Icon"
       src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/linkedin.webp"
