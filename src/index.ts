@@ -115,9 +115,6 @@ export default {
       .on('img', {
         element(element) {
           const src = element.getAttribute('src');
-          if (src) {
-            imageUrls.add(src);
-          }
           if (src?.includes('.png') || src?.includes('.webp')) {
             const newSrc = src.replace(
               'https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/',
@@ -128,6 +125,9 @@ export default {
               'src',
               `https://website-assets-dco.pages.dev/${newSrc}`
             );
+            if (src === `https://website-assets-dco.pages.dev/${newSrc}`) {
+              imageUrls.add(src);
+            }
           }
           element.setAttribute('loading', 'lazy');
           element.setAttribute('decoding', 'async');
