@@ -1,25 +1,26 @@
 <div>
-  <a href="https://www.linkedin.com/in/jacob-m-g-evans/" class="inline-block">
+  <a href="https://www.linkedin.com/in/jacob-m-g-evans/">
     <img
       alt="Linkedin Icon"
       src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/linkedin.webp"
       height="50"
+      width="50"
     />
   </a>
   <a
     href="https://twitter.com/JacobMGEvans?ref_src=twsrc%5Etfw"
-    class="inline-block"
   >
     <img
       src="https://img.shields.io/twitter/follow/JacobMGEvans?style=social"
       alt="follow JacobMGEvans on Twitter"
       height="40"
+      width="314"
     />
 
   </a>
 </div>
 
-<h1 class="text-3xl font-bold underline">Welcome to My Profile!</h1>
+<h1>Welcome to My Profile!</h1>
 
 <section>
 Father | FullStack @ClerkInc Workers | Autistic | AF Veteran | Hardware | Camping & Hiking 🏕️ | Trekkie | <a href="http://twitch.tv/jacobmgevans" >D&D</a> | OSS | 
