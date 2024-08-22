@@ -37,30 +37,30 @@ Father | FullStack @ClerkInc Workers | Autistic | AF Veteran | Hardware | Campin
     ><img
       src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktober2019.webp"
       alt="2019 Hacktoberfest Logo"
-      height="60"
-      width="60"
+      height="80"
+      width="80"
   />
   </a>
   <a href="https://dev.to/jacobmgevans"
     ><img
       src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktober2020.webp"
       alt="2020 Hacktoberfest Logo"
-        height="60"
-      width="60"
+        height="80"
+      width="80"
   /></a>
   <a href="https://dev.to/jacobmgevans"
     ><img
       src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktober2021.webp"
       alt="2021 Hacktoberfest Logo"
-      height="60"
-      width="60"
+      height="80"
+      width="80"
   /></a>
   <a href="https://osrg.t3.gg">
     <img
       src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/osrg.svg"
       alt="Open Source Raid Guild Logo"
-      height="60"
-      width="60"
+      height="80"
+      width="80"
     />
   </a>
 </span>
