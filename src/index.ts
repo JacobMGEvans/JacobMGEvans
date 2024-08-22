@@ -198,10 +198,6 @@ export default {
     const images = Array.from(imageUrls).filter(
       (image) => image.includes('.png') || image.includes('.webp')
     );
-    const assets = await fetch(
-      `https://website-assets-dco.pages.dev/hacktober2019.webp`
-    ).then((res) => res.blob());
-    console.log(assets);
 
     return new Response(rewrittenHTML, {
       headers: {
