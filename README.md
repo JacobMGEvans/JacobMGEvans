@@ -31,13 +31,12 @@ Father | FullStack @ClerkInc Workers | Autistic | AF Veteran | Hardware | Campin
 
 <h2>OSS & Community 🛰️</h2>
 <span>
-  <a href="https://dev.to/jacobmgevans">
-    <!-- <img
-      src=
+  <a href="https://dev.to/jacobmgevans"
+    ><img
+      src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktober2019.webp"
       alt="2019 Hacktoberfest Logo"
       height="60"
-  /> -->
-  <link rel="preload" fetchpriority="high" as="image" href="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktober2019.webp" type="image/webp">
+  />
   </a>
   <a href="https://dev.to/jacobmgevans"
     ><img
