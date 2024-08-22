@@ -3,8 +3,7 @@
     <img
       alt="Linkedin Icon"
       src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/linkedin.webp"
-      height="30"
-      width="100"
+      height="50"
     />
   </a>
   <a
@@ -14,9 +13,9 @@
     <img
       src="https://img.shields.io/twitter/follow/JacobMGEvans?style=social"
       alt="follow JacobMGEvans on Twitter"
-      height="30"
-      width="100"
+      height="40"
     />
+
   </a>
 </div>
 
