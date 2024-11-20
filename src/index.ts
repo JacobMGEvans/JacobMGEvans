@@ -6,6 +6,12 @@ interface Env {
 
 export default {
   async fetch(request: Request, env, ctx: ExecutionContext): Promise<Response> {
+    	const body = await request.json()
+	if (body.challenge) {
+		return new Response(body.challenge, {
+			status: 200,
+		})
+	}
     const imageUrls = new Set<string>();
     const TAILWIND_URL = env.TAILWIND_URL;
     const KV_KEY = env.KV_KEY;
