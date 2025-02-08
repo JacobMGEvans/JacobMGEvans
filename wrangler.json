@@ -2,7 +2,13 @@
   "main": "./src/index.ts",
   "compatibility_date": "2023-03-26",
   "name": "website",
-  "route": "jacobmgevans.com",
+  "routes": [
+    {
+      "pattern": "*jacobmgevans.com/*",
+      "zone_id": "31dff0f116d002d2bf0def5a7e4a852b"
+    }
+  ],
+
   "kv_namespaces": [
     {
       "binding": "KV_TAILWIND",
