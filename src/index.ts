@@ -1,6 +1,6 @@
 import {
-  KVNamespace,
-  ExecutionContext,
+  type KVNamespace,
+  type ExecutionContext,
   type ExportedHandler,
 } from '@cloudflare/workers-types';
 
@@ -43,12 +43,16 @@ export default {
       'https://raw.githubusercontent.com/JacobMGEvans/JacobMGEvans/main/README.html'
     );
     const markdown = await githubResponse.text();
+
+    // Remove any potential 404 text from the markdown
+    const cleanedMarkdown = markdown.replace(/404:?\s*Not Found/gi, '').trim();
+
     const html = `
       <!DOCTYPE html>
       <html lang="en">
       <head></head>
-      <body>
-        ${markdown}
+      <body class="min-h-screen text-gray-100 relative">
+        ${cleanedMarkdown}
       </body>
       </html>
     `;
@@ -645,6 +649,16 @@ export default {
             'class',
             'bg-gray-800 p-4 rounded-lg overflow-x-auto my-4'
           );
+        },
+      })
+
+      // Add a handler for any text nodes
+      .on('*', {
+        text(text) {
+          const content = text.text;
+          if (content && content.includes('404')) {
+            text.replace('', { html: true });
+          }
         },
       });
 
