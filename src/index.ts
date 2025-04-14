@@ -480,6 +480,31 @@ export default {
                     duration: 3000
                   });
                 }
+                
+                // Remove any unwrapped text nodes in body (fixes 404 display issues)
+                const unwrappedNodes = Array.from(document.body.childNodes)
+                  .filter(node => 
+                    node.nodeType === Node.TEXT_NODE && 
+                    node.textContent && 
+                    node.textContent.trim().length > 0
+                  );
+                
+                unwrappedNodes.forEach(node => {
+                  node.parentNode.removeChild(node);
+                });
+                
+                // Find and remove any 404 error text that might appear
+                document.querySelectorAll('*').forEach(el => {
+                  if (el.textContent && el.textContent.trim() === '404: Not Found') {
+                    el.style.display = 'none';
+                  }
+                });
+                
+                // Add id to the about section if not already present
+                const aboutSection = document.querySelector('section h2')?.closest('section');
+                if (aboutSection && !aboutSection.id) {
+                  aboutSection.id = 'about';
+                }
               });
             </script>
           `,
@@ -529,7 +554,8 @@ export default {
           const src = element.getAttribute('src');
           if (src && (src.includes('.png') || src.includes('.webp'))) {
             const newSrc = src.replace(
-              'https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/'
+              'https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/',
+              'https://website-assets-dco.pages.dev/'
             );
             element.setAttribute('src', newSrc);
             imageUrls.add(newSrc);
