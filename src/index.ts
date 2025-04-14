@@ -651,6 +651,41 @@ export default {
           );
         },
       })
+      // Add styling for OSS contribution badges and links
+      .on('p > a > img', {
+        element(element) {
+          const src = element.getAttribute('src');
+          if (src && (src.includes('hacktober') || src.includes('osrg'))) {
+            element.setAttribute(
+              'class',
+              'inline-block rounded-lg shadow-lg transition-all duration-300 transform hover:scale-110 hover:shadow-xl mx-2'
+            );
+          }
+        },
+      })
+      // Style blog article links in the details section
+      .on('details li', {
+        element(element) {
+          element.setAttribute(
+            'class',
+            'text-gray-300 py-1 hover:translate-x-1 transition-transform duration-300'
+          );
+        },
+      })
+      .on('details li > a', {
+        element(element) {
+          element.setAttribute(
+            'class',
+            'text-mountain-blue hover:text-mountain-purple transition-colors duration-300 hover:underline flex items-center'
+          );
+          const text = element.innerHTML;
+          if (text.includes('LogRocket')) {
+            element.innerHTML = `<i class="fas fa-podcast mr-2"></i>${text}`;
+          } else {
+            element.innerHTML = `<i class="fas fa-file-alt mr-2"></i>${text}`;
+          }
+        },
+      })
 
       // Add a handler for any text nodes
       .on('*', {

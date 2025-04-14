@@ -29,9 +29,10 @@ I'm passionate about creating useful content, actively volunteering in technical
 **Find me in these communities:**
 
 - [Theo's T3 Community](https://discord.gg/xQsq2JzcUM) (Moderator)
-- [Epic Web Community (formerly KCD)](https://kentcdodds.com/discord)
-- [Open Source Raid Guild (OSRG)](https://osrg.t3.gg/) ([@O_S_R_G](https://twitter.com/O_S_R_G) on Twitter)
+- [Epic Web Community (formerly KCD)](https://kentcdodds.com/discord) (Moderator)
+- [Open Source Raid Guild (OSRG)](https://osrg.t3.gg/) ([@O_S_R_G](https://twitter.com/O_S_R_G) on Twitter) (Founder)
 - [VetsWhoCode](https://vetswhocode.io/) (Mentor)
+- There are many more...
 
 ---
 
@@ -47,8 +48,8 @@ I'm passionate about creating useful content, actively volunteering in technical
 Part of my open-source work and learning in public involves writing technical (and sometimes less technical) blog posts. My goal is for others—and my future self—to benefit from them.
 
 <details open>
-<summary>📚 Some of My Blog Articles</summary>
-
+<summary>📚 Some of My Blog Articles & Other Content</summary>
+- [Guest on LogRocket - Cloudflare Workers](https://podrocket.logrocket.com/cloudflare-workers)
 - [JavaScript Resources: Podcasts, Books, Videos, and Tutorials](https://dev.to/jacobmgevans/javascript-resources-podcasts-books-videos-and-tutorials-4a6e)
 - [More Podcasts and Video Programming Resources](https://dev.to/jacobmgevans/more-podcasts-and-video-programming-resources-5a8k)
 - [Should You Listen to Podcasts?](https://dev.to/jacobmgevans/should-you-listen-to-podcasts-4m5j)
