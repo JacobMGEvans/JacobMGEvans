@@ -1,7 +1,6 @@
 import {
-  type HTMLRewriter,
-  type KVNamespace,
-  type ExecutionContext,
+  KVNamespace,
+  ExecutionContext,
   type ExportedHandler,
 } from '@cloudflare/workers-types';
 
@@ -275,7 +274,6 @@ export default {
             <div class="hero min-h-[60vh] flex items-center justify-center relative overflow-hidden">
               <div class="absolute inset-0 z-0">
                 <div class="absolute inset-0 bg-gradient-to-b from-forest-dark/80 to-wolf-dark/80"></div>
-                <div class="absolute inset-0 bg-[url('https://website-assets-dco.pages.dev/wolf-silhouette.webp')] bg-no-repeat bg-right-bottom bg-contain opacity-20"></div>
               </div>
               
               <div class="container mx-auto px-4 z-10 text-center">
@@ -292,6 +290,34 @@ export default {
             </div>
             
             <main class="container mx-auto px-4 py-8">
+              <section id="about" class="content-section max-w-4xl mx-auto my-12 p-8 rounded-lg shadow-xl animate-fade-in">
+                <h2 class="text-3xl font-heading font-bold text-mountain-purple mb-6">Professional Journey</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div>
+                    <h3 class="text-xl font-heading font-semibold mb-4 text-mountain-blue">Current Role</h3>
+                    <p class="text-gray-300 mb-4">FullStack Developer at Clerk Inc, specializing in Workers and cloud infrastructure. Building secure, scalable authentication and user management solutions.</p>
+                    <h4 class="text-lg font-heading font-semibold mb-2 text-mountain-blue">Core Skills</h4>
+                    <ul class="list-disc list-inside text-gray-300 space-y-2">
+                      <li>Full-stack development with TypeScript and React</li>
+                      <li>Cloud infrastructure and serverless architecture</li>
+                      <li>Authentication and security implementations</li>
+                      <li>Performance optimization and scalability</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 class="text-xl font-heading font-semibold mb-4 text-mountain-blue">Open Source & Community</h3>
+                    <p class="text-gray-300 mb-4">Active contributor and maintainer in the open-source community, focusing on developer tools and educational resources.</p>
+                    <h4 class="text-lg font-heading font-semibold mb-2 text-mountain-blue">Contributions & Leadership</h4>
+                    <ul class="list-disc list-inside text-gray-300 space-y-2">
+                      <li>Technical moderator for major tech communities</li>
+                      <li>Regular contributor to developer education</li>
+                      <li>Open Source Raid Guild leadership</li>
+                      <li>Veteran mentor at VetsWhoCode</li>
+                    </ul>
+                  </div>
+                </div>
+              </section>
+              
               <div id="readme-content" class="content-section max-w-4xl mx-auto my-12 p-8 rounded-lg shadow-xl animate-fade-in">
                 <!-- The README content will be moved here by JavaScript -->
               </div>
@@ -309,13 +335,13 @@ export default {
                     </ul>
                   </div>
                   <div class="relative h-64 rounded-lg overflow-hidden shadow-lg">
-                    <img src="https://website-assets-dco.pages.dev/forest-trail.webp" alt="Forest hiking trail" class="absolute inset-0 w-full h-full object-cover transition-transform duration-10000 hover:scale-110" />
+                    <img src="https://pbs.twimg.com/media/GTnMCppa4AEqRtH?format=jpg&name=large" alt="Forest hiking trail" class="absolute inset-0 w-full h-full object-cover transition-transform duration-10000 hover:scale-110" />
                   </div>
                 </div>
                 
                 <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div class="relative h-64 rounded-lg overflow-hidden shadow-lg order-2 md:order-1">
-                    <img src="https://website-assets-dco.pages.dev/wolf.webp" alt="Wolf in natural habitat" class="absolute inset-0 w-full h-full object-cover transition-transform duration-10000 hover:scale-110" />
+                    <img src="https://img.freepik.com/premium-photo/wolf-wolf-silhouette-dark-fantasy-forest-wolf_1168123-40178.jpg" alt="Wolf in natural habitat" class="absolute inset-0 w-full h-full object-cover transition-transform duration-10000 hover:scale-110" />
                   </div>
                   <div class="order-1 md:order-2">
                     <h3 class="text-xl font-heading font-semibold mb-4 text-mountain-blue">Wolf Appreciation</h3>
@@ -370,26 +396,38 @@ export default {
                   document.querySelector('main'),
                   document.querySelector('footer'),
                   document.querySelector('.wolf-tracks'),
-                  document.querySelector('.parallax-mountains')
+                  document.querySelector('.parallax-mountains'),
+                  document.querySelector('script'),  // Exclude script tags
+                  document.querySelector('style')    // Exclude style tags
                 ];
                 
-                // Filter out our custom elements to get only the README content
-                const readmeElements = bodyChildren.filter(el => !customElements.includes(el));
+                // Filter out our custom elements and any error messages to get only the README content
+                const readmeElements = bodyChildren.filter(el => {
+                  // Skip null elements and our custom elements
+                  if (!el || customElements.includes(el)) return false;
+                  // Skip any error messages (like 404)
+                  if (el.textContent && el.textContent.includes('404')) return false;
+                  return true;
+                });
                 
                 // Move each README element to the readme-content container
                 readmeElements.forEach(el => {
                   if (el && readmeContent) {
-                    readmeContent.appendChild(el);
+                    readmeContent.appendChild(el.cloneNode(true));
+                    // Remove the original element to prevent duplication
+                    el.remove();
                   }
                 });
                 
                 // Add IDs to important sections for navigation
                 const headers = document.querySelectorAll('h2');
                 headers.forEach(header => {
-                  if (header.textContent && header.textContent.includes('OSS & Community')) {
-                    header.id = 'oss';
-                  } else if (header.textContent && header.textContent.toLowerCase().includes('blog')) {
-                    header.id = 'blog';
+                  if (header.textContent) {
+                    if (header.textContent.includes('OSS & Community')) {
+                      header.id = 'oss';
+                    } else if (header.textContent.toLowerCase().includes('blog')) {
+                      header.id = 'blog';
+                    }
                   }
                 });
                 
@@ -398,10 +436,7 @@ export default {
                 images.forEach(img => {
                   const src = img.getAttribute('src');
                   if (src && (src.includes('.png') || src.includes('.webp'))) {
-                    const newSrc = src.replace(
-                      'https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/',
-                      'https://website-assets-dco.pages.dev/'
-                    );
+                    const newSrc = 'https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/'
                     img.setAttribute('src', newSrc);
                     img.setAttribute('loading', 'lazy');
                     img.setAttribute('decoding', 'async');
@@ -479,31 +514,6 @@ export default {
                     easing: 'easeInOutQuad',
                     duration: 3000
                   });
-                }
-                
-                // Remove any unwrapped text nodes in body (fixes 404 display issues)
-                const unwrappedNodes = Array.from(document.body.childNodes)
-                  .filter(node => 
-                    node.nodeType === Node.TEXT_NODE && 
-                    node.textContent && 
-                    node.textContent.trim().length > 0
-                  );
-                
-                unwrappedNodes.forEach(node => {
-                  node.parentNode.removeChild(node);
-                });
-                
-                // Find and remove any 404 error text that might appear
-                document.querySelectorAll('*').forEach(el => {
-                  if (el.textContent && el.textContent.trim() === '404: Not Found') {
-                    el.style.display = 'none';
-                  }
-                });
-                
-                // Add id to the about section if not already present
-                const aboutSection = document.querySelector('section h2')?.closest('section');
-                if (aboutSection && !aboutSection.id) {
-                  aboutSection.id = 'about';
                 }
               });
             </script>
@@ -643,10 +653,10 @@ export default {
 
     const additionalImages = [
       'https://4kwallpapers.com/images/walls/thumbs_3t/8010.jpg',
-      'https://website-assets-dco.pages.dev/wolf-silhouette.webp',
+      'https://img.freepik.com/premium-photo/wolf-wolf-silhouette-dark-fantasy-forest-wolf_1168123-40178.jpg',
       'https://website-assets-dco.pages.dev/mountains-silhouette.webp',
-      'https://website-assets-dco.pages.dev/forest-trail.webp',
-      'https://website-assets-dco.pages.dev/wolf.webp',
+      'https://pbs.twimg.com/media/GTnMCppa4AEqRtH?format=jpg&name=large',
+      'https://img.freepik.com/premium-photo/wolf-wolf-silhouette-dark-fantasy-forest-wolf_1168123-40178.jpg',
     ];
 
     additionalImages.forEach((img) => imageUrls.add(img));
