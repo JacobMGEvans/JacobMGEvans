@@ -1,3 +1,10 @@
+import {
+  type HTMLRewriter,
+  type KVNamespace,
+  type ExecutionContext,
+  type ExportedHandler,
+} from '@cloudflare/workers-types';
+
 interface Env {
   KV_TAILWIND: KVNamespace;
   TAILWIND_URL: string;
@@ -32,7 +39,7 @@ export default {
       }
     }
 
-    // Fetch README HTML content from GitHub - I need to add this to assets at some point
+    // Fetch README HTML content from GitHub
     const githubResponse = await fetch(
       'https://raw.githubusercontent.com/JacobMGEvans/JacobMGEvans/main/README.html'
     );
@@ -105,7 +112,7 @@ export default {
               body {
                 font-family: 'Poppins', sans-serif;
                 background-color: #1F2937;
-                background-image: url('https://website-assets-dco.pages.dev/forest-bg.webp');
+                background-image: url('https://4kwallpapers.com/images/walls/thumbs_3t/8010.jpg');
                 background-size: cover;
                 background-attachment: fixed;
                 background-position: center;
@@ -205,6 +212,24 @@ export default {
               .wolf-icon {
                 filter: drop-shadow(0 0 5px rgba(139, 92, 246, 0.5));
               }
+              
+              /* README content styling */
+              #readme-content h1, 
+              #readme-content h2, 
+              #readme-content h3, 
+              #readme-content h4, 
+              #readme-content h5, 
+              #readme-content h5, 
+              #readme-content p,
+              #readme-content ul,
+              #readme-content ol,
+              #readme-content blockquote,
+              #readme-content pre,
+              #readme-content details,
+              #readme-content summary {
+                color: inherit;
+                margin: inherit;
+              }
             </style>
             <title>Jacob M.G. Evans - Developer, Veteran & Outdoor Enthusiast</title>
           `,
@@ -267,14 +292,9 @@ export default {
             </div>
             
             <main class="container mx-auto px-4 py-8">
-              <section id="about" class="content-section max-w-4xl mx-auto my-12 p-8 rounded-lg shadow-xl animate-fade-in">
-          `,
-            { html: true }
-          );
-
-          element.append(
-            `
-              </section>
+              <div id="readme-content" class="content-section max-w-4xl mx-auto my-12 p-8 rounded-lg shadow-xl animate-fade-in">
+                <!-- The README content will be moved here by JavaScript -->
+              </div>
               
               <section id="outdoor" class="content-section max-w-4xl mx-auto my-12 p-8 rounded-lg shadow-xl animate-fade-in">
                 <h2 class="text-3xl font-heading font-bold text-mountain-purple mb-6">Outdoor Life</h2>
@@ -339,6 +359,56 @@ export default {
             <script>
               // Initialize animations when the DOM is loaded
               document.addEventListener('DOMContentLoaded', () => {
+                // Move the README content to the designated container
+                const readmeContent = document.getElementById('readme-content');
+                
+                // Find all direct children of body that aren't our custom elements
+                const bodyChildren = Array.from(document.body.children);
+                const customElements = [
+                  document.querySelector('header'),
+                  document.querySelector('.hero'),
+                  document.querySelector('main'),
+                  document.querySelector('footer'),
+                  document.querySelector('.wolf-tracks'),
+                  document.querySelector('.parallax-mountains')
+                ];
+                
+                // Filter out our custom elements to get only the README content
+                const readmeElements = bodyChildren.filter(el => !customElements.includes(el));
+                
+                // Move each README element to the readme-content container
+                readmeElements.forEach(el => {
+                  if (el && readmeContent) {
+                    readmeContent.appendChild(el);
+                  }
+                });
+                
+                // Add IDs to important sections for navigation
+                const headers = document.querySelectorAll('h2');
+                headers.forEach(header => {
+                  if (header.textContent && header.textContent.includes('OSS & Community')) {
+                    header.id = 'oss';
+                  } else if (header.textContent && header.textContent.toLowerCase().includes('blog')) {
+                    header.id = 'blog';
+                  }
+                });
+                
+                // Process images in the README content
+                const images = document.querySelectorAll('img');
+                images.forEach(img => {
+                  const src = img.getAttribute('src');
+                  if (src && (src.includes('.png') || src.includes('.webp'))) {
+                    const newSrc = src.replace(
+                      'https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/',
+                      'https://website-assets-dco.pages.dev/'
+                    );
+                    img.setAttribute('src', newSrc);
+                    img.setAttribute('loading', 'lazy');
+                    img.setAttribute('decoding', 'async');
+                    img.classList.add('rounded-lg', 'shadow-lg', 'transition-all', 'duration-500', 'transform', 'hover:scale-105', 'hover:shadow-xl');
+                  }
+                });
+                
                 // Hero section animations
                 anime({
                   targets: '#hero-title',
@@ -459,8 +529,7 @@ export default {
           const src = element.getAttribute('src');
           if (src && (src.includes('.png') || src.includes('.webp'))) {
             const newSrc = src.replace(
-              'https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/',
-              'https://website-assets-dco.pages.dev/'
+              'https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/'
             );
             element.setAttribute('src', newSrc);
             imageUrls.add(newSrc);
@@ -546,12 +615,10 @@ export default {
     const transformedResponse = rewriter.transform(new Response(html));
     const rewrittenHTML = await transformedResponse.text();
 
-    // Add the new images to the preload list
     const additionalImages = [
-      'https://website-assets-dco.pages.dev/forest-bg.webp',
+      'https://4kwallpapers.com/images/walls/thumbs_3t/8010.jpg',
       'https://website-assets-dco.pages.dev/wolf-silhouette.webp',
       'https://website-assets-dco.pages.dev/mountains-silhouette.webp',
-      'https://website-assets-dco.pages.dev/wolf-tracks.webp',
       'https://website-assets-dco.pages.dev/forest-trail.webp',
       'https://website-assets-dco.pages.dev/wolf.webp',
     ];
