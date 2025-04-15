@@ -302,7 +302,7 @@ export default {
                     <p class="text-gray-300 mb-4">FullStack Egnineer, specializing in Cloudflare Workers, CI/CD (DevOps), UX/DX, tooling, webapps, and cloud infrastructure. Building secure, scalable authentication and user management solutions.</p>
                     <h4 class="text-lg font-heading font-semibold mb-2 text-mountain-blue">Core Skills</h4>
                     <ul class="list-disc list-inside text-gray-300 space-y-2">
-                      <li>Full-stack development with TypeScript and React</li>
+                      <li>FullStack development with TypeScript and React</li>
                       <li>Cloud infrastructure and serverless architecture</li>
                       <li>Authentication and security implementations</li>
                       <li>Performance optimization and scalability</li>
