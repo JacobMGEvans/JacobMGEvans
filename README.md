@@ -45,7 +45,7 @@ I'm passionate about creating useful content, actively volunteering in technical
   <a href="https://osrg.t3.gg/"><img src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/osrg.webp" alt="Open Source Raid Guild Member" height="60" width="60" /></a>
 </p>
 
-Part of my open-source work and learning in public involves writing technical (and sometimes less technical) blog posts. My goal is for others—and my future self—to benefit from them.
+Part of my open-source work and learning in public involves writing technical (and sometimes less technical) blog posts. My goal is for others, and my future self, to benefit from them.
 
 <details open>
 <summary>📚 Some of My Blog Articles & Other Content</summary>
