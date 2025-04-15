@@ -570,7 +570,6 @@ export default {
           element.setAttribute('class', 'min-h-screen text-gray-100 relative');
         },
       })
-
       .on('h1', {
         element(element) {
           element.setAttribute(
