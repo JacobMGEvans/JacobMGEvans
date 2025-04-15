@@ -234,7 +234,7 @@ export default {
                 margin: inherit;
               }
             </style>
-            <title>Jacob M.G. Evans - Developer, Veteran & Outdoor Enthusiast</title>
+            <title>Jacob M.G. Evans - Egnineer, Veteran & Outdoor Enthusiast</title>
           `,
             { html: true }
           );
@@ -282,7 +282,7 @@ export default {
               
               <div class="container mx-auto px-4 z-10 text-center">
                 <h1 class="text-5xl md:text-6xl font-heading font-bold mb-4 text-white animate-fade-in" id="hero-title">Jacob M.G. Evans</h1>
-                <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto animate-fade-in" id="hero-subtitle">FullStack Developer, OSS Contributor, Veteran & Outdoor Enthusiast</p>
+                <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto animate-fade-in" id="hero-subtitle">FullStack Egnineer, OSS Contributor, Veteran & Outdoor Enthusiast</p>
                 <div class="flex flex-wrap justify-center gap-3 animate-fade-in" id="hero-badges">
                   <span class="tech-badge px-4 py-2 rounded-full text-sm font-medium">JavaScript</span>
                   <span class="tech-badge px-4 py-2 rounded-full text-sm font-medium">TypeScript</span>
@@ -299,7 +299,7 @@ export default {
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div>
                     <h3 class="text-xl font-heading font-semibold mb-4 text-mountain-blue">Current Role</h3>
-                    <p class="text-gray-300 mb-4">FullStack Developer at Clerk Inc, specializing in Workers and cloud infrastructure. Building secure, scalable authentication and user management solutions.</p>
+                    <p class="text-gray-300 mb-4">FullStack Egnineer, specializing in Cloudflare Workers, CI/CD (DevOps), UX/DX, tooling, webapps, and cloud infrastructure. Building secure, scalable authentication and user management solutions.</p>
                     <h4 class="text-lg font-heading font-semibold mb-2 text-mountain-blue">Core Skills</h4>
                     <ul class="list-disc list-inside text-gray-300 space-y-2">
                       <li>Full-stack development with TypeScript and React</li>
@@ -340,7 +340,7 @@ export default {
                 </p>
                 
                 <p class="text-lg text-gray-300 my-4 leading-relaxed">
-                  Part of my open-source work and learning in public involves writing technical (and sometimes less technical) blog posts. My goal is for others—and my future self—to benefit from them.
+                  Part of my open-source work and learning in public involves writing technical (and sometimes less technical) blog posts. My goal is for others, and my future self, to benefit from them.
                 </p>
                 
                 <details open class="bg-forest-dark p-4 rounded-lg my-4 border border-gray-700 transition-all duration-300 hover:border-mountain-purple">
