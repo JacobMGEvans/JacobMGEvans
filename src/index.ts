@@ -216,23 +216,6 @@ export default {
                 filter: drop-shadow(0 0 5px rgba(139, 92, 246, 0.5));
               }
               
-              /* README content styling */
-              #readme-content h1, 
-              #readme-content h2, 
-              #readme-content h3, 
-              #readme-content h4, 
-              #readme-content h5, 
-              #readme-content h5, 
-              #readme-content p,
-              #readme-content ul,
-              #readme-content ol,
-              #readme-content blockquote,
-              #readme-content pre,
-              #readme-content details,
-              #readme-content summary {
-                color: inherit;
-                margin: inherit;
-              }
             </style>
             <title>Jacob M.G. Evans - Egnineer, Veteran & Outdoor Enthusiast</title>
           `,
@@ -408,12 +391,7 @@ export default {
       });
     });
   </script>
-</section>
-              
-              <div id="readme-content" class="content-section max-w-4xl mx-auto my-12 p-8 rounded-lg shadow-xl animate-fade-in">
-                <!-- The README content will be moved here by JavaScript -->
-              </div>
-              
+</section>              
               <section id="outdoor" class="content-section max-w-4xl mx-auto my-12 p-8 rounded-lg shadow-xl animate-fade-in">
                 <h2 class="text-3xl font-heading font-bold text-mountain-purple mb-6">Outdoor Life</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -477,9 +455,6 @@ export default {
             <script>
               // Initialize animations when the DOM is loaded
               document.addEventListener('DOMContentLoaded', () => {
-                // Move the README content to the designated container
-                const readmeContent = document.getElementById('readme-content');
-                
                 // Find all direct children of body that aren't our custom elements
                 const bodyChildren = Array.from(document.body.children);
                 const customElements = [
@@ -501,15 +476,7 @@ export default {
                   if (el.textContent && el.textContent.includes('404')) return false;
                   return true;
                 });
-                
-                // Move each README element to the readme-content container
-                readmeElements.forEach(el => {
-                  if (el && readmeContent) {
-                    readmeContent.appendChild(el.cloneNode(true));
-                    // Remove the original element to prevent duplication
-                    el.remove();
-                  }
-                });
+        
                 
                 // Add IDs to important sections for navigation
                 const headers = document.querySelectorAll('h2');
