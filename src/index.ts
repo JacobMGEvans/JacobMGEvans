@@ -310,16 +310,16 @@ export default {
   <h2 class="text-4xl font-heading font-extrabold text-mountain-purple mb-8 text-center drop-shadow-glow">OSS Contributions & Community Involvement</h2>
   <div class="flex flex-wrap justify-center gap-6 mb-6">
     <a href="https://dev.to/jacobmgevans" class="inline-block p-2 transition-transform duration-300 hover:scale-110">
-      <img src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktober2019.webp" alt="2019 Hacktoberfest Contributor" height="70" width="70" class="rounded-xl shadow-xl glow-animate" />
+      <img src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktober2019.webp" alt="2019 Hacktoberfest Contributor"  class="rounded-xl shadow-xl glow-animate object-cover w-[125px] h-[120px]" />
     </a>
     <a href="https://dev.to/jacobmgevans" class="inline-block p-2 transition-transform duration-300 hover:scale-110">
-      <img src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktober2020.webp" alt="2020 Hacktoberfest Contributor" height="70" width="70" class="rounded-xl shadow-xl glow-animate" />
+      <img src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktober2020.webp" alt="2020 Hacktoberfest Contributor" class="rounded-xl shadow-xl glow-animate object-cover w-[125px] h-[120px]" />
     </a>
     <a href="https://dev.to/jacobmgevans" class="inline-block p-2 transition-transform duration-300 hover:scale-110">
-      <img src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktober2021.webp" alt="2021 Hacktoberfest Contributor" height="70" width="70" class="rounded-xl shadow-xl glow-animate" />
+      <img src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktober2021.webp" alt="2021 Hacktoberfest Contributor"  class="rounded-xl shadow-xl glow-animate object-cover w-[125px] h-[120px]" />
     </a>
     <a href="https://osrg.t3.gg/" class="inline-block p-2 transition-transform duration-300 hover:scale-110">
-      <img src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/osrg.webp" alt="Open Source Raid Guild Member" height="70" width="70" class="rounded-xl shadow-xl glow-animate" />
+      <img src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/osrg.webp" alt="Open Source Raid Guild Member"  class="rounded-xl shadow-xl glow-animate object-cover w-[125px] h-[120px]" />
     </a>
   </div>
   <p class="text-lg text-gray-200 text-center mb-6 max-w-2xl">
