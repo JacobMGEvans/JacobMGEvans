@@ -191,7 +191,7 @@ export default {
                 left: 0;
                 width: 100%;
                 height: 15vh;
-                background-image: url('https://website-assets-dco.pages.dev/mountains-silhouette.webp');
+                background-image: url('https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/mountains-silhouette.webp');
                 background-size: cover;
                 background-position: bottom;
                 z-index: -2;
@@ -326,16 +326,16 @@ export default {
                 <h2 class="text-3xl font-heading font-bold text-mountain-purple mb-6">OSS Contributions & Community Involvement 🛰️</h2>
                 <p class="text-lg text-gray-300 mb-6">
                   <a href="https://dev.to/jacobmgevans" class="inline-block p-2 hover:transform hover:scale-110 transition-all duration-300">
-                    <img src="https://website-assets-dco.pages.dev/hacktober2019.webp" alt="2019 Hacktoberfest Contributor" height="60" width="60" class="rounded-lg shadow-lg" />
+                    <img src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktober2019.webp" alt="2019 Hacktoberfest Contributor" height="60" width="60" class="rounded-lg shadow-lg" />
                   </a>
                   <a href="https://dev.to/jacobmgevans" class="inline-block p-2 hover:transform hover:scale-110 transition-all duration-300">
-                    <img src="https://website-assets-dco.pages.dev/hacktober2020.webp" alt="2020 Hacktoberfest Contributor" height="60" width="60" class="rounded-lg shadow-lg" />
+                    <img src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktober2020.webp" alt="2020 Hacktoberfest Contributor" height="60" width="60" class="rounded-lg shadow-lg" />
                   </a>
                   <a href="https://dev.to/jacobmgevans" class="inline-block p-2 hover:transform hover:scale-110 transition-all duration-300">
-                    <img src="https://website-assets-dco.pages.dev/hacktober2021.webp" alt="2021 Hacktoberfest Contributor" height="60" width="60" class="rounded-lg shadow-lg" />
+                    <img src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktober2021.webp" alt="2021 Hacktoberfest Contributor" height="60" width="60" class="rounded-lg shadow-lg" />
                   </a>
                   <a href="https://osrg.t3.gg/" class="inline-block p-2 hover:transform hover:scale-110 transition-all duration-300">
-                    <img src="https://website-assets-dco.pages.dev/osrg.webp" alt="Open Source Raid Guild Member" height="60" width="60" class="rounded-lg shadow-lg" />
+                    <img src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/osrg.webp" alt="Open Source Raid Guild Member" height="60" width="60" class="rounded-lg shadow-lg" />
                   </a>
                 </p>
                 
@@ -490,19 +490,6 @@ export default {
                   }
                 });
                 
-                // Process images in the README content
-                const images = document.querySelectorAll('img');
-                images.forEach(img => {
-                  const src = img.getAttribute('src');
-                  if (src && (src.includes('.png') || src.includes('.webp'))) {
-                    const newSrc = 'https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/'
-                    img.setAttribute('src', newSrc);
-                    img.setAttribute('loading', 'lazy');
-                    img.setAttribute('decoding', 'async');
-                    img.classList.add('rounded-lg', 'shadow-lg', 'transition-all', 'duration-500', 'transform', 'hover:scale-105', 'hover:shadow-xl');
-                  }
-                });
-                
                 // Hero section animations
                 anime({
                   targets: '#hero-title',
@@ -622,20 +609,14 @@ export default {
         element(element) {
           const src = element.getAttribute('src');
           if (src) {
-            // Handle GitHub raw content paths
+            // Fix: Only add to imageUrls if the src is a valid image, do not overwrite the src
             if (
-              src.includes(
-                'github.com/JacobMGEvans/JacobMGEvans/raw/main/public/'
+              src.startsWith(
+                'https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/'
               )
             ) {
-              const newSrc = src.replace(
-                'https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/',
-                'https://website-assets-dco.pages.dev/'
-              );
-              element.setAttribute('src', newSrc);
-              imageUrls.add(newSrc);
+              imageUrls.add(src);
             }
-
             // Add loading and other attributes for all images
             element.setAttribute('loading', 'lazy');
             element.setAttribute('decoding', 'async');
@@ -732,7 +713,7 @@ export default {
     const additionalImages = [
       'https://4kwallpapers.com/images/walls/thumbs_3t/8010.jpg',
       'https://img.freepik.com/premium-photo/wolf-wolf-silhouette-dark-fantasy-forest-wolf_1168123-40178.jpg',
-      'https://website-assets-dco.pages.dev/mountains-silhouette.webp',
+      // 'https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/mountains-silhouette.webp',
       'https://pbs.twimg.com/media/GTnMCppa4AEqRtH?format=jpg&name=large',
       'https://img.freepik.com/premium-photo/wolf-wolf-silhouette-dark-fantasy-forest-wolf_1168123-40178.jpg',
     ];
