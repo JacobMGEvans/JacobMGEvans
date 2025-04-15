@@ -322,60 +322,93 @@ export default {
                 </div>
               </section>
               
-              <section id="oss" class="content-section max-w-4xl mx-auto my-12 p-8 rounded-lg shadow-xl animate-fade-in">
-                <h2 class="text-3xl font-heading font-bold text-mountain-purple mb-6">OSS Contributions & Community Involvement 🛰️</h2>
-                <p class="text-lg text-gray-300 mb-6">
-                  <a href="https://dev.to/jacobmgevans" class="inline-block p-2 hover:transform hover:scale-110 transition-all duration-300">
-                    <img src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktober2019.webp" alt="2019 Hacktoberfest Contributor" height="60" width="60" class="rounded-lg shadow-lg" />
-                  </a>
-                  <a href="https://dev.to/jacobmgevans" class="inline-block p-2 hover:transform hover:scale-110 transition-all duration-300">
-                    <img src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktober2020.webp" alt="2020 Hacktoberfest Contributor" height="60" width="60" class="rounded-lg shadow-lg" />
-                  </a>
-                  <a href="https://dev.to/jacobmgevans" class="inline-block p-2 hover:transform hover:scale-110 transition-all duration-300">
-                    <img src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktober2021.webp" alt="2021 Hacktoberfest Contributor" height="60" width="60" class="rounded-lg shadow-lg" />
-                  </a>
-                  <a href="https://osrg.t3.gg/" class="inline-block p-2 hover:transform hover:scale-110 transition-all duration-300">
-                    <img src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/osrg.webp" alt="Open Source Raid Guild Member" height="60" width="60" class="rounded-lg shadow-lg" />
-                  </a>
-                </p>
-                
-                <p class="text-lg text-gray-300 my-4 leading-relaxed">
-                  Part of my open-source work and learning in public involves writing technical (and sometimes less technical) blog posts. My goal is for others, and my future self, to benefit from them.
-                </p>
-                
-                <details open class="bg-forest-dark p-4 rounded-lg my-4 border border-gray-700 transition-all duration-300 hover:border-mountain-purple">
-                  <summary class="cursor-pointer font-semibold text-mountain-blue hover:text-mountain-purple transition-colors duration-300">
-                    📚 Some of My Blog Articles & Other Content
-                  </summary>
-                  <ul class="space-y-2 my-4">
-                    <li class="text-gray-300">
-                      <a href="https://podrocket.logrocket.com/cloudflare-workers" class="text-mountain-blue hover:text-mountain-purple transition-colors duration-300 hover:underline">
-                        Guest on LogRocket - Cloudflare Workers
-                      </a>
-                    </li>
-                    <li class="text-gray-300">
-                      <a href="https://dev.to/jacobmgevans/javascript-resources-podcasts-books-videos-and-tutorials-4a6e" class="text-mountain-blue hover:text-mountain-purple transition-colors duration-300 hover:underline">
-                        JavaScript Resources: Podcasts, Books, Videos, and Tutorials
-                      </a>
-                    </li>
-                    <li class="text-gray-300">
-                      <a href="https://dev.to/jacobmgevans/more-podcasts-and-video-programming-resources-5a8k" class="text-mountain-blue hover:text-mountain-purple transition-colors duration-300 hover:underline">
-                        More Podcasts and Video Programming Resources
-                      </a>
-                    </li>
-                    <li class="text-gray-300">
-                      <a href="https://dev.to/jacobmgevans/should-you-listen-to-podcasts-4m5j" class="text-mountain-blue hover:text-mountain-purple transition-colors duration-300 hover:underline">
-                        Should You Listen to Podcasts?
-                      </a>
-                    </li>
-                    <li class="text-gray-300">
-                      <a href="https://dev.to/jacobmgevans/writing-immutable-javascript-why-how-3if6" class="text-mountain-blue hover:text-mountain-purple transition-colors duration-300 hover:underline">
-                        Writing Immutable and Functional JavaScript
-                      </a>
-                    </li>
-                  </ul>
-                </details>
-              </section>
+<section id="oss" class="content-section max-w-3xl mx-auto my-16 p-10 rounded-2xl shadow-2xl animate-fade-in flex flex-col items-center bg-gradient-to-br from-wolf-dark/90 via-forest-dark/80 to-mountain-blue/60 border border-mountain-purple/40 backdrop-blur-lg">
+  <h2 class="text-4xl font-heading font-extrabold text-mountain-purple mb-8 text-center drop-shadow-glow">OSS Contributions & Community Involvement</h2>
+  <div class="flex flex-wrap justify-center gap-6 mb-6">
+    <a href="https://dev.to/jacobmgevans" class="inline-block p-2 transition-transform duration-300 hover:scale-110">
+      <img src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktober2019.webp" alt="2019 Hacktoberfest Contributor" height="70" width="70" class="rounded-xl shadow-xl glow-animate" />
+    </a>
+    <a href="https://dev.to/jacobmgevans" class="inline-block p-2 transition-transform duration-300 hover:scale-110">
+      <img src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktober2020.webp" alt="2020 Hacktoberfest Contributor" height="70" width="70" class="rounded-xl shadow-xl glow-animate" />
+    </a>
+    <a href="https://dev.to/jacobmgevans" class="inline-block p-2 transition-transform duration-300 hover:scale-110">
+      <img src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktober2021.webp" alt="2021 Hacktoberfest Contributor" height="70" width="70" class="rounded-xl shadow-xl glow-animate" />
+    </a>
+    <a href="https://osrg.t3.gg/" class="inline-block p-2 transition-transform duration-300 hover:scale-110">
+      <img src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/osrg.webp" alt="Open Source Raid Guild Member" height="70" width="70" class="rounded-xl shadow-xl glow-animate" />
+    </a>
+  </div>
+  <p class="text-lg text-gray-200 text-center mb-6 max-w-2xl">
+    Part of my open-source work and learning in public involves writing technical (and sometimes less technical) blog posts. My goal is for others, and my future self, to benefit from them.
+  </p>
+  <details open class="w-full bg-forest-dark/80 p-6 rounded-xl my-4 border border-mountain-purple/30 transition-all duration-300 hover:border-mountain-purple shadow-lg">
+    <summary class="cursor-pointer font-semibold text-mountain-blue hover:text-mountain-purple transition-colors duration-300 text-xl flex items-center gap-2">
+      <span>📚</span> <span>Some of My Blog Articles & Other Content</span>
+    </summary>
+    <ul class="space-y-3 my-4 px-2">
+      <li>
+        <a href="https://podrocket.logrocket.com/cloudflare-workers" class="text-mountain-blue hover:text-mountain-purple transition-colors duration-300 hover:underline font-medium">
+          Guest on LogRocket - Cloudflare Workers
+        </a>
+      </li>
+      <li>
+        <a href="https://dev.to/jacobmgevans/javascript-resources-podcasts-books-videos-and-tutorials-4a6e" class="text-mountain-blue hover:text-mountain-purple transition-colors duration-300 hover:underline font-medium">
+          JavaScript Resources: Podcasts, Books, Videos, and Tutorials
+        </a>
+      </li>
+      <li>
+        <a href="https://dev.to/jacobmgevans/more-podcasts-and-video-programming-resources-5a8k" class="text-mountain-blue hover:text-mountain-purple transition-colors duration-300 hover:underline font-medium">
+          More Podcasts and Video Programming Resources
+        </a>
+      </li>
+      <li>
+        <a href="https://dev.to/jacobmgevans/should-you-listen-to-podcasts-4m5j" class="text-mountain-blue hover:text-mountain-purple transition-colors duration-300 hover:underline font-medium">
+          Should You Listen to Podcasts?
+        </a>
+      </li>
+      <li>
+        <a href="https://dev.to/jacobmgevans/writing-immutable-javascript-why-how-3if6" class="text-mountain-blue hover:text-mountain-purple transition-colors duration-300 hover:underline font-medium">
+          Writing Immutable and Functional JavaScript
+        </a>
+      </li>
+    </ul>
+  </details>
+  <style>
+    .drop-shadow-glow {
+      text-shadow: 0 0 12px #8B5CF6, 0 0 24px #3B82F6;
+    }
+    .glow-animate {
+      box-shadow: 0 0 0px #8B5CF6, 0 0 0px #3B82F6;
+      transition: box-shadow 0.4s;
+    }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      anime({
+        targets: '.glow-animate',
+        boxShadow: [
+          '0 0 0px #8B5CF6, 0 0 0px #3B82F6',
+          '0 0 24px #8B5CF6, 0 0 48px #3B82F6'
+        ],
+        direction: 'alternate',
+        loop: true,
+        easing: 'easeInOutSine',
+        duration: 1600
+      });
+      anime({
+        targets: '.drop-shadow-glow',
+        textShadow: [
+          '0 0 12px #8B5CF6, 0 0 24px #3B82F6',
+          '0 0 32px #8B5CF6, 0 0 64px #3B82F6'
+        ],
+        direction: 'alternate',
+        loop: true,
+        easing: 'easeInOutSine',
+        duration: 1800
+      });
+    });
+  </script>
+</section>
               
               <div id="readme-content" class="content-section max-w-4xl mx-auto my-12 p-8 rounded-lg shadow-xl animate-fade-in">
                 <!-- The README content will be moved here by JavaScript -->
@@ -609,7 +642,6 @@ export default {
         element(element) {
           const src = element.getAttribute('src');
           if (src) {
-            // Fix: Only add to imageUrls if the src is a valid image, do not overwrite the src
             if (
               src.startsWith(
                 'https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/'
@@ -617,7 +649,6 @@ export default {
             ) {
               imageUrls.add(src);
             }
-            // Add loading and other attributes for all images
             element.setAttribute('loading', 'lazy');
             element.setAttribute('decoding', 'async');
             element.setAttribute(
@@ -627,7 +658,6 @@ export default {
           }
         },
       })
-
       .on('a', {
         element(element) {
           element.setAttribute(
@@ -636,7 +666,6 @@ export default {
           );
         },
       })
-
       .on('section', {
         element(element) {
           element.setAttribute(
@@ -645,7 +674,6 @@ export default {
           );
         },
       })
-
       .on('details', {
         element(element) {
           element.setAttribute(
@@ -696,8 +724,6 @@ export default {
           );
         },
       })
-
-      // Add a handler for any text nodes
       .on('*', {
         text(text) {
           const content = text.text;
