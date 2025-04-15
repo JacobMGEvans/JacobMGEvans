@@ -322,6 +322,61 @@ export default {
                 </div>
               </section>
               
+              <section id="oss" class="content-section max-w-4xl mx-auto my-12 p-8 rounded-lg shadow-xl animate-fade-in">
+                <h2 class="text-3xl font-heading font-bold text-mountain-purple mb-6">OSS Contributions & Community Involvement 🛰️</h2>
+                <p class="text-lg text-gray-300 mb-6">
+                  <a href="https://dev.to/jacobmgevans" class="inline-block p-2 hover:transform hover:scale-110 transition-all duration-300">
+                    <img src="https://website-assets-dco.pages.dev/hacktober2019.webp" alt="2019 Hacktoberfest Contributor" height="60" width="60" class="rounded-lg shadow-lg" />
+                  </a>
+                  <a href="https://dev.to/jacobmgevans" class="inline-block p-2 hover:transform hover:scale-110 transition-all duration-300">
+                    <img src="https://website-assets-dco.pages.dev/hacktober2020.webp" alt="2020 Hacktoberfest Contributor" height="60" width="60" class="rounded-lg shadow-lg" />
+                  </a>
+                  <a href="https://dev.to/jacobmgevans" class="inline-block p-2 hover:transform hover:scale-110 transition-all duration-300">
+                    <img src="https://website-assets-dco.pages.dev/hacktober2021.webp" alt="2021 Hacktoberfest Contributor" height="60" width="60" class="rounded-lg shadow-lg" />
+                  </a>
+                  <a href="https://osrg.t3.gg/" class="inline-block p-2 hover:transform hover:scale-110 transition-all duration-300">
+                    <img src="https://website-assets-dco.pages.dev/osrg.webp" alt="Open Source Raid Guild Member" height="60" width="60" class="rounded-lg shadow-lg" />
+                  </a>
+                </p>
+                
+                <p class="text-lg text-gray-300 my-4 leading-relaxed">
+                  Part of my open-source work and learning in public involves writing technical (and sometimes less technical) blog posts. My goal is for others—and my future self—to benefit from them.
+                </p>
+                
+                <details open class="bg-forest-dark p-4 rounded-lg my-4 border border-gray-700 transition-all duration-300 hover:border-mountain-purple">
+                  <summary class="cursor-pointer font-semibold text-mountain-blue hover:text-mountain-purple transition-colors duration-300">
+                    📚 Some of My Blog Articles & Other Content
+                  </summary>
+                  <ul class="space-y-2 my-4">
+                    <li class="text-gray-300">
+                      <a href="https://podrocket.logrocket.com/cloudflare-workers" class="text-mountain-blue hover:text-mountain-purple transition-colors duration-300 hover:underline">
+                        Guest on LogRocket - Cloudflare Workers
+                      </a>
+                    </li>
+                    <li class="text-gray-300">
+                      <a href="https://dev.to/jacobmgevans/javascript-resources-podcasts-books-videos-and-tutorials-4a6e" class="text-mountain-blue hover:text-mountain-purple transition-colors duration-300 hover:underline">
+                        JavaScript Resources: Podcasts, Books, Videos, and Tutorials
+                      </a>
+                    </li>
+                    <li class="text-gray-300">
+                      <a href="https://dev.to/jacobmgevans/more-podcasts-and-video-programming-resources-5a8k" class="text-mountain-blue hover:text-mountain-purple transition-colors duration-300 hover:underline">
+                        More Podcasts and Video Programming Resources
+                      </a>
+                    </li>
+                    <li class="text-gray-300">
+                      <a href="https://dev.to/jacobmgevans/should-you-listen-to-podcasts-4m5j" class="text-mountain-blue hover:text-mountain-purple transition-colors duration-300 hover:underline">
+                        Should You Listen to Podcasts?
+                      </a>
+                    </li>
+                    <li class="text-gray-300">
+                      <a href="https://dev.to/jacobmgevans/writing-immutable-javascript-why-how-3if6" class="text-mountain-blue hover:text-mountain-purple transition-colors duration-300 hover:underline">
+                        Writing Immutable and Functional JavaScript
+                      </a>
+                    </li>
+                  </ul>
+                </details>
+              </section>
+              
               <div id="readme-content" class="content-section max-w-4xl mx-auto my-12 p-8 rounded-lg shadow-xl animate-fade-in">
                 <!-- The README content will be moved here by JavaScript -->
               </div>
@@ -427,7 +482,7 @@ export default {
                 const headers = document.querySelectorAll('h2');
                 headers.forEach(header => {
                   if (header.textContent) {
-                    if (header.textContent.includes('OSS & Community')) {
+                    if (header.textContent.includes('OSS & Community') || header.textContent.includes('OSS Contributions')) {
                       header.id = 'oss';
                     } else if (header.textContent.toLowerCase().includes('blog')) {
                       header.id = 'blog';
@@ -566,20 +621,29 @@ export default {
       .on('img', {
         element(element) {
           const src = element.getAttribute('src');
-          if (src && (src.includes('.png') || src.includes('.webp'))) {
-            const newSrc = src.replace(
-              'https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/',
-              'https://website-assets-dco.pages.dev/'
+          if (src) {
+            // Handle GitHub raw content paths
+            if (
+              src.includes(
+                'github.com/JacobMGEvans/JacobMGEvans/raw/main/public/'
+              )
+            ) {
+              const newSrc = src.replace(
+                'https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/',
+                'https://website-assets-dco.pages.dev/'
+              );
+              element.setAttribute('src', newSrc);
+              imageUrls.add(newSrc);
+            }
+
+            // Add loading and other attributes for all images
+            element.setAttribute('loading', 'lazy');
+            element.setAttribute('decoding', 'async');
+            element.setAttribute(
+              'class',
+              'rounded-lg shadow-lg transition-all duration-500 transform hover:scale-105 hover:shadow-xl'
             );
-            element.setAttribute('src', newSrc);
-            imageUrls.add(newSrc);
           }
-          element.setAttribute('loading', 'lazy');
-          element.setAttribute('decoding', 'async');
-          element.setAttribute(
-            'class',
-            'rounded-lg shadow-lg transition-all duration-500 transform hover:scale-105 hover:shadow-xl'
-          );
         },
       })
 
@@ -649,41 +713,6 @@ export default {
             'class',
             'bg-gray-800 p-4 rounded-lg overflow-x-auto my-4'
           );
-        },
-      })
-      // Add styling for OSS contribution badges and links
-      .on('p > a > img', {
-        element(element) {
-          const src = element.getAttribute('src');
-          if (src && (src.includes('hacktober') || src.includes('osrg'))) {
-            element.setAttribute(
-              'class',
-              'inline-block rounded-lg shadow-lg transition-all duration-300 transform hover:scale-110 hover:shadow-xl mx-2'
-            );
-          }
-        },
-      })
-      // Style blog article links in the details section
-      .on('details li', {
-        element(element) {
-          element.setAttribute(
-            'class',
-            'text-gray-300 py-1 hover:translate-x-1 transition-transform duration-300'
-          );
-        },
-      })
-      .on('details li > a', {
-        element(element) {
-          element.setAttribute(
-            'class',
-            'text-mountain-blue hover:text-mountain-purple transition-colors duration-300 hover:underline flex items-center'
-          );
-          const text = element.innerHTML;
-          if (text.includes('LogRocket')) {
-            element.innerHTML = `<i class="fas fa-podcast mr-2"></i>${text}`;
-          } else {
-            element.innerHTML = `<i class="fas fa-file-alt mr-2"></i>${text}`;
-          }
         },
       })
 
