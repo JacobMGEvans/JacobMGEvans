@@ -233,7 +233,8 @@ export default {
             <header class="sticky top-0 z-50 w-full p-4 bg-gradient-to-r from-forest-dark via-wolf-dark to-forest-dark backdrop-blur-md border-b border-gray-800 text-gray-100 flex flex-col md:flex-row justify-between items-center">
               <div class="flex items-center space-x-4">
                 <div class="wolf-icon">
-                  <i class="fas fa-wolf-pack-battalion text-3xl text-mountain-purple"></i>
+                  <img src="https://pbs.twimg.com/media/GJ22wSNb0AAQRAH?format=jpg&name=large" alt="Wolf Icon" class="h-8 w-8 rounded-full shadow-lg">
+                  </i>
                 </div>
                 <h1 class="text-xl font-heading font-bold">Jacob M.G. Evans</h1>
                 <div class="flex items-center space-x-2">
@@ -277,8 +278,8 @@ export default {
             </div>
             
             <main class="container mx-auto px-4 py-8">
-              <section id="about" class="content-section max-w-4xl mx-auto my-12 p-8 rounded-lg shadow-xl animate-fade-in">
-                <h2 class="text-3xl font-heading font-bold text-mountain-purple mb-6">Professional Journey</h2>
+              <section id="about" class="max-w-3xl mx-auto my-16 p-10 rounded-2xl shadow-2xl flex flex-col items-center bg-gradient-to-br from-wolf-dark/90 via-forest-dark/80 to-mountain-blue/60 border border-mountain-purple/40 backdrop-blur-lg animate-fade-in">
+                <h2 class="text-4xl font-heading font-extrabold text-mountain-purple mb-8 text-center drop-shadow-glow">Professional Journey</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div>
                     <h3 class="text-xl font-heading font-semibold mb-4 text-mountain-blue">Current Role</h3>
@@ -392,8 +393,8 @@ export default {
     });
   </script>
 </section>              
-              <section id="outdoor" class="content-section max-w-4xl mx-auto my-12 p-8 rounded-lg shadow-xl animate-fade-in">
-                <h2 class="text-3xl font-heading font-bold text-mountain-purple mb-6">Outdoor Life</h2>
+              <section id="outdoor" class="max-w-3xl mx-auto my-16 p-10 rounded-2xl shadow-2xl flex flex-col items-center bg-gradient-to-br from-wolf-dark/90 via-forest-dark/80 to-mountain-blue/60 border border-mountain-purple/40 backdrop-blur-lg animate-fade-in">
+                <h2 class="text-4xl font-heading font-extrabold text-mountain-purple mb-8 text-center drop-shadow-glow">Outdoor Life</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div>
                     <h3 class="text-xl font-heading font-semibold mb-4 text-mountain-blue">Hiking & Camping</h3>
@@ -427,7 +428,6 @@ export default {
                 <div class="flex flex-col md:flex-row justify-between items-center">
                   <div class="mb-6 md:mb-0">
                     <div class="flex items-center space-x-2">
-                      <i class="fas fa-wolf-pack-battalion text-2xl text-mountain-purple"></i>
                       <span class="text-xl font-heading font-bold">Jacob M.G. Evans</span>
                     </div>
                     <p class="text-sm text-gray-400 mt-2">FullStack Developer, OSS Contributor, Veteran & Outdoor Enthusiast</p>
