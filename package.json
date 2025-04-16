@@ -8,10 +8,10 @@
     "update": "rm -rf pnpm-lock.yaml node_modules && pnpm i"
   },
   "dependencies": {
-    "wrangler": "^3.88.0"
+    "wrangler": "^4.11.1"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20240815.0",
-    "typescript": "^5.5.4"
+    "@cloudflare/workers-types": "^4.20250416.0",
+    "typescript": "^5.8.3"
   }
 }
