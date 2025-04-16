@@ -9,31 +9,153 @@ interface Env {
   KV_KEY: string;
 }
 
+// CSS Utility Functions
+// ---------------------
+
+/**
+ * Creates section container classes with consistent styling
+ */
+const sectionContainer = (extraClasses = '') =>
+  `max-w-3xl mx-auto my-16 p-10 rounded-2xl shadow-2xl flex flex-col items-center bg-gradient-to-br from-wolf-dark/90 via-forest-dark/80 to-mountain-blue/60 border border-mountain-purple/40 backdrop-blur-lg animate-fade-in ${extraClasses}`;
+
+/**
+ * Creates heading styles based on level
+ */
+const heading = (level: 'h1' | 'h2' | 'h3' | 'h4', extraClasses = '') => {
+  const baseClasses = 'font-heading';
+
+  if (level === 'h1')
+    return `${baseClasses} text-5xl md:text-6xl font-bold text-white ${extraClasses}`;
+  if (level === 'h2')
+    return `${baseClasses} text-4xl font-extrabold text-mountain-purple mb-8 text-center drop-shadow-glow ${extraClasses}`;
+  if (level === 'h3')
+    return `${baseClasses} text-xl font-semibold mb-4 text-mountain-blue ${extraClasses}`;
+  if (level === 'h4')
+    return `${baseClasses} text-lg font-semibold mb-2 text-mountain-blue ${extraClasses}`;
+
+  return baseClasses;
+};
+
+/**
+ * Creates paragraph text styles
+ */
+const paragraph = (variation = 'default') => {
+  if (variation === 'default') return 'text-gray-300 mb-4';
+  if (variation === 'light') return 'text-gray-200 text-center mb-6 max-w-2xl';
+  if (variation === 'small') return 'text-sm text-gray-400 mt-2';
+
+  return 'text-gray-300';
+};
+
+/**
+ * Creates list styles
+ */
+const list = () => 'list-disc list-inside text-gray-300 space-y-2';
+
+/**
+ * Creates link styles
+ */
+const link = (variation = 'default') => {
+  const baseClasses =
+    'text-mountain-blue hover:text-mountain-purple transition-colors duration-300';
+
+  if (variation === 'default') return baseClasses;
+  if (variation === 'nav') return `${baseClasses} nav-link font-medium`;
+  if (variation === 'underline')
+    return `${baseClasses} hover:underline font-medium`;
+
+  return baseClasses;
+};
+
+/**
+ * Creates image container styles
+ */
+const imageContainer = (isRightColumn = false) => {
+  const baseClasses = 'relative h-64 rounded-lg overflow-hidden shadow-lg';
+  return isRightColumn ? `${baseClasses} order-2 md:order-1` : baseClasses;
+};
+
+/**
+ * Creates responsive image styles
+ */
+const responsiveImage = () =>
+  'absolute inset-0 w-full h-full object-cover transition-transform duration-10000 hover:scale-110';
+
+/**
+ * Creates grid layout styles
+ */
+const grid = (columns = 2) => `grid grid-cols-1 md:grid-cols-${columns} gap-8`;
+
+/**
+ * Creates social icon styles
+ */
+const socialIcon = () => 'hover:text-mountain-blue transition-colors';
+
+/**
+ * Creates badge styles
+ */
+const badge = () => 'tech-badge px-4 py-2 rounded-full text-sm font-medium';
+
+/**
+ * Creates flex container styles
+ */
+const flex = (direction = 'row', extraClasses = '') => {
+  const baseClasses = direction === 'row' ? 'flex' : 'flex flex-col';
+  return `${baseClasses} ${extraClasses}`;
+};
+
+/**
+ * Creates header gradient background
+ */
+const gradientHeader = () =>
+  'bg-gradient-to-r from-forest-dark via-wolf-dark to-forest-dark';
+
+/**
+ * Creates styles for OSS preview images
+ */
+const ossPreviewImage = () =>
+  'rounded-xl shadow-xl glow-animate object-cover w-[125px] h-[120px]';
+
+/**
+ * Creates preview image container styles
+ */
+const previewContainer = () =>
+  'inline-block p-2 transition-transform duration-300 hover:scale-110';
+
+/**
+ * Creates footer styles
+ */
+const footerStyle = () =>
+  `w-full p-8 ${gradientHeader()} text-gray-100 border-t border-gray-800`;
+
+// Component Definitions
+// ---------------------
+
 const HeaderComponent = () => `
-  <header class="sticky top-0 z-50 w-full p-4 bg-gradient-to-r from-forest-dark via-wolf-dark to-forest-dark backdrop-blur-md border-b border-gray-800 text-gray-100 flex flex-col md:flex-row justify-between items-center">
-    <div class="flex items-center space-x-4">
+  <header class="sticky top-0 z-50 w-full p-4 ${gradientHeader()} backdrop-blur-md border-b border-gray-800 text-gray-100 flex flex-col md:flex-row justify-between items-center">
+    <div class="${flex('row', 'items-center space-x-4')}">
       <div class="wolf-icon">
         <img src="https://pbs.twimg.com/media/GJ22wSNb0AAQRAH?format=jpg&name=large" alt="Wolf Icon" class="h-8 w-8 rounded-full shadow-lg">
       </div>
       <h1 class="text-xl font-heading font-bold">Jacob M.G. Evans</h1>
-      <div class="flex items-center space-x-2">
-        <a href="https://www.linkedin.com/in/jacob-m-g-evans" aria-label="LinkedIn" class="hover:text-mountain-blue transition-colors">
+      <div class="${flex('row', 'items-center space-x-2')}">
+        <a href="https://www.linkedin.com/in-jacob-m-g-evans" aria-label="LinkedIn" class="${socialIcon()}">
           <i class="fab fa-linkedin text-xl"></i>
         </a>
-        <a href="https://twitter.com/JacobMGEvans" aria-label="Twitter" class="hover:text-mountain-blue transition-colors">
+        <a href="https://twitter.com/JacobMGEvans" aria-label="Twitter" class="${socialIcon()}">
           <i class="fab fa-twitter text-xl"></i>
         </a>
-        <a href="https://github.com/JacobMGEvans" aria-label="GitHub" class="hover:text-mountain-blue transition-colors">
+        <a href="https://github.com/JacobMGEvans" aria-label="GitHub" class="${socialIcon()}">
           <i class="fab fa-github text-xl"></i>
         </a>
       </div>
     </div>
     <nav class="mt-4 md:mt-0">
-      <ul class="flex space-x-6">
-        <li><a href="#about" class="nav-link font-medium">About</a></li>
-        <li><a href="#oss" class="nav-link font-medium">OSS & Community</a></li>
-        <li><a href="#blog" class="nav-link font-medium">Blog</a></li>
-        <li><a href="#outdoor" class="nav-link font-medium">Outdoor Life</a></li>
+      <ul class="${flex('row', 'space-x-6')}">
+        <li><a href="#about" class="${link('nav')}">About</a></li>
+        <li><a href="#oss" class="${link('nav')}">OSS & Community</a></li>
+        <li><a href="#blog" class="${link('nav')}">Blog</a></li>
+        <li><a href="#outdoor" class="${link('nav')}">Outdoor Life</a></li>
       </ul>
     </nav>
   </header>
@@ -46,28 +168,34 @@ const HeroComponent = () => `
     </div>
     
     <div class="container mx-auto px-4 z-10 text-center">
-      <h1 class="text-5xl md:text-6xl font-heading font-bold mb-4 text-white animate-fade-in" id="hero-title">Jacob M.G. Evans</h1>
+      <h1 class="${heading(
+        'h1',
+        'mb-4 animate-fade-in'
+      )}" id="hero-title">Jacob M.G. Evans</h1>
       <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto animate-fade-in" id="hero-subtitle">FullStack Egnineer, OSS Contributor, Veteran & Outdoor Enthusiast</p>
-      <div class="flex flex-wrap justify-center gap-3 animate-fade-in" id="hero-badges">
-        <span class="tech-badge px-4 py-2 rounded-full text-sm font-medium">JavaScript</span>
-        <span class="tech-badge px-4 py-2 rounded-full text-sm font-medium">TypeScript</span>
-        <span class="tech-badge px-4 py-2 rounded-full text-sm font-medium">React</span>
-        <span class="tech-badge px-4 py-2 rounded-full text-sm font-medium">Node.js</span>
-        <span class="tech-badge px-4 py-2 rounded-full text-sm font-medium">Open Source</span>
+      <div class="${flex(
+        'row',
+        'flex-wrap justify-center gap-3 animate-fade-in'
+      )}" id="hero-badges">
+        <span class="${badge()}">JavaScript</span>
+        <span class="${badge()}">TypeScript</span>
+        <span class="${badge()}">React</span>
+        <span class="${badge()}">Node.js</span>
+        <span class="${badge()}">Open Source</span>
       </div>
     </div>
   </div>
 `;
 
 const AboutSectionComponent = () => `
-  <section id="about" class="max-w-3xl mx-auto my-16 p-10 rounded-2xl shadow-2xl flex flex-col items-center bg-gradient-to-br from-wolf-dark/90 via-forest-dark/80 to-mountain-blue/60 border border-mountain-purple/40 backdrop-blur-lg animate-fade-in">
-    <h2 class="text-4xl font-heading font-extrabold text-mountain-purple mb-8 text-center drop-shadow-glow">Professional Journey</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+  <section id="about" class="${sectionContainer()}">
+    <h2 class="${heading('h2')}">Professional Journey</h2>
+    <div class="${grid()}">
       <div>
-        <h3 class="text-xl font-heading font-semibold mb-4 text-mountain-blue">Current Role</h3>
-        <p class="text-gray-300 mb-4">FullStack Egnineer, specializing in Cloudflare Workers, CI/CD (DevOps), UX/DX, tooling, webapps, and cloud infrastructure. Building secure, scalable authentication and user management solutions.</p>
-        <h4 class="text-lg font-heading font-semibold mb-2 text-mountain-blue">Core Skills</h4>
-        <ul class="list-disc list-inside text-gray-300 space-y-2">
+        <h3 class="${heading('h3')}">Current Role</h3>
+        <p class="${paragraph()}">FullStack Egnineer, specializing in Cloudflare Workers, CI/CD (DevOps), UX/DX, tooling, webapps, and cloud infrastructure. Building secure, scalable authentication and user management solutions.</p>
+        <h4 class="${heading('h4')}">Core Skills</h4>
+        <ul class="${list()}">
           <li>FullStack development with TypeScript and React</li>
           <li>Cloud infrastructure and serverless architecture</li>
           <li>Authentication and security implementations</li>
@@ -75,10 +203,10 @@ const AboutSectionComponent = () => `
         </ul>
       </div>
       <div>
-        <h3 class="text-xl font-heading font-semibold mb-4 text-mountain-blue">Open Source & Community</h3>
-        <p class="text-gray-300 mb-4">Active contributor and maintainer in the open-source community, focusing on developer tools and educational resources.</p>
-        <h4 class="text-lg font-heading font-semibold mb-2 text-mountain-blue">Contributions & Leadership</h4>
-        <ul class="list-disc list-inside text-gray-300 space-y-2">
+        <h3 class="${heading('h3')}">Open Source & Community</h3>
+        <p class="${paragraph()}">Active contributor and maintainer in the open-source community, focusing on developer tools and educational resources.</p>
+        <h4 class="${heading('h4')}">Contributions & Leadership</h4>
+        <ul class="${list()}">
           <li>Technical moderator for major tech communities</li>
           <li>Regular contributor to developer education</li>
           <li>Open Source Raid Guild leadership</li>
@@ -90,23 +218,23 @@ const AboutSectionComponent = () => `
 `;
 
 const OssSectionComponent = () => `
-  <section id="oss" class="content-section max-w-3xl mx-auto my-16 p-10 rounded-2xl shadow-2xl animate-fade-in flex flex-col items-center bg-gradient-to-br from-wolf-dark/90 via-forest-dark/80 to-mountain-blue/60 border border-mountain-purple/40 backdrop-blur-lg">
-    <h2 class="text-4xl font-heading font-extrabold text-mountain-purple mb-8 text-center drop-shadow-glow">OSS Contributions & Community Involvement</h2>
-    <div class="flex flex-wrap justify-center gap-6 mb-6">
-      <a href="https://dev.to/jacobmgevans" class="inline-block p-2 transition-transform duration-300 hover:scale-110">
-        <img src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktober2019.webp" alt="2019 Hacktoberfest Contributor"  class="rounded-xl shadow-xl glow-animate object-cover w-[125px] h-[120px]" />
+  <section id="oss" class="${sectionContainer('content-section')}">
+    <h2 class="${heading('h2')}">OSS Contributions & Community Involvement</h2>
+    <div class="${flex('row', 'flex-wrap justify-center gap-6 mb-6')}">
+      <a href="https://dev.to/jacobmgevans" class="${previewContainer()}">
+        <img src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktober2019.webp" alt="2019 Hacktoberfest Contributor" class="${ossPreviewImage()}" />
       </a>
-      <a href="https://dev.to/jacobmgevans" class="inline-block p-2 transition-transform duration-300 hover:scale-110">
-        <img src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktober2020.webp" alt="2020 Hacktoberfest Contributor" class="rounded-xl shadow-xl glow-animate object-cover w-[125px] h-[120px]" />
+      <a href="https://dev.to/jacobmgevans" class="${previewContainer()}">
+        <img src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktober2020.webp" alt="2020 Hacktoberfest Contributor" class="${ossPreviewImage()}" />
       </a>
-      <a href="https://dev.to/jacobmgevans" class="inline-block p-2 transition-transform duration-300 hover:scale-110">
-        <img src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktober2021.webp" alt="2021 Hacktoberfest Contributor"  class="rounded-xl shadow-xl glow-animate object-cover w-[125px] h-[120px]" />
+      <a href="https://dev.to/jacobmgevans" class="${previewContainer()}">
+        <img src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktober2021.webp" alt="2021 Hacktoberfest Contributor" class="${ossPreviewImage()}" />
       </a>
-      <a href="https://osrg.t3.gg/" class="inline-block p-2 transition-transform duration-300 hover:scale-110">
-        <img src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/osrg.webp" alt="Open Source Raid Guild Member"  class="rounded-xl shadow-xl glow-animate object-cover w-[125px] h-[120px]" />
+      <a href="https://osrg.t3.gg/" class="${previewContainer()}">
+        <img src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/osrg.webp" alt="Open Source Raid Guild Member" class="${ossPreviewImage()}" />
       </a>
     </div>
-    <p class="text-lg text-gray-200 text-center mb-6 max-w-2xl">
+    <p class="${paragraph('light')}">
       Part of my open-source work and learning in public involves writing technical (and sometimes less technical) blog posts. My goal is for others, and my future self, to benefit from them.
     </p>
     <details open class="w-full bg-forest-dark/80 p-6 rounded-xl my-4 border border-mountain-purple/30 transition-all duration-300 hover:border-mountain-purple shadow-lg">
@@ -115,27 +243,37 @@ const OssSectionComponent = () => `
       </summary>
       <ul class="space-y-3 my-4 px-2">
         <li>
-          <a href="https://podrocket.logrocket.com/cloudflare-workers" class="text-mountain-blue hover:text-mountain-purple transition-colors duration-300 hover:underline font-medium">
+          <a href="https://podrocket.logrocket.com/cloudflare-workers" class="${link(
+            'underline'
+          )}">
             Guest on LogRocket - Cloudflare Workers
           </a>
         </li>
         <li>
-          <a href="https://dev.to/jacobmgevans/javascript-resources-podcasts-books-videos-and-tutorials-4a6e" class="text-mountain-blue hover:text-mountain-purple transition-colors duration-300 hover:underline font-medium">
+          <a href="https://dev.to/jacobmgevans/javascript-resources-podcasts-books-videos-and-tutorials-4a6e" class="${link(
+            'underline'
+          )}">
             JavaScript Resources: Podcasts, Books, Videos, and Tutorials
           </a>
         </li>
         <li>
-          <a href="https://dev.to/jacobmgevans/more-podcasts-and-video-programming-resources-5a8k" class="text-mountain-blue hover:text-mountain-purple transition-colors duration-300 hover:underline font-medium">
+          <a href="https://dev.to/jacobmgevans/more-podcasts-and-video-programming-resources-5a8k" class="${link(
+            'underline'
+          )}">
             More Podcasts and Video Programming Resources
           </a>
         </li>
         <li>
-          <a href="https://dev.to/jacobmgevans/should-you-listen-to-podcasts-4m5j" class="text-mountain-blue hover:text-mountain-purple transition-colors duration-300 hover:underline font-medium">
+          <a href="https://dev.to/jacobmgevans/should-you-listen-to-podcasts-4m5j" class="${link(
+            'underline'
+          )}">
             Should You Listen to Podcasts?
           </a>
         </li>
         <li>
-          <a href="https://dev.to/jacobmgevans/writing-immutable-javascript-why-how-3if6" class="text-mountain-blue hover:text-mountain-purple transition-colors duration-300 hover:underline font-medium">
+          <a href="https://dev.to/jacobmgevans/writing-immutable-javascript-why-how-3if6" class="${link(
+            'underline'
+          )}">
             Writing Immutable and Functional JavaScript
           </a>
         </li>
@@ -154,31 +292,31 @@ const OssSectionComponent = () => `
 `;
 
 const OutdoorSectionComponent = () => `
-  <section id="outdoor" class="max-w-3xl mx-auto my-16 p-10 rounded-2xl shadow-2xl flex flex-col items-center bg-gradient-to-br from-wolf-dark/90 via-forest-dark/80 to-mountain-blue/60 border border-mountain-purple/40 backdrop-blur-lg animate-fade-in">
-    <h2 class="text-4xl font-heading font-extrabold text-mountain-purple mb-8 text-center drop-shadow-glow">Outdoor Life</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+  <section id="outdoor" class="${sectionContainer()}">
+    <h2 class="${heading('h2')}">Outdoor Life</h2>
+    <div class="${grid()}">
       <div>
-        <h3 class="text-xl font-heading font-semibold mb-4 text-mountain-blue">Hiking & Camping</h3>
-        <p class="text-gray-300 mb-4">As an avid outdoor enthusiast, I find peace and inspiration in nature. Hiking through forests and mountains connects me with the natural world and fuels my creativity.</p>
-        <ul class="list-disc list-inside text-gray-300 space-y-2">
+        <h3 class="${heading('h3')}">Hiking & Camping</h3>
+        <p class="${paragraph()}">As an avid outdoor enthusiast, I find peace and inspiration in nature. Hiking through forests and mountains connects me with the natural world and fuels my creativity.</p>
+        <ul class="${list()}">
           <li>Experienced backpacker with multi-day trail experience</li>
           <li>Camping in all seasons and weather conditions</li>
           <li>Passionate about wildlife conservation</li>
         </ul>
       </div>
-      <div class="relative h-64 rounded-lg overflow-hidden shadow-lg">
-        <img src="https://pbs.twimg.com/media/GTnMCppa4AEqRtH?format=jpg&name=large" alt="Forest hiking trail" class="absolute inset-0 w-full h-full object-cover transition-transform duration-10000 hover:scale-110" />
+      <div class="${imageContainer()}">
+        <img src="https://pbs.twimg.com/media/GTnMCppa4AEqRtH?format=jpg&name=large" alt="Forest hiking trail" class="${responsiveImage()}" />
       </div>
     </div>
     
-    <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
-      <div class="relative h-64 rounded-lg overflow-hidden shadow-lg order-2 md:order-1">
-        <img src="https://img.freepik.com/premium-photo/wolf-wolf-silhouette-dark-fantasy-forest-wolf_1168123-40178.jpg" alt="Wolf in natural habitat" class="absolute inset-0 w-full h-full object-cover transition-transform duration-10000 hover:scale-110" />
+    <div class="mt-12 ${grid()}">
+      <div class="${imageContainer(true)}">
+        <img src="https://img.freepik.com/premium-photo/wolf-wolf-silhouette-dark-fantasy-forest-wolf_1168123-40178.jpg" alt="Wolf in natural habitat" class="${responsiveImage()}" />
       </div>
       <div class="order-1 md:order-2">
-        <h3 class="text-xl font-heading font-semibold mb-4 text-mountain-blue">Wolf Appreciation</h3>
-        <p class="text-gray-300 mb-4">Wolves represent the perfect balance of intelligence, strength, and community - values I strive to embody in both my personal and professional life.</p>
-        <p class="text-gray-300">Their adaptability and resilience in challenging environments mirrors the mindset needed in the ever-evolving tech landscape.</p>
+        <h3 class="${heading('h3')}">Wolf Appreciation</h3>
+        <p class="${paragraph()}">Wolves represent the perfect balance of intelligence, strength, and community - values I strive to embody in both my personal and professional life.</p>
+        <p class="${paragraph()}">Their adaptability and resilience in challenging environments mirrors the mindset needed in the ever-evolving tech landscape.</p>
       </div>
     </div>
   </section>
@@ -187,24 +325,26 @@ const OutdoorSectionComponent = () => `
 const FooterComponent = () => {
   const currentYear = new Date().getFullYear();
   return `
-    <footer class="w-full p-8 bg-gradient-to-r from-forest-dark via-wolf-dark to-forest-dark text-gray-100 border-t border-gray-800">
+    <footer class="${footerStyle()}">
       <div class="container mx-auto">
-        <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="${flex('col', 'md:flex-row justify-between items-center')}">
           <div class="mb-6 md:mb-0">
-            <div class="flex items-center space-x-2">
+            <div class="${flex('row', 'items-center space-x-2')}">
               <span class="text-xl font-heading font-bold">Jacob M.G. Evans</span>
             </div>
-            <p class="text-sm text-gray-400 mt-2">FullStack Developer, OSS Contributor, Veteran & Outdoor Enthusiast</p>
+            <p class="${paragraph(
+              'small'
+            )}">FullStack Developer, OSS Contributor, Veteran & Outdoor Enthusiast</p>
           </div>
           
-          <div class="flex space-x-6">
-            <a href="https://www.linkedin.com/in/jacob-m-g-evans" aria-label="LinkedIn" class="hover:text-mountain-blue transition-colors">
+          <div class="${flex('row', 'space-x-6')}">
+            <a href="https://www.linkedin.com/in/jacob-m-g-evans" aria-label="LinkedIn" class="${socialIcon()}">
               <i class="fab fa-linkedin text-2xl"></i>
             </a>
-            <a href="https://twitter.com/JacobMGEvans" aria-label="Twitter" class="hover:text-mountain-blue transition-colors">
+            <a href="https://twitter.com/JacobMGEvans" aria-label="Twitter" class="${socialIcon()}">
               <i class="fab fa-twitter text-2xl"></i>
             </a>
-            <a href="https://github.com/JacobMGEvans" aria-label="GitHub" class="hover:text-mountain-blue transition-colors">
+            <a href="https://github.com/JacobMGEvans" aria-label="GitHub" class="${socialIcon()}">
               <i class="fab fa-github text-2xl"></i>
             </a>
           </div>
@@ -513,6 +653,144 @@ const createHeadContent = (tailwindScript: string | null) => `
   <title>Jacob M.G. Evans - Egnineer, Veteran & Outdoor Enthusiast</title>
 `;
 
+/**
+ *  Element transformer factory
+ */
+const createElementTransformers = (
+  imageUrls: Set<string>,
+  tailwindScript: string | null = null
+) => {
+  return {
+    headTransformer: {
+      element(element: any) {
+        element.setInnerContent(createHeadContent(tailwindScript), {
+          html: true,
+        });
+      },
+    },
+    bodyTransformer: {
+      element(element: any) {
+        element.prepend(createBodyContent(), { html: true });
+        element.setAttribute('class', 'min-h-screen text-gray-100 relative');
+      },
+    },
+    h1Transformer: {
+      element(element: any) {
+        element.setAttribute('class', heading('h1', 'my-6'));
+      },
+    },
+    h2Transformer: {
+      element(element: any) {
+        element.setAttribute('class', heading('h2', 'my-5'));
+      },
+    },
+    h3Transformer: {
+      element(element: any) {
+        element.setAttribute('class', heading('h3', 'my-4'));
+      },
+    },
+    pTransformer: {
+      element(element: any) {
+        element.setAttribute(
+          'class',
+          'text-lg text-gray-300 my-4 leading-relaxed'
+        );
+      },
+    },
+    imgTransformer: {
+      element(element: any) {
+        const src = element.getAttribute('src');
+        if (src) {
+          if (
+            src.startsWith(
+              'https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/'
+            )
+          ) {
+            imageUrls.add(src);
+          }
+          element.setAttribute('loading', 'lazy');
+          element.setAttribute('decoding', 'async');
+          element.setAttribute(
+            'class',
+            'rounded-lg shadow-lg transition-all duration-500 transform hover:scale-105 hover:shadow-xl'
+          );
+        }
+      },
+    },
+    linkTransformer: {
+      element(element: any) {
+        element.setAttribute('class', link());
+      },
+    },
+    sectionTransformer: {
+      element(element: any) {
+        element.setAttribute(
+          'class',
+          'content-section max-w-4xl mx-auto my-12 p-8 rounded-lg shadow-xl animate-fade-in'
+        );
+      },
+    },
+    detailsTransformer: {
+      element(element: any) {
+        element.setAttribute(
+          'class',
+          'bg-forest-dark p-4 rounded-lg my-4 border border-gray-700 transition-all duration-300 hover:border-mountain-purple'
+        );
+      },
+    },
+    summaryTransformer: {
+      element(element: any) {
+        element.setAttribute(
+          'class',
+          'cursor-pointer font-semibold text-mountain-blue hover:text-mountain-purple transition-colors duration-300'
+        );
+      },
+    },
+    ulTransformer: {
+      element(element: any) {
+        element.setAttribute('class', 'space-y-2 my-4');
+      },
+    },
+    liTransformer: {
+      element(element: any) {
+        element.setAttribute('class', 'text-gray-300');
+      },
+    },
+    blockquoteTransformer: {
+      element(element: any) {
+        element.setAttribute(
+          'class',
+          'border-l-4 border-mountain-purple pl-4 my-4 italic text-gray-400'
+        );
+      },
+    },
+    codeTransformer: {
+      element(element: any) {
+        element.setAttribute(
+          'class',
+          'bg-gray-800 text-gray-300 px-1 py-0.5 rounded text-sm'
+        );
+      },
+    },
+    preTransformer: {
+      element(element: any) {
+        element.setAttribute(
+          'class',
+          'bg-gray-800 p-4 rounded-lg overflow-x-auto my-4'
+        );
+      },
+    },
+    textTransformer: {
+      text(text: any) {
+        const content = text.text;
+        if (content && content.includes('404')) {
+          text.replace('', { html: true });
+        }
+      },
+    },
+  };
+};
+
 const createBodyContent = () => `
   ${BackgroundElements()}
   ${HeaderComponent()}
@@ -577,146 +855,28 @@ export default {
     // Prepare a Set for gathering image URLs for preload hints
     const imageUrls = new Set<string>();
 
+    // Create element transformers
+    const transformers = createElementTransformers(imageUrls, tailwindScript);
+
+    // Apply transformations
     const rewriter = new HTMLRewriter()
-      .on('head', {
-        element(element) {
-          element.setInnerContent(createHeadContent(tailwindScript), {
-            html: true,
-          });
-        },
-      })
-      .on('body', {
-        element(element) {
-          element.prepend(createBodyContent(), { html: true });
-          element.setAttribute('class', 'min-h-screen text-gray-100 relative');
-        },
-      })
-      .on('h1', {
-        element(element) {
-          element.setAttribute(
-            'class',
-            'text-4xl md:text-5xl font-heading font-bold text-mountain-purple my-6'
-          );
-        },
-      })
-      .on('h2', {
-        element(element) {
-          element.setAttribute(
-            'class',
-            'text-3xl font-heading font-bold text-mountain-purple my-5'
-          );
-        },
-      })
-      .on('h3', {
-        element(element) {
-          element.setAttribute(
-            'class',
-            'text-2xl font-heading font-semibold text-mountain-blue my-4'
-          );
-        },
-      })
-      .on('p', {
-        element(element) {
-          element.setAttribute(
-            'class',
-            'text-lg text-gray-300 my-4 leading-relaxed'
-          );
-        },
-      })
-      .on('img', {
-        element(element) {
-          const src = element.getAttribute('src');
-          if (src) {
-            if (
-              src.startsWith(
-                'https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/'
-              )
-            ) {
-              imageUrls.add(src);
-            }
-            element.setAttribute('loading', 'lazy');
-            element.setAttribute('decoding', 'async');
-            element.setAttribute(
-              'class',
-              'rounded-lg shadow-lg transition-all duration-500 transform hover:scale-105 hover:shadow-xl'
-            );
-          }
-        },
-      })
-      .on('a', {
-        element(element) {
-          element.setAttribute(
-            'class',
-            'text-mountain-blue hover:text-mountain-purple transition-colors duration-300 hover:underline'
-          );
-        },
-      })
-      .on('section', {
-        element(element) {
-          element.setAttribute(
-            'class',
-            'content-section max-w-4xl mx-auto my-12 p-8 rounded-lg shadow-xl animate-fade-in'
-          );
-        },
-      })
-      .on('details', {
-        element(element) {
-          element.setAttribute(
-            'class',
-            'bg-forest-dark p-4 rounded-lg my-4 border border-gray-700 transition-all duration-300 hover:border-mountain-purple'
-          );
-        },
-      })
-      .on('summary', {
-        element(element) {
-          element.setAttribute(
-            'class',
-            'cursor-pointer font-semibold text-mountain-blue hover:text-mountain-purple transition-colors duration-300'
-          );
-        },
-      })
-      .on('ul', {
-        element(element) {
-          element.setAttribute('class', 'space-y-2 my-4');
-        },
-      })
-      .on('li', {
-        element(element) {
-          element.setAttribute('class', 'text-gray-300');
-        },
-      })
-      .on('blockquote', {
-        element(element) {
-          element.setAttribute(
-            'class',
-            'border-l-4 border-mountain-purple pl-4 my-4 italic text-gray-400'
-          );
-        },
-      })
-      .on('code', {
-        element(element) {
-          element.setAttribute(
-            'class',
-            'bg-gray-800 text-gray-300 px-1 py-0.5 rounded text-sm'
-          );
-        },
-      })
-      .on('pre', {
-        element(element) {
-          element.setAttribute(
-            'class',
-            'bg-gray-800 p-4 rounded-lg overflow-x-auto my-4'
-          );
-        },
-      })
-      .on('*', {
-        text(text) {
-          const content = text.text;
-          if (content && content.includes('404')) {
-            text.replace('', { html: true });
-          }
-        },
-      });
+      .on('head', transformers.headTransformer)
+      .on('body', transformers.bodyTransformer)
+      .on('h1', transformers.h1Transformer)
+      .on('h2', transformers.h2Transformer)
+      .on('h3', transformers.h3Transformer)
+      .on('p', transformers.pTransformer)
+      .on('img', transformers.imgTransformer)
+      .on('a', transformers.linkTransformer)
+      .on('section', transformers.sectionTransformer)
+      .on('details', transformers.detailsTransformer)
+      .on('summary', transformers.summaryTransformer)
+      .on('ul', transformers.ulTransformer)
+      .on('li', transformers.liTransformer)
+      .on('blockquote', transformers.blockquoteTransformer)
+      .on('code', transformers.codeTransformer)
+      .on('pre', transformers.preTransformer)
+      .on('*', transformers.textTransformer);
 
     const transformedResponse = rewriter.transform(new Response(html));
     const rewrittenHTML = await transformedResponse.text();
