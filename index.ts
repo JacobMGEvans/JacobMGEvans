@@ -2,164 +2,29 @@ import {
   type KVNamespace,
   type ExportedHandler,
 } from '@cloudflare/workers-types';
+import {
+  sectionContainer,
+  heading,
+  paragraph,
+  list,
+  link,
+  imageContainer,
+  responsiveImage,
+  grid,
+  socialIcon,
+  badge,
+  flex,
+  ossPreviewImage,
+  previewContainer,
+  footerStyle,
+} from './css-utilities';
+import { HeaderComponent } from './components/header';
 
 interface Env {
   KV_TAILWIND: KVNamespace;
   TAILWIND_URL: string;
   KV_KEY: string;
 }
-
-// CSS Utility Functions
-// ---------------------
-
-/**
- * Creates section container classes with consistent styling
- */
-const sectionContainer = (extraClasses = '') =>
-  `max-w-3xl mx-auto my-16 p-10 rounded-2xl shadow-2xl flex flex-col items-center bg-gradient-to-br from-wolf-dark/90 via-forest-dark/80 to-mountain-blue/60 border border-mountain-purple/40 backdrop-blur-lg animate-fade-in ${extraClasses}`;
-
-/**
- * Creates heading styles based on level
- */
-const heading = (level: 'h1' | 'h2' | 'h3' | 'h4', extraClasses = '') => {
-  const baseClasses = 'font-heading';
-
-  if (level === 'h1')
-    return `${baseClasses} text-5xl md:text-6xl font-bold text-white ${extraClasses}`;
-  if (level === 'h2')
-    return `${baseClasses} text-4xl font-extrabold text-mountain-purple mb-8 text-center drop-shadow-glow ${extraClasses}`;
-  if (level === 'h3')
-    return `${baseClasses} text-xl font-semibold mb-4 text-mountain-blue ${extraClasses}`;
-  if (level === 'h4')
-    return `${baseClasses} text-lg font-semibold mb-2 text-mountain-blue ${extraClasses}`;
-
-  return baseClasses;
-};
-
-/**
- * Creates paragraph text styles
- */
-const paragraph = (variation = 'default') => {
-  if (variation === 'default') return 'text-gray-300 mb-4';
-  if (variation === 'light') return 'text-gray-200 text-center mb-6 max-w-2xl';
-  if (variation === 'small') return 'text-sm text-gray-400 mt-2';
-
-  return 'text-gray-300';
-};
-
-/**
- * Creates list styles
- */
-const list = () => 'list-disc list-inside text-gray-300 space-y-2';
-
-/**
- * Creates link styles
- */
-const link = (variation = 'default') => {
-  const baseClasses =
-    'text-mountain-blue hover:text-mountain-purple transition-colors duration-300';
-
-  if (variation === 'default') return baseClasses;
-  if (variation === 'nav') return `${baseClasses} nav-link font-medium`;
-  if (variation === 'underline')
-    return `${baseClasses} hover:underline font-medium`;
-
-  return baseClasses;
-};
-
-/**
- * Creates image container styles
- */
-const imageContainer = (isRightColumn = false) => {
-  const baseClasses = 'relative h-64 rounded-lg overflow-hidden shadow-lg';
-  return isRightColumn ? `${baseClasses} order-2 md:order-1` : baseClasses;
-};
-
-/**
- * Creates responsive image styles
- */
-const responsiveImage = () =>
-  'absolute inset-0 w-full h-full object-cover transition-transform duration-10000 hover:scale-110';
-
-/**
- * Creates grid layout styles
- */
-const grid = (columns = 2) => `grid grid-cols-1 md:grid-cols-${columns} gap-8`;
-
-/**
- * Creates social icon styles
- */
-const socialIcon = () => 'hover:text-mountain-blue transition-colors';
-
-/**
- * Creates badge styles
- */
-const badge = () => 'tech-badge px-4 py-2 rounded-full text-sm font-medium';
-
-/**
- * Creates flex container styles
- */
-const flex = (direction = 'row', extraClasses = '') => {
-  const baseClasses = direction === 'row' ? 'flex' : 'flex flex-col';
-  return `${baseClasses} ${extraClasses}`;
-};
-
-/**
- * Creates header gradient background
- */
-const gradientHeader = () =>
-  'bg-gradient-to-r from-forest-dark via-wolf-dark to-forest-dark';
-
-/**
- * Creates styles for OSS preview images
- */
-const ossPreviewImage = () =>
-  'rounded-xl shadow-xl glow-animate object-cover w-[125px] h-[120px]';
-
-/**
- * Creates preview image container styles
- */
-const previewContainer = () =>
-  'inline-block p-2 transition-transform duration-300 hover:scale-110';
-
-/**
- * Creates footer styles
- */
-const footerStyle = () =>
-  `w-full p-8 ${gradientHeader()} text-gray-100 border-t border-gray-800`;
-
-// Component Definitions
-// ---------------------
-
-const HeaderComponent = () => `
-  <header class="sticky top-0 z-50 w-full p-4 ${gradientHeader()} backdrop-blur-md border-b border-gray-800 text-gray-100 flex flex-col md:flex-row justify-between items-center">
-    <div class="${flex('row', 'items-center space-x-4')}">
-      <div class="wolf-icon">
-        <img src="https://pbs.twimg.com/media/GJ22wSNb0AAQRAH?format=jpg&name=large" alt="Wolf Icon" class="h-8 w-8 rounded-full shadow-lg">
-      </div>
-      <h1 class="text-xl font-heading font-bold">Jacob M.G. Evans</h1>
-      <div class="${flex('row', 'items-center space-x-2')}">
-        <a href="https://www.linkedin.com/in-jacob-m-g-evans" aria-label="LinkedIn" class="${socialIcon()}">
-          <i class="fab fa-linkedin text-xl"></i>
-        </a>
-        <a href="https://twitter.com/JacobMGEvans" aria-label="Twitter" class="${socialIcon()}">
-          <i class="fab fa-twitter text-xl"></i>
-        </a>
-        <a href="https://github.com/JacobMGEvans" aria-label="GitHub" class="${socialIcon()}">
-          <i class="fab fa-github text-xl"></i>
-        </a>
-      </div>
-    </div>
-    <nav class="mt-4 md:mt-0">
-      <ul class="${flex('row', 'space-x-6')}">
-        <li><a href="#about" class="${link('nav')}">About</a></li>
-        <li><a href="#oss" class="${link('nav')}">OSS & Community</a></li>
-        <li><a href="#blog" class="${link('nav')}">Blog</a></li>
-        <li><a href="#outdoor" class="${link('nav')}">Outdoor Life</a></li>
-      </ul>
-    </nav>
-  </header>
-`;
 
 const HeroComponent = () => `
   <div class="hero min-h-[60vh] flex items-center justify-center relative overflow-hidden">
@@ -177,11 +42,11 @@ const HeroComponent = () => `
         'row',
         'flex-wrap justify-center gap-3 animate-fade-in'
       )}" id="hero-badges">
-        <span class="${badge()}">JavaScript</span>
-        <span class="${badge()}">TypeScript</span>
-        <span class="${badge()}">React</span>
-        <span class="${badge()}">Node.js</span>
-        <span class="${badge()}">Open Source</span>
+      <span class="${badge()}">TypeScript</span>
+      <span class="${badge()}">React</span>
+      <span class="${badge()}">Node.js</span>
+      <span class="${badge()}">UX/DX</span>
+      <span class="${badge()}">Open Source</span>
       </div>
     </div>
   </div>
