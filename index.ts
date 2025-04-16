@@ -57,7 +57,7 @@ export default {
       </html>
     `;
 
-    // Prepare a set for gathering image URLs for preload hints
+    // Prepare a Set for gathering image URLs for preload hints
     const imageUrls = new Set<string>();
 
     const rewriter = new HTMLRewriter()
@@ -714,10 +714,10 @@ export default {
 
     const images = Array.from(imageUrls).filter(
       (src) =>
-        src.includes('.png') ||
-        src.includes('.webp') ||
-        src.includes('.jpg') ||
-        src.includes('.jpeg')
+        src.includes('png') ||
+        src.includes('webp') ||
+        src.includes('jpg') ||
+        src.includes('jpeg')
     );
     const linkHeader = images
       .map((src) => `<${src}>; rel="preload"; as="image"`)

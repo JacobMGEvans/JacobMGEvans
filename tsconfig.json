@@ -4,9 +4,14 @@
     "noEmit": true,
     "resolveJsonModule": true,
     "target": "esnext",
-    "moduleResolution": "NodeNext",
-    "module": "NodeNext",
-    "lib": ["esnext"],
-    "types": ["@cloudflare/workers-types"]
-  }
+    "jsx": "react-jsx",
+    "moduleResolution": "bundler",
+    "module": "esnext",
+    "lib": ["esnext", "DOM"],
+    "types": ["@cloudflare/workers-types"],
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "jsxImportSource": "hono/jsx"
+  },
+  "include": ["**/*.ts", "**/*.tsx"]
 }
