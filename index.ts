@@ -19,68 +19,14 @@ import {
   footerStyle,
 } from './css-utilities';
 import { HeaderComponent } from './components/header';
+import { HeroComponent } from './components/hero';
+import { AboutSectionComponent } from './components/about';
 
 interface Env {
   KV_TAILWIND: KVNamespace;
   TAILWIND_URL: string;
   KV_KEY: string;
 }
-
-const HeroComponent = () => `
-  <div class="hero min-h-[60vh] flex items-center justify-center relative overflow-hidden">
-    <div class="absolute inset-0 z-0">
-      <div class="absolute inset-0 bg-gradient-to-b from-forest-dark/80 to-wolf-dark/80"></div>
-    </div>
-    
-    <div class="container mx-auto px-4 z-10 text-center">
-      <h1 class="${heading(
-        'h1',
-        'mb-4 animate-fade-in'
-      )}" id="hero-title">Jacob M.G. Evans</h1>
-      <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto animate-fade-in" id="hero-subtitle">FullStack Egnineer, OSS Contributor, Veteran & Outdoor Enthusiast</p>
-      <div class="${flex(
-        'row',
-        'flex-wrap justify-center gap-3 animate-fade-in'
-      )}" id="hero-badges">
-      <span class="${badge()}">TypeScript</span>
-      <span class="${badge()}">React</span>
-      <span class="${badge()}">Node.js</span>
-      <span class="${badge()}">UX/DX</span>
-      <span class="${badge()}">Open Source</span>
-      </div>
-    </div>
-  </div>
-`;
-
-const AboutSectionComponent = () => `
-  <section id="about" class="${sectionContainer()}">
-    <h2 class="${heading('h2')}">Professional Journey</h2>
-    <div class="${grid()}">
-      <div>
-        <h3 class="${heading('h3')}">Current Role</h3>
-        <p class="${paragraph()}">FullStack Egnineer, specializing in Cloudflare Workers, CI/CD (DevOps), UX/DX, tooling, webapps, and cloud infrastructure. Building secure, scalable authentication and user management solutions.</p>
-        <h4 class="${heading('h4')}">Core Skills</h4>
-        <ul class="${list()}">
-          <li>FullStack development with TypeScript and React</li>
-          <li>Cloud infrastructure and serverless architecture</li>
-          <li>Authentication and security implementations</li>
-          <li>Performance optimization and scalability</li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="${heading('h3')}">Open Source & Community</h3>
-        <p class="${paragraph()}">Active contributor and maintainer in the open-source community, focusing on developer tools and educational resources.</p>
-        <h4 class="${heading('h4')}">Contributions & Leadership</h4>
-        <ul class="${list()}">
-          <li>Technical moderator for major tech communities</li>
-          <li>Regular contributor to developer education</li>
-          <li>Open Source Raid Guild leadership</li>
-          <li>Veteran mentor at VetsWhoCode</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-`;
 
 const OssSectionComponent = () => `
   <section id="oss" class="${sectionContainer('content-section')}">
