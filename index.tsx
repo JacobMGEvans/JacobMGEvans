@@ -251,8 +251,8 @@ const App: FC<AppProps> = ({ readme, tailwindScript }) => {
     'https://4kwallpapers.com/images/walls/thumbs_3t/8010.jpg',
     'https://img.freepik.com/premium-photo/wolf-wolf-silhouette-dark-fantasy-forest-wolf_1168123-40178.jpg',
     'https://pbs.twimg.com/media/GTnMCppa4AEqRtH?format=jpg&name=large',
-    'https://images.pexels.com/photos/6633778/pexels-photo-6633778.jpeg', // Cyberpunk city
-    'https://images.pexels.com/photos/4394104/pexels-photo-4394104.jpeg', // Forest mist
+    '', // Cyberpunk city
+    'https://images.pexels.com/photos/4394104/pexels-photo-4394104.jpeg', // mountain waterfall
   ];
 
   return (
