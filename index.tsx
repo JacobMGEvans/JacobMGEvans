@@ -340,7 +340,10 @@ app.get(
     const cleanedMarkdown = markdown.replace(/404:?\s*Not Found/gi, '').trim();
 
     return c.html(
-      <App readme={cleanedMarkdown} tailwindScript={tailwindScript} />
+      `<!DOCTYPE html>
+      ${(<App readme={cleanedMarkdown} tailwindScript={tailwindScript} />)}`,
+      200,
+      { 'Content-Type': 'text/html' }
     );
   }
 );
