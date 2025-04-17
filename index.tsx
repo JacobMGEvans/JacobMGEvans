@@ -9,7 +9,7 @@ import { AboutSectionComponent } from './components/about';
 import { FooterComponent } from './components/footer';
 import { OutdoorSectionComponent } from './components/outdoor';
 import { OssSectionComponent } from './components/open-source';
-import { createHeadContent } from './components/helmet';
+import { TailwindComponent } from './components/helmet';
 
 interface Env {
   KV_TAILWIND: KVNamespace;
@@ -222,11 +222,42 @@ interface LayoutProps extends PropsWithChildren {
 }
 
 const Layout: FC<LayoutProps> = ({ children, tailwindScript, imageLinks }) => {
-  const headContent = createHeadContent(tailwindScript);
+  const headContent = TailwindComponent(tailwindScript);
 
   return (
     <html lang="en">
       <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta
+          name="description"
+          content="Jacob M.G. Evans - FullStack Developer, OSS Contributor, Veteran, and Outdoor Enthusiast"
+        />
+        <meta property="og:title" content="Jacob M.G. Evans Profile" />
+        <meta
+          property="og:description"
+          content="Discover Jacob's projects, contributions, and professional journey."
+        />
+        <meta property="og:url" content="https://jacobmgevans.com" />
+        <meta name="theme-color" content="#0F172A" />
+
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+        />
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800&family=Montserrat:wght@400;600;700&family=Poppins:wght@300;400;600;700&display=swap"
+          rel="stylesheet"
+        />
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        />
         <div dangerouslySetInnerHTML={{ __html: headContent }} />
         {imageLinks.map((src, i) => (
           <link key={i} rel="preload" as="image" href={src} />
