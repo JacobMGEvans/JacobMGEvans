@@ -22,6 +22,8 @@ import { HeaderComponent } from './components/header';
 import { HeroComponent } from './components/hero';
 import { AboutSectionComponent } from './components/about';
 import { createHeadContent } from './components/helmet';
+import { FooterComponent } from './components/footer';
+import { OutdoorSectionComponent } from './components/outdoor';
 
 interface Env {
   KV_TAILWIND: KVNamespace;
@@ -102,73 +104,6 @@ const OssSectionComponent = () => `
     </style>
   </section>
 `;
-
-const OutdoorSectionComponent = () => `
-  <section id="outdoor" class="${sectionContainer()}">
-    <h2 class="${heading('h2')}">Outdoor Life</h2>
-    <div class="${grid()}">
-      <div>
-        <h3 class="${heading('h3')}">Hiking & Camping</h3>
-        <p class="${paragraph()}">As an avid outdoor enthusiast, I find peace and inspiration in nature. Hiking through forests and mountains connects me with the natural world and fuels my creativity.</p>
-        <ul class="${list()}">
-          <li>Experienced backpacker with multi-day trail experience</li>
-          <li>Camping in all seasons and weather conditions</li>
-          <li>Passionate about wildlife conservation</li>
-        </ul>
-      </div>
-      <div class="${imageContainer()}">
-        <img src="https://pbs.twimg.com/media/GTnMCppa4AEqRtH?format=jpg&name=large" alt="Forest hiking trail" class="${responsiveImage()}" />
-      </div>
-    </div>
-    
-    <div class="mt-12 ${grid()}">
-      <div class="${imageContainer(true)}">
-        <img src="https://img.freepik.com/premium-photo/wolf-wolf-silhouette-dark-fantasy-forest-wolf_1168123-40178.jpg" alt="Wolf in natural habitat" class="${responsiveImage()}" />
-      </div>
-      <div class="order-1 md:order-2">
-        <h3 class="${heading('h3')}">Wolf Appreciation</h3>
-        <p class="${paragraph()}">Wolves represent the perfect balance of intelligence, strength, and community - values I strive to embody in both my personal and professional life.</p>
-        <p class="${paragraph()}">Their adaptability and resilience in challenging environments mirrors the mindset needed in the ever-evolving tech landscape.</p>
-      </div>
-    </div>
-  </section>
-`;
-
-const FooterComponent = () => {
-  const currentYear = new Date().getFullYear();
-  return `
-    <footer class="${footerStyle()}">
-      <div class="container mx-auto">
-        <div class="${flex('col', 'md:flex-row justify-between items-center')}">
-          <div class="mb-6 md:mb-0">
-            <div class="${flex('row', 'items-center space-x-2')}">
-              <span class="text-xl font-heading font-bold">Jacob M.G. Evans</span>
-            </div>
-            <p class="${paragraph(
-              'small'
-            )}">FullStack Developer, OSS Contributor, Veteran & Outdoor Enthusiast</p>
-          </div>
-          
-          <div class="${flex('row', 'space-x-6')}">
-            <a href="https://www.linkedin.com/in/jacob-m-g-evans" aria-label="LinkedIn" class="${socialIcon()}">
-              <i class="fab fa-linkedin text-2xl"></i>
-            </a>
-            <a href="https://twitter.com/JacobMGEvans" aria-label="Twitter" class="${socialIcon()}">
-              <i class="fab fa-twitter text-2xl"></i>
-            </a>
-            <a href="https://github.com/JacobMGEvans" aria-label="GitHub" class="${socialIcon()}">
-              <i class="fab fa-github text-2xl"></i>
-            </a>
-          </div>
-        </div>
-        
-        <div class="mt-8 pt-8 border-t border-gray-800 text-center">
-          <p>&copy; ${currentYear} Jacob M.G. Evans. All rights reserved.</p>
-        </div>
-      </div>
-    </footer>
-  `;
-};
 
 const BackgroundElements = () => `
   <div class="wolf-tracks"></div>
