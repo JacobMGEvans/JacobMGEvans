@@ -36,11 +36,26 @@ const BackgroundElements: FC = () => (
   <>
     <div class="wolf-tracks"></div>
     <div class="parallax-mountains"></div>
+    <div class="scanlines"></div>
   </>
 );
 
 const animeScript = `
   document.addEventListener('DOMContentLoaded', () => {
+    // Add cyberpunk grid overlay to certain elements
+    const addCyberElements = () => {
+      const sections = document.querySelectorAll('.content-section');
+      sections.forEach(section => {
+        const gridOverlay = document.createElement('div');
+        gridOverlay.classList.add('cyber-grid-overlay');
+        gridOverlay.style.cssText = 'position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: radial-gradient(#00F0FF 1px, transparent 1px); background-size: 20px 20px; opacity: 0.05; pointer-events: none; z-index: 1;';
+        section.appendChild(gridOverlay);
+      });
+    };
+    
+    addCyberElements();
+    
+    // Hero animations
     anime({
       targets: '#hero-title',
       opacity: [0, 1],
@@ -68,6 +83,28 @@ const animeScript = `
       duration: 800
     });
     
+    // Cyberpunk glitch effect for headings
+    const glitchElements = document.querySelectorAll('.cyber-glitch');
+    glitchElements.forEach(el => {
+      el.addEventListener('mouseover', () => {
+        anime({
+          targets: el,
+          skewX: [0, -5, 5, 0],
+          translateX: [0, -5, 5, 0],
+          color: [
+            {value: '#00F0FF', duration: 100, delay: 0},
+            {value: '#DF00FE', duration: 100, delay: 100},
+            {value: '#39FF14', duration: 100, delay: 200},
+            {value: '#FFFFFF', duration: 100, delay: 300}
+          ],
+          easing: 'steps(1)',
+          duration: 500,
+          loop: 2
+        });
+      });
+    });
+    
+    // Animated fade-in elements
     const fadeElements = document.querySelectorAll('.animate-fade-in');
     
     const observer = new IntersectionObserver((entries) => {
@@ -91,49 +128,78 @@ const animeScript = `
       observer.observe(element);
     });
     
-    // Parallax effect for mountains
+    // Enhanced parallax effect for mountains
     window.addEventListener('scroll', () => {
       const scrollY = window.scrollY;
       const mountains = document.querySelector('.parallax-mountains');
       if (mountains) {
         mountains.style.transform = \`translateY(\${scrollY * 0.1}px)\`;
+        mountains.style.opacity = Math.max(0.1, Math.min(0.4, 0.1 + (scrollY * 0.0005)));
+      }
+      
+      // Dynamic scanline effect
+      const scanlines = document.querySelector('.scanlines');
+      if (scanlines) {
+        scanlines.style.opacity = Math.max(0.05, Math.min(0.2, 0.05 + (scrollY * 0.0002)));
       }
     });
     
-    // Wolf tracks animation
+    // Wolf tracks animation with enhanced effect
     const tracks = document.querySelector('.wolf-tracks');
     if (tracks) {
       anime({
         targets: tracks,
-        opacity: [0, 0.1],
+        opacity: [0, 0.15],
         easing: 'easeInOutQuad',
-        duration: 3000
+        duration: 3000,
+        complete: () => {
+          anime({
+            targets: tracks,
+            opacity: [0.15, 0.05, 0.15],
+            easing: 'easeInOutSine',
+            duration: 8000,
+            loop: true
+          });
+        }
       });
     }
     
-    // Glow animations
+    // Enhanced glow animations
     anime({
       targets: '.glow-animate',
       boxShadow: [
-        '0 0 0px #8B5CF6, 0 0 0px #3B82F6',
-        '0 0 24px #8B5CF6, 0 0 48px #3B82F6'
+        '0 0 0px rgba(0, 240, 255, 0.3), 0 0 0px rgba(223, 0, 254, 0.3)',
+        '0 0 20px rgba(0, 240, 255, 0.7), 0 0 40px rgba(223, 0, 254, 0.4)'
       ],
       direction: 'alternate',
       loop: true,
       easing: 'easeInOutSine',
-      duration: 1600
+      duration: 2000
     });
     
     anime({
       targets: '.drop-shadow-glow',
       textShadow: [
-        '0 0 12px #8B5CF6, 0 0 24px #3B82F6',
-        '0 0 32px #8B5CF6, 0 0 64px #3B82F6'
+        '0 0 5px rgba(0, 240, 255, 0.5), 0 0 10px rgba(223, 0, 254, 0.3)',
+        '0 0 20px rgba(0, 240, 255, 0.8), 0 0 30px rgba(223, 0, 254, 0.5)'
       ],
       direction: 'alternate',
       loop: true,
       easing: 'easeInOutSine',
-      duration: 1800
+      duration: 2000
+    });
+    
+    // Random "digital noise" flicker effect for tech elements
+    const flickerElements = document.querySelectorAll('.tech-badge, .cyber-element');
+    flickerElements.forEach(el => {
+      setInterval(() => {
+        if (Math.random() > 0.9) {
+          el.style.opacity = '0.7';
+          setTimeout(() => {
+            el.style.opacity = '1';
+          }, 100);
+        }
+      }, 2000);
     });
     
     // Add IDs to important sections for navigation
@@ -185,6 +251,8 @@ const App: FC<AppProps> = ({ readme, tailwindScript }) => {
     'https://4kwallpapers.com/images/walls/thumbs_3t/8010.jpg',
     'https://img.freepik.com/premium-photo/wolf-wolf-silhouette-dark-fantasy-forest-wolf_1168123-40178.jpg',
     'https://pbs.twimg.com/media/GTnMCppa4AEqRtH?format=jpg&name=large',
+    'https://images.pexels.com/photos/6633778/pexels-photo-6633778.jpeg', // Cyberpunk city
+    'https://images.pexels.com/photos/4394104/pexels-photo-4394104.jpeg', // Forest mist
   ];
 
   return (
