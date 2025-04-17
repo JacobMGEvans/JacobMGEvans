@@ -235,6 +235,7 @@ export function createHeadContent(tailwindScript: string | null) {
     .cyber-glitch {
       position: relative;
       animation: glitch 2s infinite;
+      top: -40px;
     }
     
     @keyframes glitch {
