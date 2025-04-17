@@ -43,7 +43,7 @@ export function FooterComponent() {
         </div>
 
         <div class="mt-8 pt-8 border-t border-gray-800 text-center">
-          <p>&copy; ${currentYear} Jacob M.G. Evans. All rights reserved.</p>
+          <p>&copy; {currentYear} Jacob M.G. Evans. All rights reserved.</p>
         </div>
       </div>
     </footer>

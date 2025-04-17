@@ -54,7 +54,6 @@ Part of my open-source work and learning in public involves writing technical (a
 - [More Podcasts and Video Programming Resources](https://dev.to/jacobmgevans/more-podcasts-and-video-programming-resources-5a8k)
 - [Should You Listen to Podcasts?](https://dev.to/jacobmgevans/should-you-listen-to-podcasts-4m5j)
 - [Writing Immutable and Functional JavaScript](https://dev.to/jacobmgevans/writing-immutable-javascript-why-how-3if6)
-
 </details>
 
 ---
