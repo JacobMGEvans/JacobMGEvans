@@ -1,5 +1,5 @@
 {
-  "main": "./index.ts",
+  "main": "./index.tsx",
   "compatibility_date": "2023-03-26",
   "name": "website",
   "routes": [
