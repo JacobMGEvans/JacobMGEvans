@@ -9,7 +9,7 @@ import { AboutSectionComponent } from './components/about';
 import { FooterComponent } from './components/footer';
 import { OutdoorSectionComponent } from './components/outdoor';
 import { OssSectionComponent } from './components/open-source';
-import { TailwindComponent } from './components/helmet';
+import { TailwindComponent } from './components/tailwind';
 
 interface Env {
   KV_TAILWIND: KVNamespace;
@@ -222,8 +222,6 @@ interface LayoutProps extends PropsWithChildren {
 }
 
 const Layout: FC<LayoutProps> = ({ children, tailwindScript, imageLinks }) => {
-  const headContent = TailwindComponent(tailwindScript);
-
   return (
     <html lang="en">
       <head>
@@ -240,6 +238,7 @@ const Layout: FC<LayoutProps> = ({ children, tailwindScript, imageLinks }) => {
         />
         <meta property="og:url" content="https://jacobmgevans.com" />
         <meta name="theme-color" content="#0F172A" />
+        <title>Jacob M.G. Evans - Engineer, Veteran & Outdoor Enthusiast</title>
 
         <link
           rel="stylesheet"
@@ -258,7 +257,11 @@ const Layout: FC<LayoutProps> = ({ children, tailwindScript, imageLinks }) => {
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         />
-        <div dangerouslySetInnerHTML={{ __html: headContent }} />
+        <div
+          dangerouslySetInnerHTML={{
+            __html: TailwindComponent(tailwindScript),
+          }}
+        />
         {imageLinks.map((src, i) => (
           <link key={i} rel="preload" as="image" href={src} />
         ))}
