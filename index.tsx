@@ -1,10 +1,8 @@
 import { Hono } from 'hono';
-import { jsx, Fragment } from 'hono/jsx';
 import { cache } from 'hono/cache';
 import type { KVNamespace } from '@cloudflare/workers-types';
 import type { FC, PropsWithChildren } from 'hono/jsx';
 
-// Import components
 import { HeaderComponent } from './components/header';
 import { HeroComponent } from './components/hero';
 import { AboutSectionComponent } from './components/about';
@@ -13,17 +11,14 @@ import { OutdoorSectionComponent } from './components/outdoor';
 import { OssSectionComponent } from './components/open-source';
 import { createHeadContent } from './components/helmet';
 
-// Define environment interface
 interface Env {
   KV_TAILWIND: KVNamespace;
   TAILWIND_URL: string;
   KV_KEY: string;
 }
 
-// Create Hono app
 const app = new Hono<{ Bindings: Env }>();
 
-// Handle webhook endpoint
 app.post('/webhook', async (c) => {
   const body = await c.req.json();
   if (body.challenge) {
@@ -32,16 +27,11 @@ app.post('/webhook', async (c) => {
   return c.json(body);
 });
 
-// We'll just comment out serveStatic since it's causing type issues
-// app.use('/public/*', serveStatic());
-
-// Cache static assets
 app.use(
   '/static/*',
   cache({ cacheName: 'assets', cacheControl: 'max-age=3600' })
 );
 
-// Background Elements Component
 const BackgroundElements: FC = () => (
   <>
     <div class="wolf-tracks"></div>
@@ -49,7 +39,6 @@ const BackgroundElements: FC = () => (
   </>
 );
 
-// Client-side animation script
 const animeScript = `
   document.addEventListener('DOMContentLoaded', () => {
     anime({
@@ -161,13 +150,11 @@ const animeScript = `
   });
 `;
 
-// Layout Component types
 interface LayoutProps extends PropsWithChildren {
   tailwindScript: string | null;
   imageLinks: string[];
 }
 
-// Layout Component
 const Layout: FC<LayoutProps> = ({ children, tailwindScript, imageLinks }) => {
   const headContent = createHeadContent(tailwindScript);
 
@@ -188,7 +175,6 @@ const Layout: FC<LayoutProps> = ({ children, tailwindScript, imageLinks }) => {
   );
 };
 
-// App Component types
 interface AppProps {
   readme: string;
   tailwindScript: string | null;
@@ -226,7 +212,6 @@ const App: FC<AppProps> = ({ readme, tailwindScript }) => {
   );
 };
 
-// Main route
 app.get(
   '*',
   cache({
@@ -246,21 +231,18 @@ app.get(
       }
     }
 
-    // Fetched README HTML content from GitHub
     const githubResponse = await fetch(
       'https://raw.githubusercontent.com/JacobMGEvans/JacobMGEvans/main/README.html'
     );
     const markdown = await githubResponse.text();
     const cleanedMarkdown = markdown.replace(/404:?\s*Not Found/gi, '').trim();
 
-    // Use Hono's jsx rendering
     return c.html(
       <App readme={cleanedMarkdown} tailwindScript={tailwindScript} />
     );
   }
 );
 
-// Hono recommended way for Workers
 const handler = {
   fetch: app.fetch,
 };
