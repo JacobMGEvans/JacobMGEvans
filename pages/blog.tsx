@@ -143,7 +143,6 @@ export const BlogPage: FC<BlogPageProps> = ({ posts, tailwindScript }) => {
         <meta name="theme-color" content="#0F172A" />
         <title>Jacob M.G. Evans - Blog</title>
 
-        {/* Stylesheets */}
         <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
@@ -163,14 +162,12 @@ export const BlogPage: FC<BlogPageProps> = ({ posts, tailwindScript }) => {
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         />
 
-        {/* Custom Tailwind styles */}
         <div
           dangerouslySetInnerHTML={{
             __html: TailwindComponent(tailwindScript),
           }}
         />
 
-        {/* Anime.js Script */}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
       </head>
       <body class="min-h-screen text-gray-100 relative bg-gray-900">
@@ -179,8 +176,6 @@ export const BlogPage: FC<BlogPageProps> = ({ posts, tailwindScript }) => {
 
         <main class="container mx-auto px-4 py-8">
           <div class="py-24">
-            {' '}
-            {/* Add padding to avoid navbar overlap */}
             <div class="mb-8 text-center">
               <a
                 href="/"
@@ -203,8 +198,6 @@ export const BlogPage: FC<BlogPageProps> = ({ posts, tailwindScript }) => {
         </main>
 
         <FooterComponent />
-
-        {/* Animation Script */}
         <script dangerouslySetInnerHTML={{ __html: blogAnimeScript }} />
       </body>
     </html>

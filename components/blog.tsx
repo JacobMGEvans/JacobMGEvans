@@ -35,7 +35,7 @@ export const BlogComponent: FC<BlogComponentProps> = ({ posts }) => {
     >
       <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-gray-800 opacity-90 z-0"></div>
       <div className="relative z-10">
-        <h2 className="text-4xl font-bold mb-8 text-center font-orbitron cyber-glitch drop-shadow-glow">
+        <h2 className="text-4xl font-bold pt-8 mb-8 text-center font-orbitron cyber-glitch drop-shadow-glow">
           Latest <span className="text-cyan-400">Blog</span> Posts
         </h2>
 
