@@ -11,7 +11,7 @@ export function HeaderComponent() {
     }
 
     if (section.startsWith('#')) {
-      return isOnBlogPage ? `/${section}` : section;
+      return isOnBlogPage ? `https://jacobmgevans.com/${section}` : section;
     }
 
     return section;
