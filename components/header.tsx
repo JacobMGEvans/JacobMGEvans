@@ -1,10 +1,11 @@
 import { flex, gradientHeader, link, socialIcon } from '../css-utilities';
 
 export function HeaderComponent() {
-  const pathname = window.location.pathname;
-  const isOnBlogPage = pathname === '/blog';
-
   const getNavLink = (section: string) => {
+    const pathname =
+      typeof window !== 'undefined' ? window.location.pathname : '';
+
+    const isOnBlogPage = pathname === '/blog';
     if (section === 'blog') {
       return isOnBlogPage ? '/' : '/blog';
     }
