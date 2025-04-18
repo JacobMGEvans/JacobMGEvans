@@ -1,6 +1,6 @@
 <p align="center" style="margin-bottom: 24px;">
   <a href="https://www.linkedin.com/in/jacob-m-g-evans" target="_blank" rel="noopener noreferrer" style="display:inline-block; margin:0 8px;">
-    <img alt="LinkedIn" src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/linkedin.webp" width="32" height="32" style="border-radius:8px; vertical-align:middle;" />
+    <img alt="LinkedIn" src="https://img.shields.io/badge/LinkedIn-@JacobMGEvans-1DA1F2?style=flat-square&logo=linkedin&logoColor=white" width="32" height="32" style="border-radius:8px; vertical-align:middle;" />
   </a>
   <a href="https://twitter.com/JacobMGEvans" target="_blank" rel="noopener noreferrer" style="display:inline-block; margin:0 8px;">
     <img alt="Twitter: @JacobMGEvans" src="https://img.shields.io/badge/Twitter-@JacobMGEvans-1DA1F2?style=flat-square&logo=twitter&logoColor=white" height="32" style="vertical-align:middle;" />
