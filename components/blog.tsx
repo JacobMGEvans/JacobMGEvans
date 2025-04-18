@@ -11,19 +11,15 @@ interface BlogComponentProps {
   posts: BlogPost[];
 }
 
-// Simple function to strip HTML and limit content length
 function stripHtmlAndLimitLength(
   html: string,
   maxLength: number = 250
 ): string {
-  // First remove HTML tags
   const text = html
     .replace(/<\/?[^>]+(>|$)/g, ' ')
-    // Then collapse whitespace
     .replace(/\s+/g, ' ')
     .trim();
 
-  // Limit length and add ellipsis if needed
   return text.length > maxLength ? `${text.substring(0, maxLength)}...` : text;
 }
 

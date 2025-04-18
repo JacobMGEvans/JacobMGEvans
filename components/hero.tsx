@@ -5,9 +5,7 @@ export function HeroComponent() {
     <div class="hero min-h-[60vh] flex items-center justify-center relative overflow-hidden">
       <div class="absolute inset-0 z-0">
         <div class="absolute inset-0 bg-gradient-to-b from-forest-dark/90 to-wolf-dark/90"></div>
-        {/* Cyberpunk grid overlay */}
         <div class="absolute inset-0 bg-[radial-gradient(#00F0FF_1px,transparent_1px)] bg-[size:20px_20px] opacity-[0.05]"></div>
-        {/* Digital noise */}
         <div class="absolute inset-0 bg-noise opacity-[0.07]"></div>
       </div>
 

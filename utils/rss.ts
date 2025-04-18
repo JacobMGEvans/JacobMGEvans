@@ -25,11 +25,8 @@ export async function fetchBlogPosts(): Promise<BlogPost[]> {
 
     const xml = await response.text();
     console.log(`Received RSS feed (${xml.length} bytes)`);
-
-    // Debug: Print a small portion of XML to verify format
     console.log('XML snippet:', xml.substring(0, 500) + '...');
 
-    // Simple XML parsing without additional libraries
     const posts: BlogPost[] = [];
 
     // Extract items (posts) from the RSS feed
@@ -48,7 +45,6 @@ export async function fetchBlogPosts(): Promise<BlogPost[]> {
         const pubDate = extractTag(itemContent, 'pubDate');
         const content = extractTag(itemContent, 'description');
 
-        // Debug: Print item parsing
         console.log(`Parsing item ${count}:`, {
           title,
           link,
@@ -86,7 +82,6 @@ export async function fetchBlogPosts(): Promise<BlogPost[]> {
 }
 
 function extractTag(content: string, tag: string): string {
-  // First try to match CDATA section
   const cdataRegex = new RegExp(
     `<${tag}[^>]*><!\\[CDATA\\[(.*?)\\]\\]><\/${tag}>`,
     's'
@@ -96,8 +91,6 @@ function extractTag(content: string, tag: string): string {
   if (cdataMatch) {
     return cdataMatch[1].trim();
   }
-
-  // Fall back to regular tag content
   const regex = new RegExp(`<${tag}[^>]*>(.*?)<\/${tag}>`, 's');
   const match = content.match(regex);
   return match ? match[1].trim() : '';
@@ -106,7 +99,6 @@ function extractTag(content: string, tag: string): string {
 function decodeHtmlEntities(html: string): string {
   if (!html) return '';
 
-  // Simple entity replacements
   return html
     .replace(/&quot;/g, '"')
     .replace(/&amp;/g, '&')
@@ -115,16 +107,13 @@ function decodeHtmlEntities(html: string): string {
     .replace(/&#39;/g, "'")
     .replace(/&nbsp;/g, ' ')
     .replace(/&#?\w+;/g, (match) => {
-      // Handle numeric entities
       if (match.startsWith('&#x')) {
-        // Hex entity
         const hex = match.slice(3, -1);
         return String.fromCharCode(parseInt(hex, 16));
       } else if (match.startsWith('&#')) {
-        // Decimal entity
         const decimal = match.slice(2, -1);
         return String.fromCharCode(parseInt(decimal, 10));
       }
-      return match; // Return unhandled entities as is
+      return match;
     });
 }

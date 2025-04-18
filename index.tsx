@@ -307,7 +307,6 @@ const App: FC<AppProps> = ({ readme, tailwindScript }) => {
         <OssSectionComponent />
         <OutdoorSectionComponent />
 
-        {/* Render the README content if needed */}
         {readme && (
           <section
             class="content-section max-w-4xl mx-auto my-12 p-8 rounded-lg shadow-xl animate-fade-in"
@@ -321,7 +320,6 @@ const App: FC<AppProps> = ({ readme, tailwindScript }) => {
   );
 };
 
-// Blog route
 app.get(
   '/blog',
   cache({
