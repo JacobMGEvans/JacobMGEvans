@@ -38,10 +38,10 @@ I'm passionate about creating useful content, actively volunteering in technical
 ## OSS Contributions & Community Involvement 🛰️
 
 <p align="center">
-  <a href="https://dev.to/jacobmgevans"><img src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktober2019.webp" alt="2019 Hacktoberfest Contributor" height="100" width="120" /></a>
-  <a href="https://dev.to/jacobmgevans"><img src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktober2020.webp" alt="2020 Hacktoberfest Contributor" height="100" width="120" /></a>
-  <a href="https://dev.to/jacobmgevans"><img src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktober2021.webp" alt="2021 Hacktoberfest Contributor" height="100" width="120" /></a>
-  <a href="https://osrg.t3.gg/"><img src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/osrg.webp" alt="Open Source Raid Guild Member" height="100" width="120" /></a>
+  <a href="https://dev.to/jacobmgevans"><img src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktober2019.webp" alt="2019 Hacktoberfest Contributor" height="90" width="120" /></a>
+  <a href="https://dev.to/jacobmgevans"><img src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktober2020.webp" alt="2020 Hacktoberfest Contributor" height="90" width="120" /></a>
+  <a href="https://dev.to/jacobmgevans"><img src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktober2021.webp" alt="2021 Hacktoberfest Contributor" height="90" width="120" /></a>
+  <a href="https://osrg.t3.gg/"><img src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/osrg.webp" alt="Open Source Raid Guild Member" height="90" width="120" /></a>
 </p>
 
 Part of my open-source work and learning in public involves writing technical (and sometimes less technical) blog posts. My goal is for others, and my future self, to benefit from them.
