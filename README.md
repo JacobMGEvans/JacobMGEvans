@@ -1,11 +1,11 @@
 <p align="center" style="margin-bottom: 24px;">
-  <a href="https://www.linkedin.com/in/jacob-m-g-evans" target="_blank" rel="noopener noreferrer" style="display:inline-block; margin:0 8px; text-decoration: none;">
+  <a href="https://www.linkedin.com/in/jacob-m-g-evans" target="_blank" rel="noopener noreferrer" style="display:inline-block; text-decoration: none;">
     <img alt="LinkedIn" src="https://img.shields.io/badge/LinkedIn-@JacobMGEvans-1DA1F2?style=flat-square&logo=linkedin&logoColor=white" height="32" style="vertical-align:middle;" />
   </a>
-  <a href="https://twitter.com/JacobMGEvans" target="_blank" rel="noopener noreferrer" style="display:inline-block; margin:0 8px; text-decoration: none;">
+  <a href="https://twitter.com/JacobMGEvans" target="_blank" rel="noopener noreferrer" style="display:inline-block; text-decoration: none;">
     <img alt="Twitter: @JacobMGEvans" src="https://img.shields.io/badge/Twitter-@JacobMGEvans-1DA1F2?style=flat-square&logo=twitter&logoColor=white" height="32" style="vertical-align:middle;" />
   </a>
-  <a href="http://twitch.tv/jacobmgevans" target="_blank" rel="noopener noreferrer" style="display:inline-block; margin:0 8px; text-decoration: none;">
+  <a href="http://twitch.tv/jacobmgevans" target="_blank" rel="noopener noreferrer" style="display:inline-block; text-decoration: none;">
     <img alt="Twitch: jacobmgevans" src="https://img.shields.io/badge/Twitch-jacobmgevans-9146FF?style=flat-square&logo=twitch&logoColor=white" height="32" style="vertical-align:middle;" />
   </a>
 </p>
