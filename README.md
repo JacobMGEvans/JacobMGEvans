@@ -1,5 +1,5 @@
-<p align="center" style="margin-bottom: 24px;">
-  <a href="https://www.linkedin.com/in/jacob-m-g-evans" target="_blank" rel="noopener noreferrer" "text-decoration"="none">
+<p align="center">
+  <a href="https://www.linkedin.com/in/jacob-m-g-evans" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
     <img alt="LinkedIn" src="https://img.shields.io/badge/LinkedIn-@JacobMGEvans-1DA1F2?style=flat-square&logo=linkedin&logoColor=white" height="32" style="vertical-align:middle;" />
   </a>
   <a href="https://twitter.com/JacobMGEvans" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
@@ -37,7 +37,7 @@ I'm passionate about creating useful content, actively volunteering in technical
 
 ## OSS Contributions & Community Involvement 🛰️
 
-<p>
+<p align="center">
   <a href="https://dev.to/jacobmgevans"><img src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktober2019.webp" alt="2019 Hacktoberfest Contributor" height="60" width="60" /></a>
   <a href="https://dev.to/jacobmgevans"><img src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktober2020.webp" alt="2020 Hacktoberfest Contributor" height="60" width="60" /></a>
   <a href="https://dev.to/jacobmgevans"><img src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktober2021.webp" alt="2021 Hacktoberfest Contributor" height="60" width="60" /></a>
