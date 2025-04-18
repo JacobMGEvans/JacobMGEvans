@@ -22,7 +22,10 @@ export function AboutSectionComponent() {
           <h4 class={heading('h4')}>Core Skills</h4>
           <ul class={list()}>
             <li>FullStack development with TypeScript and React</li>
-            <li>Cloud infrastructure and serverless architecture</li>
+            <li>
+              Cloud infrastructure and serverless architecture, especially
+              Cloudflare
+            </li>
             <li>Authentication and security implementations</li>
             <li>Performance optimization and scalability</li>
           </ul>
