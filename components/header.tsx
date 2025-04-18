@@ -41,12 +41,12 @@ export function HeaderComponent() {
       <nav class="mt-4 md:mt-0">
         <ul class={flex('row', 'space-x-6')}>
           <li>
-            <a href="#about" class={link('nav')}>
+            <a href="/#about" class={link('nav')}>
               About
             </a>
           </li>
           <li>
-            <a href="#oss" class={link('nav')}>
+            <a href="/#oss" class={link('nav')}>
               OSS & Community
             </a>
           </li>
@@ -56,7 +56,7 @@ export function HeaderComponent() {
             </a>
           </li>
           <li>
-            <a href="#outdoor" class={link('nav')}>
+            <a href="/#outdoor" class={link('nav')}>
               Outdoor Life
             </a>
           </li>
