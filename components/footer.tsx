@@ -13,7 +13,7 @@ export function FooterComponent() {
               </span>
             </div>
             <p class={paragraph('small')}>
-              FullStack Developer, OSS Contributor, Veteran & Outdoor Enthusiast
+              FullStack Engineer, OSS Contributor, Veteran & Outdoor Enthusiast
             </p>
           </div>
 
