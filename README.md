@@ -1,14 +1,14 @@
-<div align="left" style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap; margin-bottom: 24px;">
-  <a href="https://www.linkedin.com/in/jacob-m-g-evans" target="_blank" rel="noopener noreferrer">
-    <img alt="Connect on LinkedIn" src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/linkedin.webp" height="40" width="40" style="vertical-align: middle; border-radius: 8px;" />
+<p align="center" style="margin-bottom: 24px;">
+  <a href="https://www.linkedin.com/in/jacob-m-g-evans" target="_blank" rel="noopener noreferrer" style="display:inline-block; margin:0 8px;">
+    <img alt="LinkedIn" src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/linkedin.webp" width="32" height="32" style="border-radius:8px; vertical-align:middle;" />
   </a>
-  <a href="https://twitter.com/JacobMGEvans?ref_src=twsrc%5Etfw" target="_blank" rel="noopener noreferrer">
-    <img src="https://img.shields.io/twitter/follow/JacobMGEvans?style=social&logo=twitter" alt="Follow @JacobMGEvans on Twitter" style="vertical-align: middle;"/>
+  <a href="https://twitter.com/JacobMGEvans" target="_blank" rel="noopener noreferrer" style="display:inline-block; margin:0 8px;">
+    <img alt="Twitter: @JacobMGEvans" src="https://img.shields.io/badge/Twitter-@JacobMGEvans-1DA1F2?style=flat-square&logo=twitter&logoColor=white" height="32" style="vertical-align:middle;" />
   </a>
-  <a href="http://twitch.tv/jacobmgevans" target="_blank" rel="noopener noreferrer">
-    <img src="https://img.shields.io/badge/Twitch-jacobmgevans-9146FF?style=for-the-badge&logo=twitch&logoColor=white" alt="Twitch: jacobmgevans" style="vertical-align: middle;"/>
+  <a href="http://twitch.tv/jacobmgevans" target="_blank" rel="noopener noreferrer" style="display:inline-block; margin:0 8px;">
+    <img alt="Twitch: jacobmgevans" src="https://img.shields.io/badge/Twitch-jacobmgevans-9146FF?style=flat-square&logo=twitch&logoColor=white" height="32" style="vertical-align:middle;" />
   </a>
-</div>
+</p>
 
 # Welcome to My Profile!
 
