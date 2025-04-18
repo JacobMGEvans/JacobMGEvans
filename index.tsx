@@ -10,6 +10,9 @@ import { FooterComponent } from './components/footer';
 import { OutdoorSectionComponent } from './components/outdoor';
 import { OssSectionComponent } from './components/open-source';
 import { TailwindComponent } from './components/tailwind';
+import { BlogPage } from './pages/blog';
+import { fetchBlogPosts } from './utils/rss';
+import { BackgroundElements } from './components/background';
 
 interface Env {
   KV_TAILWIND: KVNamespace;
@@ -43,14 +46,6 @@ app.get('/robots.txt', (c) => {
     { 'Content-Type': 'text/plain' }
   );
 });
-
-const BackgroundElements: FC = () => (
-  <>
-    <div class="wolf-tracks"></div>
-    <div class="parallax-mountains"></div>
-    <div class="scanlines"></div>
-  </>
-);
 
 const animeScript = `
   document.addEventListener('DOMContentLoaded', () => {
@@ -325,6 +320,63 @@ const App: FC<AppProps> = ({ readme, tailwindScript }) => {
     </Layout>
   );
 };
+
+// Blog route
+app.get(
+  '/blog',
+  cache({
+    cacheName: 'blog-cache',
+    cacheControl: 'public, max-age=300, stale-while-revalidate=60',
+  }),
+  async (c) => {
+    const { KV_TAILWIND, TAILWIND_URL, KV_KEY } = c.env;
+
+    // KV caching for Tailwind from CDN
+    let tailwindScript = await KV_TAILWIND.get(KV_KEY);
+    if (!tailwindScript) {
+      const response = await fetch(TAILWIND_URL);
+      if (response.ok) {
+        tailwindScript = await response.text();
+        await KV_TAILWIND.put(KV_KEY, tailwindScript);
+      }
+    }
+
+    // Fetch Dev.to RSS feed
+    const posts = await fetchBlogPosts();
+
+    return new Response(
+      `<!DOCTYPE html>${(
+        <BlogPage posts={posts} tailwindScript={tailwindScript} />
+      )}`,
+      {
+        headers: {
+          'Content-Type': 'text/html; charset=UTF-8',
+        },
+      }
+    );
+  }
+);
+
+app.get('/sitemap.xml', (c) => {
+  const baseUrl = 'https://jacobmgevans.com';
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>${baseUrl}</loc>
+    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>${baseUrl}/blog</loc>
+    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
+    <priority>0.8</priority>
+  </url>
+</urlset>`;
+
+  return c.body(sitemap, 200, {
+    'Content-Type': 'application/xml',
+  });
+});
 
 app.get(
   '*',

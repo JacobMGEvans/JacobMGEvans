@@ -51,7 +51,7 @@ export function HeaderComponent() {
             </a>
           </li>
           <li>
-            <a href="https://dev.to/jacobmgevans" class={link('nav')}>
+            <a href="/blog" class={link('nav')}>
               Blog
             </a>
           </li>
