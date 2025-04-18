@@ -32,6 +32,18 @@ app.use(
   cache({ cacheName: 'assets', cacheControl: 'max-age=3600' })
 );
 
+app.get('/robots.txt', (c) => {
+  return c.text(
+    `User-agent: *
+  Allow: /
+  Disallow: /webhook
+
+  Sitemap: https://jacobmgevans.com/sitemap.xml`,
+    200,
+    { 'Content-Type': 'text/plain' }
+  );
+});
+
 const BackgroundElements: FC = () => (
   <>
     <div class="wolf-tracks"></div>
