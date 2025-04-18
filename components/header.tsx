@@ -1,17 +1,17 @@
 import { flex, gradientHeader, link, socialIcon } from '../css-utilities';
+const getNavLink = (section: string) => {
+  const pathname =
+    typeof window !== 'undefined' ? window.location.pathname : '';
+
+  const isOnBlogPage = pathname === '/blog';
+  if (section.includes('#')) {
+    return isOnBlogPage ? `https://jacobmgevans.com/${section}` : section;
+  }
+
+  return `https://jacobmgevans.com/${section}`;
+};
 
 export function HeaderComponent() {
-  const getNavLink = (section: string) => {
-    const pathname =
-      typeof window !== 'undefined' ? window.location.pathname : '';
-
-    const isOnBlogPage = pathname === '/blog';
-    if (section.includes('#')) {
-      return isOnBlogPage ? `https://jacobmgevans.com/${section}` : section;
-    }
-
-    return `https://jacobmgevans.com/${section}`;
-  };
   return (
     <header
       class={`sticky top-0 z-50 w-full p-4 ${gradientHeader()} backdrop-blur-md border-b border-gray-800 text-gray-100 flex flex-col md:flex-row justify-between items-center`}

@@ -48,12 +48,16 @@ I'm passionate about creating useful content, actively volunteering in technical
 Part of my open-source work and learning in public involves writing technical (and sometimes less technical) blog posts. My goal is for others, and my future self, to benefit from them.
 
 <details open>
-<summary>📚 Some of My Blog Articles & Other Content</summary>
-- [Guest on LogRocket - Cloudflare Workers](https://podrocket.logrocket.com/cloudflare-workers)
-- [JavaScript Resources: Podcasts, Books, Videos, and Tutorials](https://dev.to/jacobmgevans/javascript-resources-podcasts-books-videos-and-tutorials-4a6e)
-- [More Podcasts and Video Programming Resources](https://dev.to/jacobmgevans/more-podcasts-and-video-programming-resources-5a8k)
-- [Should You Listen to Podcasts?](https://dev.to/jacobmgevans/should-you-listen-to-podcasts-4m5j)
-- [Writing Immutable and Functional JavaScript](https://dev.to/jacobmgevans/writing-immutable-javascript-why-how-3if6)
+<summary>📚 Some of My Blog Articles &amp; Other Content</summary>
+
+<ul>
+  <li><a href="https://podrocket.logrocket.com/cloudflare-workers">Guest on LogRocket - Cloudflare Workers</a></li>
+  <li><a href="https://dev.to/jacobmgevans/javascript-resources-podcasts-books-videos-and-tutorials-4a6e">JavaScript Resources: Podcasts, Books, Videos, and Tutorials</a></li>
+  <li><a href="https://dev.to/jacobmgevans/more-podcasts-and-video-programming-resources-5a8k">More Podcasts and Video Programming Resources</a></li>
+  <li><a href="https://dev.to/jacobmgevans/should-you-listen-to-podcasts-4m5j">Should You Listen to Podcasts?</a></li>
+  <li><a href="https://dev.to/jacobmgevans/writing-immutable-javascript-why-how-3if6">Writing Immutable and Functional JavaScript</a></li>
+</ul>
+
 </details>
 
 ---
