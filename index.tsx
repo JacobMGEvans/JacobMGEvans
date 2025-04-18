@@ -151,7 +151,7 @@ const animeScript = `
       }
     });
     
-    // Wolf tracks animation with enhanced effect
+    // Dark forest animation with enhanced effect
     const tracks = document.querySelector('.wolf-tracks');
     if (tracks) {
       anime({

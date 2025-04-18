@@ -28,7 +28,7 @@ const blogAnimeScript = `
     
     addCyberElements();
     
-    // Animated fade-in elements
+    // Animate fade-in elements
     const fadeElements = document.querySelectorAll('.animate-fade-in');
     
     const observer = new IntersectionObserver((entries) => {
@@ -52,7 +52,7 @@ const blogAnimeScript = `
       observer.observe(element);
     });
     
-    // Enhanced parallax effect for mountains
+    // Parallax effect for mountains/forests
     window.addEventListener('scroll', () => {
       const scrollY = window.scrollY;
       const mountains = document.querySelector('.parallax-mountains');
@@ -68,7 +68,7 @@ const blogAnimeScript = `
       }
     });
     
-    // Wolf tracks animation with enhanced effect
+    // Dark forest animation with enhanced effect
     const tracks = document.querySelector('.wolf-tracks');
     if (tracks) {
       anime({
@@ -88,7 +88,7 @@ const blogAnimeScript = `
       });
     }
     
-    // Enhanced glow animations
+    // glow animations
     anime({
       targets: '.glow-animate',
       boxShadow: [
