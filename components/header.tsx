@@ -6,15 +6,11 @@ export function HeaderComponent() {
       typeof window !== 'undefined' ? window.location.pathname : '';
 
     const isOnBlogPage = pathname === '/blog';
-    if (section === 'blog') {
-      return isOnBlogPage ? '/' : '/blog';
-    }
-
-    if (section.startsWith('#')) {
+    if (section.includes('#')) {
       return isOnBlogPage ? `https://jacobmgevans.com/${section}` : section;
     }
 
-    return section;
+    return `https://jacobmgevans.com/${section}`;
   };
   return (
     <header

@@ -45,11 +45,11 @@ export async function fetchBlogPosts(): Promise<BlogPost[]> {
         const pubDate = extractTag(itemContent, 'pubDate');
         const content = extractTag(itemContent, 'description');
 
-        console.log(`Parsing item ${count}:`, {
-          title,
-          link,
-          pubDate: pubDate.substring(0, 20) + '...',
-        });
+        // console.log(`Parsing item ${count}:`, {
+        //   title,
+        //   link,
+        //   pubDate: pubDate.substring(0, 20) + '...',
+        // });
 
         // Extract categories
         const categories: string[] = [];
