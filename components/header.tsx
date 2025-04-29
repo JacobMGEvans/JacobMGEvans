@@ -27,7 +27,7 @@ export function HeaderComponent() {
         <h1 class="text-xl font-heading font-bold">Jacob M.G. Evans</h1>
         <div class={flex('row', 'items-center space-x-2')}>
           <a
-            href="https://www.linkedin.com/in-jacob-m-g-evans"
+            href="https://www.linkedin.com/in/jacob-m-g-evans"
             aria-label="LinkedIn"
             class={socialIcon()}
           >
