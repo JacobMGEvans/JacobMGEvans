@@ -1,6 +1,6 @@
 {
   "main": "./index.tsx",
-  "compatibility_date": "2023-03-26",
+  "compatibility_date": "2025-04-28",
   "name": "website",
   "routes": [
     {
