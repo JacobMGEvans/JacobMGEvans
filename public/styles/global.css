@@ -1,6 +1,5 @@
 @import 'tailwindcss';
 
-/* Custom base styles */
 @layer base {
   html {
     font-family: 'Rajdhani', 'sans-serif';
@@ -10,7 +9,6 @@
   }
 }
 
-/* Custom component styles */
 @layer components {
   .cyber-button {
     @apply relative px-4 py-2 font-heading uppercase text-sm tracking-wider transition-all duration-300 overflow-hidden;
@@ -31,7 +29,6 @@
   }
 }
 
-/* Custom utility styles */
 @layer utilities {
   .text-glow {
     text-shadow: 0 0 5px currentColor, 0 0 10px currentColor;
