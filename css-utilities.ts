@@ -63,7 +63,7 @@ export const grid = (columns = 2) =>
 export const socialIcon = () => 'hover:text-cyber-pink transition-colors';
 
 export const badge = () =>
-  'tech-badge px-4 py-2 rounded-sm text-sm font-medium';
+  'tech-badge px-4 py-2 rounded-full text-sm font-medium';
 
 export const flex = (direction = 'row', extraClasses = '') => {
   const baseClasses = direction === 'row' ? 'flex' : 'flex flex-col';

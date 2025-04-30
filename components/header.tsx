@@ -1,4 +1,10 @@
-import { flex, gradientHeader, link, socialIcon } from '../css-utilities';
+import {
+  badge,
+  flex,
+  gradientHeader,
+  link,
+  socialIcon,
+} from '../css-utilities';
 const getNavLink = (section: string) => {
   const pathname =
     typeof window !== 'undefined' ? window.location.pathname : '';
@@ -16,12 +22,12 @@ export function HeaderComponent() {
     <header
       class={`sticky top-0 z-50 w-full p-4 ${gradientHeader()} backdrop-blur-md border-b border-gray-800 text-gray-100 flex flex-col md:flex-row justify-between items-center`}
     >
-      <div class={flex('row', 'items-center space-x-4')}>
+      <div class={`${flex('row', 'items-center space-x-4')}`}>
         <div class="wolf-icon">
           <img
             src="https://pbs.twimg.com/media/GJ22wSNb0AAQRAH?format=jpg&name=large"
             alt="Wolf Icon"
-            class="h-8 w-8 rounded-xl shadow-md"
+            class="h-8 w-8 rounded-full shadow-md"
           />
         </div>
         <h1 class="text-xl font-heading font-bold">Jacob M.G. Evans</h1>
