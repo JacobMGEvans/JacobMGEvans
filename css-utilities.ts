@@ -67,7 +67,10 @@ export const badge = () =>
 
 export const flex = (direction = 'row', extraClasses = '') => {
   const baseClasses = direction === 'row' ? 'flex' : 'flex flex-col';
-  return `${baseClasses} ${extraClasses}`;
+  const updatedClasses = extraClasses
+    .replace(/space-x-(\d+)/g, 'gap-$1')
+    .replace(/space-y-(\d+)/g, 'gap-$1');
+  return `${baseClasses} ${updatedClasses}`;
 };
 
 export const gradientHeader = () =>

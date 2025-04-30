@@ -53,7 +53,7 @@ export const BlogComponent: FC<BlogComponentProps> = ({ posts }) => {
                   })}
                 </p>
 
-                <div className="mb-4 text-gray-300 text-sm line-clamp-4 leading-relaxed">
+                <div className="mb-4 text-gray-300 text-sm text-clamp-4 leading-relaxed">
                   {stripHtmlAndLimitLength(post.content)}
                 </div>
 

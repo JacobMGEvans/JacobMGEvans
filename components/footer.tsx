@@ -7,7 +7,7 @@ export function FooterComponent() {
       <div class="container mx-auto">
         <div class={flex('col', 'md:flex-row justify-between items-center')}>
           <div class="mb-6 md:mb-0">
-            <div class={flex('row', 'items-center space-x-2')}>
+            <div class={flex('row', 'items-center gap-2')}>
               <span class="text-xl font-heading font-bold">
                 Jacob M.G. Evans
               </span>
@@ -17,7 +17,7 @@ export function FooterComponent() {
             </p>
           </div>
 
-          <div class={flex('row', 'space-x-6')}>
+          <div class={flex('row', 'gap-6')}>
             <a
               href="https://www.linkedin.com/in/jacob-m-g-evans"
               aria-label="LinkedIn"

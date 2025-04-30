@@ -54,7 +54,7 @@ export function OssSectionComponent() {
         <summary class="cursor-pointer font-semibold text-mountain-blue hover:text-mountain-purple transition-colors duration-300 text-xl flex items-center gap-2">
           <span>📚</span> <span>Some of My Blog Articles & Other Content</span>
         </summary>
-        <ul class="space-y-3 my-4 px-2">
+        <ul class="flex flex-col gap-3 my-4 px-2">
           <li>
             <a
               href="https://podrocket.logrocket.com/cloudflare-workers"
