@@ -6,15 +6,10 @@ import {
   socialIcon,
 } from '../css-utilities';
 const getNavLink = (section: string) => {
-  const pathname =
-    typeof window !== 'undefined' ? window.location.pathname : '';
-
-  const isOnBlogPage = pathname === '/blog';
-  if (section.includes('#')) {
-    return isOnBlogPage ? `https://jacobmgevans.com/${section}` : section;
+  if (section.startsWith('#')) {
+    return `/${section}`;
   }
-
-  return `https://jacobmgevans.com/${section}`;
+  return section.startsWith('/') ? section : `/${section}`;
 };
 
 export function HeaderComponent() {
@@ -24,11 +19,13 @@ export function HeaderComponent() {
     >
       <div class={`${flex('row', 'items-center gap-4')}`}>
         <div class="wolf-icon">
-          <img
-            src="https://pbs.twimg.com/media/GJ22wSNb0AAQRAH?format=jpg&name=large"
-            alt="Wolf Icon"
-            class="h-8 w-8 rounded-full shadow-md"
-          />
+          <a href="https://jacobmgevans.com">
+            <img
+              src="https://pbs.twimg.com/media/GJ22wSNb0AAQRAH?format=jpg&name=large"
+              alt="Wolf Icon"
+              class="h-8 w-8 rounded-full shadow-md"
+            />
+          </a>
         </div>
         <div class={flex('column', 'gap-8')}>
           <h1 class="text-xl font-heading font-bold">Jacob M.G. Evans</h1>
