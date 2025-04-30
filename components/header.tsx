@@ -30,7 +30,9 @@ export function HeaderComponent() {
             class="h-8 w-8 rounded-full shadow-md"
           />
         </div>
-        <h1 class="text-xl font-heading font-bold">Jacob M.G. Evans</h1>
+        <div class={flex('column', 'gap-8')}>
+          <h1 class="text-xl font-heading font-bold">Jacob M.G. Evans</h1>
+        </div>
         <div class={flex('row', 'items-center gap-2')}>
           <a
             href="https://www.linkedin.com/in/jacob-m-g-evans"
