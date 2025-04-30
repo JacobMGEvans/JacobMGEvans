@@ -247,10 +247,7 @@ const Layout: FC<LayoutProps> = ({ children, tailwindScript, imageLinks }) => {
         <meta name="theme-color" content="#0F172A" />
         <title>Jacob M.G. Evans - Engineer, Veteran & Outdoor Enthusiast</title>
 
-        <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
-        />
+        <link rel="stylesheet" href="/styles/global.css" />
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 
@@ -309,7 +306,7 @@ const App: FC<AppProps> = ({ readme, tailwindScript }) => {
 
         {readme && (
           <section
-            class="content-section max-w-4xl mx-auto my-12 p-8 rounded-lg shadow-xl animate-fade-in"
+            class="content-section max-w-4xl mx-auto my-12 p-8 rounded-md shadow-lg animate-fade-in"
             dangerouslySetInnerHTML={{ __html: readme }}
           />
         )}

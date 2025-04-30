@@ -18,6 +18,8 @@
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.4",
+    "@tailwindcss/postcss": "^4.1.4",
+    "@tailwindcss/cli": "^4.1.4",
     "@cloudflare/vite-plugin": "^1.0.13",
     "@cloudflare/workers-types": "^4.20250417.0",
     "typescript": "^5.8.3",
