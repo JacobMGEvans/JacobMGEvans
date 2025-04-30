@@ -21,7 +21,7 @@ export function HeaderComponent() {
           <img
             src="https://pbs.twimg.com/media/GJ22wSNb0AAQRAH?format=jpg&name=large"
             alt="Wolf Icon"
-            class="h-8 w-8 rounded-full shadow-lg"
+            class="h-8 w-8 rounded-xl shadow-md"
           />
         </div>
         <h1 class="text-xl font-heading font-bold">Jacob M.G. Evans</h1>

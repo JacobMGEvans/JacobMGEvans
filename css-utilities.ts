@@ -2,7 +2,7 @@
 // ---------------------
 
 export const sectionContainer = (extraClasses = '') =>
-  `max-w-3xl mx-auto my-16 p-10 rounded-2xl shadow-2xl flex flex-col items-center bg-gradient-to-br from-wolf-dark/90 via-forest-dark/80 to-cyber-blue/30 border border-cyber-pink/40 backdrop-blur-lg animate-fade-in ${extraClasses}`;
+  `max-w-3xl mx-auto my-16 p-10 rounded-xl shadow-xl flex flex-col items-center bg-gradient-to-br from-wolf-dark/90 via-forest-dark/80 to-cyber-blue/30 border border-cyber-pink/40 backdrop-blur-lg animate-fade-in ${extraClasses}`;
 
 export const heading = (
   level: 'h1' | 'h2' | 'h3' | 'h4',
@@ -50,7 +50,7 @@ export const link = (variation = 'default') => {
 
 export const imageContainer = (isRightColumn = false) => {
   const baseClasses =
-    'relative h-64 rounded-lg overflow-hidden shadow-lg border border-cyber-blue/30 glow-animate';
+    'relative h-64 rounded-md overflow-hidden shadow-md border border-cyber-blue/30 glow-animate';
   return isRightColumn ? `${baseClasses} order-2 md:order-1` : baseClasses;
 };
 
@@ -63,7 +63,7 @@ export const grid = (columns = 2) =>
 export const socialIcon = () => 'hover:text-cyber-pink transition-colors';
 
 export const badge = () =>
-  'tech-badge px-4 py-2 rounded-full text-sm font-medium';
+  'tech-badge px-4 py-2 rounded-sm text-sm font-medium';
 
 export const flex = (direction = 'row', extraClasses = '') => {
   const baseClasses = direction === 'row' ? 'flex' : 'flex flex-col';
@@ -74,7 +74,7 @@ export const gradientHeader = () =>
   'bg-gradient-to-r from-forest-dark via-wolf-dark to-forest-dark border-b border-cyber-blue/30';
 
 export const ossPreviewImage = () =>
-  'rounded-xl shadow-xl glow-animate object-cover w-[125px] h-[120px]';
+  'rounded-lg shadow-lg glow-animate object-cover w-[125px] h-[120px]';
 
 export const previewContainer = () =>
   'inline-block p-2 transition-transform duration-300 hover:scale-110';

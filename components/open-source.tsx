@@ -49,7 +49,7 @@ export function OssSectionComponent() {
       </p>
       <details
         open
-        class="w-full bg-forest-dark/80 p-6 rounded-xl my-4 border border-mountain-purple/30 transition-all duration-300 hover:border-mountain-purple shadow-lg"
+        class="w-full bg-forest-dark/80 p-6 rounded-lg my-4 border border-mountain-purple/30 transition-all duration-300 hover:border-mountain-purple shadow-md"
       >
         <summary class="cursor-pointer font-semibold text-mountain-blue hover:text-mountain-purple transition-colors duration-300 text-xl flex items-center gap-2">
           <span>📚</span> <span>Some of My Blog Articles & Other Content</span>

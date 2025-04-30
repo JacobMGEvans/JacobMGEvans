@@ -143,10 +143,7 @@ export const BlogPage: FC<BlogPageProps> = ({ posts, tailwindScript }) => {
         <meta name="theme-color" content="#0F172A" />
         <title>Jacob M.G. Evans - Blog</title>
 
-        <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
-        />
+        <link rel="stylesheet" href="/styles/global.css" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
