@@ -1,14 +1,17 @@
 {
+  "$schema": "node_modules/wrangler/config-schema.json",
   "main": "./index.tsx",
   "compatibility_date": "2025-04-28",
   "name": "website",
+  "assets": {
+    "directory": "dist"
+  },
   "routes": [
     {
       "pattern": "*jacobmgevans.com/*",
       "zone_id": "31dff0f116d002d2bf0def5a7e4a852b"
     }
   ],
-
   "kv_namespaces": [
     {
       "binding": "KV_TAILWIND",

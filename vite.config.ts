@@ -4,5 +4,5 @@ import { cloudflare } from '@cloudflare/vite-plugin';
 import reactStack from 'hono-vite-react-stack';
 
 export default defineConfig({
-  plugins: [tailwindcss(), cloudflare(), reactStack()],
+  plugins: [reactStack()],
 });
