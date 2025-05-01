@@ -8,24 +8,24 @@
     "build": "vite build",
     "preview": "npm run build && vite preview",
     "deploy": "npm run build && wrangler deploy",
-    "update": "rm -rf pnpm-lock.yaml node_modules && pnpm i",
-    "scan": "pnpm dev & npx react-scan@latest localhost:3000"
+    "scan": "pnpm dev & npx react-scan@latest localhost:3000",
+    "manage": "npx npm-check-updates"
   },
   "dependencies": {
     "@hono/react-renderer": "^1.0.1",
-    "hono": "^4.7.7",
+    "hono": "^4.7.8",
     "hono-vite-react-stack": "^0.1.4",
-    "tailwindcss": "^4.1.4",
+    "tailwindcss": "^4.1.5",
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "^1.0.13",
-    "@cloudflare/workers-types": "^4.20250417.0",
-    "@tailwindcss/cli": "^4.1.4",
-    "@tailwindcss/postcss": "^4.1.4",
-    "@tailwindcss/vite": "^4.1.4",
+    "@cloudflare/workers-types": "^4.20250430.0",
+    "@tailwindcss/cli": "^4.1.5",
+    "@tailwindcss/postcss": "^4.1.5",
+    "@tailwindcss/vite": "^4.1.5",
     "typescript": "^5.8.3",
-    "vite": "^6.3.3",
-    "wrangler": "^4.12.0"
+    "vite": "^6.3.4",
+    "wrangler": "^4.13.2"
   }
 }
