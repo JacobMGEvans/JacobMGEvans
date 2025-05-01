@@ -12,16 +12,18 @@
     "scan": "pnpm dev & npx react-scan@latest localhost:3000"
   },
   "dependencies": {
+    "@hono/react-renderer": "^1.0.1",
     "hono": "^4.7.7",
+    "hono-vite-react-stack": "^0.1.4",
     "tailwindcss": "^4.1.4",
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
-    "@tailwindcss/vite": "^4.1.4",
-    "@tailwindcss/postcss": "^4.1.4",
-    "@tailwindcss/cli": "^4.1.4",
     "@cloudflare/vite-plugin": "^1.0.13",
     "@cloudflare/workers-types": "^4.20250417.0",
+    "@tailwindcss/cli": "^4.1.4",
+    "@tailwindcss/postcss": "^4.1.4",
+    "@tailwindcss/vite": "^4.1.4",
     "typescript": "^5.8.3",
     "vite": "^6.3.3",
     "wrangler": "^4.12.0"
