@@ -1,17 +1,18 @@
 {
   "compilerOptions": {
-    "strict": true,
-    "noEmit": true,
-    "resolveJsonModule": true,
-    "target": "esnext",
-    "jsx": "react-jsx",
-    "moduleResolution": "bundler",
-    "module": "esnext",
-    "lib": ["esnext", "DOM"],
-    "types": ["@cloudflare/workers-types"],
+    "target": "ES2024",
+    "lib": ["ES2024", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
     "skipLibCheck": true,
-    "allowSyntheticDefaultImports": true,
-    "jsxImportSource": "hono/jsx"
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "strict": true,
+    "noUnusedLocals": true,
+    "types": ["vite/client"]
   },
-  "include": ["**/*.ts", "**/*.tsx"]
+  "include": ["src", "components", "src/utils"]
 }

@@ -1,7 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "main": "./index.tsx",
-  "compatibility_date": "2025-04-28",
+  "main": "./src/server/index.tsx",
+  "compatibility_date": "2025-03-21",
   "name": "website",
   "assets": {
     "directory": "dist"

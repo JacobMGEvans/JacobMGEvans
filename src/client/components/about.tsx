@@ -4,23 +4,23 @@ import {
   list,
   paragraph,
   sectionContainer,
-} from '../css-utilities';
+} from '../../../css-utilities';
 
 export function AboutSectionComponent() {
   return (
-    <section id="about" class={sectionContainer()}>
-      <h2 class={heading('h2')}>Professional Journey</h2>
-      <div class={grid()}>
+    <section id="about" className={sectionContainer()}>
+      <h2 className={heading('h2')}>Professional Journey</h2>
+      <div className={grid()}>
         <div>
-          <h3 class={heading('h3')}>Current Role</h3>
-          <p class={paragraph()}>
+          <h3 className={heading('h3')}>Current Role</h3>
+          <p className={paragraph()}>
             FullStack Egnineer, specializing in Cloudflare Workers, CI/CD
             (DevOps), UX/DX, tooling, webapps, and cloud infrastructure.
             Building secure, scalable authentication and user management
             solutions.
           </p>
-          <h4 class={heading('h4')}>Core Skills</h4>
-          <ul class={list()}>
+          <h4 className={heading('h4')}>Core Skills</h4>
+          <ul className={list()}>
             <li>FullStack development with TypeScript and React</li>
             <li>
               Cloud infrastructure and serverless architecture, especially
@@ -31,13 +31,13 @@ export function AboutSectionComponent() {
           </ul>
         </div>
         <div>
-          <h3 class={heading('h3')}>Open Source & Community</h3>
-          <p class={paragraph()}>
+          <h3 className={heading('h3')}>Open Source & Community</h3>
+          <p className={paragraph()}>
             Active contributor and maintainer in the open-source community,
             focusing on developer tools and educational resources.
           </p>
-          <h4 class={heading('h4')}>Contributions & Leadership</h4>
-          <ul class={list()}>
+          <h4 className={heading('h4')}>Contributions & Leadership</h4>
+          <ul className={list()}>
             <li>Technical moderator for major tech communities</li>
             <li>Regular contributor to developer education</li>
             <li>Open Source Raid Guild leadership</li>
