@@ -12,6 +12,7 @@
     "manage": "npx npm-check-updates"
   },
   "dependencies": {
+    "@fortawesome/react-fontawesome": "^0.2.2",
     "@hono/react-renderer": "^1.0.1",
     "animejs": "^4.0.2",
     "hono": "^4.7.8",

@@ -5,7 +5,6 @@ export default defineConfig({
   plugins: [
     reactStack({
       clientEntry: './src/client/index.tsx',
-      cssEntry: './src/style.css',
     }),
   ],
 });
