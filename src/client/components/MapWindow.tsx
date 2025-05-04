@@ -1,16 +1,28 @@
 import React, { useEffect, useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-// Type for user location
-interface UserLocation {
+// Exported type for user location
+export interface UserLocation {
   id: string;
   lat: number;
   lng: number;
 }
 
-const MapWindow: React.FC = () => {
+// Props for MapWindow: callback when hovering a user marker
+interface MapWindowProps {
+  onUserHover: (user: UserLocation | null) => void;
+}
+
+// Custom cyberpunk marker icon (placeholder asset)
+const cyberIcon = L.icon({
+  iconUrl: '/cyber-marker.svg',
+  iconSize: [32, 32],
+  iconAnchor: [16, 16],
+});
+
+const MapWindow: React.FC<MapWindowProps> = ({ onUserHover }) => {
   const [locations, setLocations] = useState<UserLocation[]>([]);
 
   useEffect(() => {
@@ -35,7 +47,7 @@ const MapWindow: React.FC = () => {
   }, []);
 
   return (
-    <div className="map-window relative w-full md:w-2/3 h-full bg-gray-900 border border-cyber-blue/50 rounded-lg overflow-hidden">
+    <div className="map-window relative w-full md:w-2/3 h-full bg-black/50 backdrop-blur-sm border border-cyber-pink/60 rounded-lg overflow-hidden">
       <MapContainer
         center={[0, 0]}
         zoom={2}
@@ -47,11 +59,15 @@ const MapWindow: React.FC = () => {
           attribution="&copy; OpenStreetMap contributors"
         />
         {locations.map((user) => (
-          <Marker key={user.id} position={[user.lat, user.lng]}>
-            <Popup>
-              <span className="text-white font-mono">User: {user.id}</span>
-            </Popup>
-          </Marker>
+          <Marker
+            key={user.id}
+            position={[user.lat, user.lng]}
+            icon={cyberIcon}
+            eventHandlers={{
+              mouseover: () => onUserHover(user),
+              mouseout: () => onUserHover(null),
+            }}
+          />
         ))}
       </MapContainer>
     </div>
