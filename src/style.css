@@ -378,7 +378,7 @@ h6 {
 
 .cyber-glitch {
   /* Want the content to be dynamic to the inner text */
-  content: 'Jacob M.G. Evans';
+  content: attr(data-text);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -390,7 +390,7 @@ h6 {
 .cyber-glitch::before,
 .cyber-glitch::after {
   /* Want the content to be dynamic to the inner text */
-  content: 'Jacob M.G. Evans';
+  content: attr(data-text);
   position: absolute;
   top: 0;
   left: 0;
@@ -502,7 +502,7 @@ h6 {
 .cp2077-text::before,
 .cp2077-text::after {
   /* Want the content to be dynamic to the inner text */
-  content: 'Jacob M.G. Evans';
+  content: attr(data-text);
   position: absolute;
   top: 0;
   left: 0;

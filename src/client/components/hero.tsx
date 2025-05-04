@@ -17,6 +17,7 @@ export function HeroComponent() {
               'mb-1'
             )} relative cursor-pointer cyber-text group`}
             id="hero-title"
+            data-text="Jacob M.G. Evans"
           >
             <span className="relative inline-block">
               <span className="cyber-glitch absolute inset-0 opacity-0 group-hover:opacity-100 text-cyber-pink pointer-events-none"></span>
@@ -25,9 +26,7 @@ export function HeroComponent() {
               </span>
               <span className="digital-rain absolute inset-0 opacity-0 group-hover:opacity-100 overflow-hidden pointer-events-none"></span>
               <span className="cp2077-glitch absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none">
-                <span className="cp2077-text" data-text="Jacob M.G. Evans">
-                  Jacob M.G. Evans
-                </span>
+                <span className="cp2077-text">Jacob M.G. Evans</span>
                 <span className="cp2077-blocks"></span>
                 <span className="cp2077-scan-data"></span>
               </span>
