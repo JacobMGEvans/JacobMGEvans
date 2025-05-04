@@ -28,7 +28,7 @@ export function OutdoorSectionComponent() {
         </div>
         <div className={imageContainer()}>
           <img
-            src="https://pbs.twimg.com/media/GTnMCppa4AEqRtH?format=jpg&name=large"
+            src="mt-ellinor-near-peak.webp"
             alt="Forest hiking trail"
             className={responsiveImage()}
           />
@@ -38,7 +38,7 @@ export function OutdoorSectionComponent() {
       <div className={`mt-12 ${grid()}`}>
         <div className={imageContainer(true)}>
           <img
-            src="https://img.freepik.com/premium-photo/wolf-wolf-silhouette-dark-fantasy-forest-wolf_1168123-40178.jpg"
+            src="/wolf-silhouette-dark-fantasy-forest.avif"
             alt="Wolf in natural habitat"
             className={responsiveImage()}
           />
