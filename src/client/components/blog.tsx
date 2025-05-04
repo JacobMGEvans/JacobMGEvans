@@ -31,9 +31,24 @@ export const BlogComponent: FC<BlogComponentProps> = ({ posts }) => {
     >
       <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-gray-800 opacity-90 z-0"></div>
       <div className="relative z-10">
-        <h2 className="text-4xl font-bold pt-8 mb-8 text-center font-orbitron cyber-glitch drop-shadow-glow">
-          Latest <span className="text-cyan-400">Blog</span> Posts
-        </h2>
+        <span className="relative inline-block">
+          <span className="cyber-glitch absolute inset-0 opacity-0 group-hover:opacity-100 text-cyber-pink pointer-events-none"></span>
+          <span className="cyber-scan absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none">
+            <span className="scan-line"></span>
+          </span>
+          <span className="digital-rain absolute inset-0 opacity-0 group-hover:opacity-100 overflow-hidden pointer-events-none"></span>
+          <span className="cp2077-glitch absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none">
+            <h2 className="text-4xl font-bold pt-8 mb-8 text-center font-orbitron cyber-glitch drop-shadow-glow">
+              Latest{' '}
+              <span className="text-cyan-400" data-text="Blog">
+                Blog
+              </span>{' '}
+              Posts
+            </h2>
+            <span className="cp2077-blocks"></span>
+            <span className="cp2077-scan-data"></span>
+          </span>
+        </span>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {posts.map((post, index) => (

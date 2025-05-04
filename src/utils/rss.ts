@@ -24,8 +24,8 @@ export async function fetchBlogPosts(): Promise<BlogPost[]> {
     }
 
     const xml = await response.text();
-    console.log(`Received RSS feed (${xml.length} bytes)`);
-    console.log('XML snippet:', xml.substring(0, 500) + '...');
+    // console.log(`Received RSS feed (${xml.length} bytes)`);
+    // console.log('XML snippet:', xml.substring(0, 500) + '...');
 
     const posts: BlogPost[] = [];
 

@@ -1,129 +1,244 @@
-# Tailwind CSS v4 Migration
+# TAILWIND_V4_REFERENCE
 
-This PR migrates our codebase from Tailwind CSS v3 to v4 and consolidates our styles into a single global CSS file.
+## META
 
-## Changes Made
+- VERSION: v4.1
+- DATE: 2025-01-22
+- MIN_BROWSER: Safari16.4+|Chrome111+|Firefox128+
 
-1. **Created a global CSS file**
+## CORE_FEATURES
 
-   - Created `/public/styles/global.css` with all our custom styles
-   - Replaced CDN Tailwind imports with our own CSS file
-   - Used `@import "tailwindcss"` instead of `@tailwind` directives
+- PERF: 5x-faster-builds|182x-faster-incremental
+- CSS: cascade-layers|registered-properties|color-mix|logical-properties
+- INSTALL: single-import|zero-config|lightweight
+- CONFIG: css-first|no-js-file|theme-variables
+- UTILITIES: dynamic-values|arbitrary-support|p3-colors
+- NEW: container-queries|3d-transforms|gradients|starting-style|not-variant
 
-2. **Updated build configuration**
+## MIGRATION
 
-   - Added `@tailwindcss/postcss` plugin in PostCSS config
-   - Ensured `@tailwindcss/vite` plugin was properly configured
-   - Added `@tailwindcss/cli` for CLI usage
+### TOOLS
 
-3. **Updated utility classes**
+- AUTO: `npx @tailwindcss/upgrade` (Node20+)
+- PACKAGES:
+  - POST_CSS: `@tailwindcss/postcss` (removes need for postcss-import, autoprefixer)
+  - VITE: `@tailwindcss/vite`
+  - CLI: `@tailwindcss/cli` -i input.css -o output.css
 
-   - Replaced `rounded-xl/lg/full` → `rounded-lg/md/xl`
-   - Replaced `shadow-xl/lg` → `shadow-lg/md`
-   - Updated other deprecated utilities throughout the codebase
+### CORE_CHANGES
 
-4. **Changed import method**
-   - Added `<link rel="stylesheet" href="/styles/global.css" />` to HTML templates
+- IMPORT: `@import "tailwindcss"` replaces `@tailwind` directives
+- CONFIG: CSS-based in `@theme {}` block, not JS config
+- CONTENT: Auto-detected, manual with `@source "path"`
+- STYLES: Global CSS file recommended
+- LOAD_JS_CONFIG: `@config "path/to/tailwind.config.js"` if needed
 
-## Manual Tweaks
+### MIGRATION_STEPS
 
-1. Made sure all utilities were properly renamed according to v4 scale changes
-2. Consolidated all custom styles into a single global.css file
-3. Updated our tailwind.config.ts to include all content patterns
-4. Ensured proper path resolution for the global CSS file
+- CREATE_GLOBAL_CSS: Consolidate styles into single file (e.g., `/public/styles/global.css`)
+- UPDATE_BUILD_CONFIG: Add proper plugins to build system
+- UPDATE_UTILITY_CLASSES: Rename according to breaking changes
+- UPDATE_IMPORT_METHOD: Change to direct CSS imports
+- REPLACE_CDN: Replace CDN Tailwind imports with local CSS file
+- ADD_CSS_LINK: `<link rel="stylesheet" href="../style.css" />`
+- TEST_THOROUGHLY: Visual inspection across all pages
 
-## Testing
+### FRAMEWORKS_INTEGRATION
 
-1. Visually inspected all pages to ensure consistent styling
-2. Confirmed all animations and transitions still work
-3. Checked responsive behavior across various screen sizes
+- APPLY_WITH_FRAMEWORKS: Use `@reference "path/to/main.css"` for CSS modules
+- CSS_VARS_DIRECT: Access theme values with CSS variables
+- COMPUTED_STYLE: Use `getComputedStyle` instead of `resolveConfig`
 
-````
-# Tailwind CSS v3 to v4 Upgrade Guide
+### BREAKING_CHANGES
 
-**Key Changes & Upgrade Steps:**
+#### REMOVED_UTILITIES
 
-* **Browser Support:** Requires Safari 16.4+, Chrome 111+, Firefox 128+. Use v3.4 for older browsers.
-* **Recommended Tool:** Use the upgrade tool for automated migration.
-    ```bash
-    npx @tailwindcss/upgrade
-    ```
-    * Requires Node.js 20+.
-    * Run in a new branch, review diff, test thoroughly.
-* **Manual Upgrade:**
-    * **PostCSS:**
-        * Use `@tailwindcss/postcss` plugin.
-        * Remove `postcss-import` and `autoprefixer`.
-        * `postcss.config.mjs`:
-            ```javascript
-            export default {
-              plugins: {
-                "@tailwindcss/postcss": {},
-              },
-            };
-            ```
-    * **Vite:**
-        * Use `@tailwindcss/vite` plugin.
-        * `vite.config.ts`:
-            ```javascript
-            import { defineConfig } from "vite";
-            import tailwindcss from "@tailwindcss/vite";
-            export default defineConfig({
-              plugins: [
-                tailwindcss(),
-              ],
-            });
-            ```
-    * **CLI:**
-        * Use `@tailwindcss/cli` package.
-        * Update build commands:
-            ```bash
-            npx @tailwindcss/cli -i input.css -o output.css
-            ```
+- `*-opacity-*` → opacity modifiers (`bg-black/50`)
+- `flex-shrink-*` → `shrink-*`
+- `flex-grow-*` → `grow-*`
+- `overflow-ellipsis` → `text-ellipsis`
+- `decoration-slice`/`-clone` → `box-decoration-slice`/`-clone`
 
-**Breaking Changes Summary:**
+#### RENAMED_UTILITIES
 
-* **Removed `@tailwind` directives:** Replace with `@import "tailwindcss";`.
-* **Removed Deprecated Utilities:**
-    * `*-opacity-*` -> opacity modifiers (e.g., `bg-black/50`)
-    * `flex-shrink-*` -> `shrink-*`
-    * `flex-grow-*` -> `grow-*`
-    * `overflow-ellipsis` -> `text-ellipsis`
-    * `decoration-slice`/`-clone` -> `box-decoration-slice`/`-clone`
-* **Renamed Utilities:**
-    * `shadow-sm` -> `shadow-xs`
-    * `shadow` -> `shadow-sm`
-    * `drop-shadow-sm` -> `drop-shadow-xs`
-    * `drop-shadow` -> `drop-shadow-sm`
-    * `blur-sm` -> `blur-xs`
-    * `blur` -> `blur-sm`
-    * `backdrop-blur-sm` -> `backdrop-blur-xs`
-    * `backdrop-blur` -> `backdrop-blur-sm`
-    * `rounded-sm` -> `rounded-xs`
-    * `rounded` -> `rounded-sm`
-    * `outline-none` -> `outline-hidden` (old behavior)
-    * `ring` -> `ring-3` (default width change)
-* **Updated Scales:** Shadow, radius, blur scales renamed (`-sm` is now the old `-xs`). Update classes accordingly.
-* **Outline Utility:** Default width 1px. New `outline-none` sets `outline-style: none`. Old `outline-none` is `outline-hidden`.
-* **Default Ring Width:** Changed from 3px to 1px. Use `ring-3` for v3 behavior.
-* **Space-between Selector:** Changed selector (`:not(:last-child)`). May affect inline elements or custom margins. Consider using `gap` with flex/grid.
-* **Variants with Gradients:** Overriding preserves values. Use `via-none` to remove via stop.
-* **Container Configuration:** Options removed. Extend with `@utility container {...}`.
-* **Default Border/Divide Color:** Changed from `gray-200` to `currentColor`. Specify color or add base style.
-* **Default Ring Width and Color:** Changed from 3px `blue-500` to 1px `currentColor`. Use `ring-3` and specify color or add theme variables.
-* **Preflight Changes:**
-    * Placeholder Color: Default is `currentColor` at 50% opacity (was `gray-400`). Add base style to revert.
-    * Buttons Cursor: Default is `default` (was `pointer`). Add base style to revert.
-    * Dialog Margins: Removed default `margin: auto`. Add base style to revert.
-* **Prefix:** Syntax changed to `prefix:utility`. Configure without prefix.
-* **Custom Utilities:** Use `@utility name {...}` instead of `@layer utilities` or `@layer components`.
-* **Variant Stacking Order:** Changed from right-to-left to left-to-right. Reverse order-sensitive stacked variants (e.g., `first:*:pt-0` -> `*:first:pt-0`).
-* **Variables in Arbitrary Values:** Syntax `[--var-name]` changed to `(--var-name)`.
-* **Hover Styles on Mobile:** `hover` variant applies only if input device supports hover. Override variant or treat hover as enhancement.
-* **Transitioning Outline-color:** Now included in `transition`/`transition-color`. Set color unconditionally or for both states to prevent transition.
-* **Disabling Core Plugins:** `corePlugins` option removed.
-* **Using `theme()` function:** Recommend CSS variables (`var(--var-name)`). For media queries, use variable name format (`theme(--breakpoint-xl)`).
-* **JavaScript Config:** Not auto-detected. Load with `@config "path/to/tailwind.config.js";`. `corePlugins`, `safelist`, `separator` options removed.
-* **Theme values in JavaScript:** `resolveConfig` removed. Use CSS variables directly or `getComputedStyle`.
-* **`@apply` with Frameworks/CSS Modules:** Use `@reference "path/to/main.css";` or use CSS variables directly.
-````
+```
+shadow-sm → shadow-xs
+shadow → shadow-sm
+drop-shadow-sm → drop-shadow-xs
+drop-shadow → drop-shadow-sm
+blur-sm → blur-xs
+blur → blur-sm
+backdrop-blur-sm → backdrop-blur-xs
+backdrop-blur → backdrop-blur-sm
+rounded-sm → rounded-xs
+rounded → rounded-sm
+outline-none → outline-hidden (old behavior)
+ring → ring-3 (default width change)
+```
+
+#### DEFAULT_VALUE_CHANGES
+
+- RING: 1px (was 3px), use `ring-3` for v3 behavior
+- RING_COLOR: `currentColor` (was `blue-500`)
+- BORDER_COLOR: `currentColor` (was `gray-200`)
+- DIVIDE_COLOR: `currentColor` (was `gray-200`)
+- OUTLINE: Default width now 1px
+- OUTLINE_NONE: Sets `outline-style: none` (use `outline-hidden` for old behavior)
+- VARIANT_GRADIENTS: Overriding preserves values, use `via-none` to remove via stop
+
+#### SELECTOR_CHANGES
+
+- SPACE_BETWEEN: Changed `:not(:last-child)` selector
+- PLACEHOLDER: `currentColor` at 50% opacity (was `gray-400`)
+- BUTTONS: Default cursor `default` (was `pointer`)
+- DIALOG: No default `margin: auto`
+
+#### SYNTAX_CHANGES
+
+- PREFIX: `prefix:utility` format
+- CUSTOM_UTILITIES: `@utility name {...}` not `@layer`
+- VARIANT_ORDER: Left-to-right (was right-to-left), reverse order (e.g., `first:*:pt-0` → `*:first:pt-0`)
+- CSS_VARS: `(--var-name)` not `[--var-name]`
+- HOVER: Only applies if device supports hover
+- TRANSITION_OUTLINE: Now included in `transition`/`transition-color`
+
+#### REMOVED_OPTIONS
+
+- CORE_PLUGINS: `corePlugins` option removed
+- THEME_FUNCTION: Use CSS variables instead of `theme()`
+- RESOLVE_CONFIG: Removed, use CSS variables directly
+- CONTAINER_CONFIG: Options removed, extend with `@utility container {...}`
+- SAFELIST: Option removed
+- SEPARATOR: Option removed
+
+## INSTALL_SNIPPETS
+
+### POSTCSS
+
+```js
+export default {
+  plugins: {
+    '@tailwindcss/postcss': {},
+  },
+};
+```
+
+### VITE
+
+```js
+import { defineConfig } from 'vite';
+import tailwindcss from '@tailwindcss/vite';
+export default defineConfig({
+  plugins: [tailwindcss()],
+});
+```
+
+### CSS_IMPORT
+
+```css
+@import 'tailwindcss';
+```
+
+### HTML_LINK
+
+```html
+<link rel="stylesheet" href="/styles/global.css" />
+```
+
+## CONFIG_EXAMPLES
+
+### THEME_VARIABLES
+
+```css
+@import 'tailwindcss';
+@theme {
+  --font-display: 'Satoshi', 'sans-serif';
+  --breakpoint-3xl: 1920px;
+  --color-primary: oklch(0.84 0.18 117.33);
+  --spacing: 0.25rem;
+}
+```
+
+### DYNAMIC_UTILITIES
+
+```css
+@layer utilities {
+  .mt-8 {
+    margin-top: calc(var(--spacing) * 8);
+  }
+}
+```
+
+## NEW_FEATURES_SYNTAX
+
+### CONTAINER_QUERIES
+
+```html
+<div class="@container">
+  <div class="grid grid-cols-1 @sm:grid-cols-3 @lg:grid-cols-4">
+    <!-- Content -->
+  </div>
+  <div class="grid grid-cols-3 @max-md:grid-cols-1">
+    <!-- Content -->
+  </div>
+</div>
+```
+
+### 3D_TRANSFORMS
+
+```html
+<div class="perspective-distant">
+  <article class="rotate-x-51 rotate-z-43 transform-3d">
+    <!-- Content -->
+  </article>
+</div>
+```
+
+### GRADIENTS
+
+```html
+<div class="bg-linear-45 from-indigo-500 via-purple-500 to-pink-500"></div>
+<div class="bg-linear-to-r/oklch from-indigo-500 to-teal-400"></div>
+<div class="bg-conic/[in_hsl_longer_hue] from-red-600 to-red-600"></div>
+<div class="bg-radial-[at_25%_25%] from-white to-zinc-900 to-75%"></div>
+```
+
+### STARTING_STYLE
+
+```html
+<div popover class="transition-discrete starting:open:opacity-0">
+  <!-- Content -->
+</div>
+```
+
+### NOT_VARIANT
+
+```html
+<div class="not-hover:opacity-75 not-supports-hanging-punctuation:px-4"></div>
+```
+
+## PERFORMANCE_METRICS
+
+```
+| Metric                          | v3.4   | v4.0   | Factor |
+|---------------------------------|--------|--------|--------|
+| Full build                      | 378ms  | 100ms  | 3.78x  |
+| Incremental (new CSS)           | 44ms   | 5ms    | 8.8x   |
+| Incremental (existing classes)  | 35ms   | 192µs  | 182x   |
+```
+
+## MIGRATION_CHECKLIST
+
+- UPDATE_PACKAGES: Install v4 packages
+- UPDATE_CONFIG: Convert JS config to CSS @theme
+- UPDATE_IMPORT: Replace @tailwind with @import
+- UPDATE_UTILITIES: Rename utilities per breaking changes
+- CHECK_DEFAULTS: Review default value changes
+- REVERSE_VARIANTS: Fix stacked variant order
+- APPLY_COMPAT: Update @apply usage with @reference
+- CONSOLIDATE_CSS: Create global CSS file
+- FIX_RING_WIDTH: Add ring-3 where needed
+- UPDATE_PREFLIGHT: Fix cursor, placeholder, dialog styles
+- TEST_VISUALS: Verify styling across pages/components
+- TEST_RESPONSIVE: Check behavior across screen sizes
+- TEST_TRANSITIONS: Confirm animations still work
