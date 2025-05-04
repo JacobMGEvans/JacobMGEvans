@@ -1,5 +1,7 @@
 #Wrangler cache
 .wrangler*
+# wrangler + Hono Vite React Stack plugin
+/dist-server
 
 # Logs
 logs
