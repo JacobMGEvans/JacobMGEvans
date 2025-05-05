@@ -34,6 +34,6 @@ app.get('/', async (c) => {
   return c.render(<HomePage readme={''} />);
 });
 
-// Export the Durable Object and the app
-export { PresenceDO }; // Ensure this line is present
+// Not sure if this will even work, doesnt seem to be...
+export { PresenceDO };
 export default app;
