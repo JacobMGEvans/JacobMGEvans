@@ -5,11 +5,7 @@ export default defineConfig({
   plugins: [reactStack()],
   build: {
     rollupOptions: {
-      // Mark 'cloudflare:workers' as external to avoid bundling it
-      external: [
-        'cloudflare:workers',
-        './src/server/durable-object/presence.ts',
-      ],
+      external: ['cloudflare:workers'],
     },
   },
 });
