@@ -1,4 +1,3 @@
-// This function runs site-wide animations and effects
 import { animate, stagger } from 'animejs';
 
 export default function runSiteAnimations() {
@@ -12,7 +11,6 @@ export default function runSiteAnimations() {
   };
   addCyberElements();
 
-  // Hero animations
   animate('#hero-title', {
     opacity: [0, 1],
     translateY: [50, 0],

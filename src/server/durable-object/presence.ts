@@ -34,14 +34,12 @@ export class PresenceDO extends DurableObject {
       return this.handleWebSocket(request);
     }
 
-    // GET: return all users
     if (request.method === 'GET') {
       return new Response(JSON.stringify(Array.from(this.users.values())), {
         headers: { 'Content-Type': 'application/json' },
       });
     }
 
-    // POST: update a user's location
     if (request.method === 'POST') {
       try {
         const data = (await request.json()) as UserLocation;

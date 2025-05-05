@@ -8,7 +8,6 @@ import { handlePresence } from './api/presence';
 import { DurableObjectNamespace } from '@cloudflare/workers-types';
 import { PresenceDO } from './durable-object/presence';
 
-// Environment bindings for Cloudflare Worker
 type Env = {
   Bindings: {
     PRESENCE: DurableObjectNamespace<PresenceDO>;
