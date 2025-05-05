@@ -23,9 +23,9 @@ interface MapWindowProps {
   onLocationsChange?: (locations: UserLocation[]) => void;
 }
 
-// Custom cyberpunk marker icon
 const cyberIcon = L.icon({
-  iconUrl: '/cyber-marker.png',
+  // TODO: temporary icon until we have a better one
+  iconUrl: '/cyber-marker.svg',
   iconSize: [32, 32],
   iconAnchor: [16, 16],
   popupAnchor: [0, -16],
