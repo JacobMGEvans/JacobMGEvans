@@ -4,8 +4,7 @@ import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet';
 import Leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-// Exported type for user location
-export interface UserLocation {
+export type UserLocation = {
   id: string;
   lat: number;
   lng: number;
@@ -13,13 +12,12 @@ export interface UserLocation {
   status?: string;
   affiliation?: string;
   lastSeen?: string;
-}
+};
 
-// Props for MapWindow: callback when hovering a user marker
-interface MapWindowProps {
+type MapWindowProps = {
   onUserHover: (user: UserLocation | null) => void;
   onLocationsChange?: (locations: UserLocation[]) => void;
-}
+};
 
 const cyberIcon = Leaflet.icon({
   // TODO: temporary icon until we have a better one
@@ -76,7 +74,7 @@ const CyberpunkMapStyle = () => {
   return null;
 };
 
-// Pulsing effect for markers
+// Pulsing effect for markers - Also built into the Marker SVG
 const PulsingMarker: React.FC<{
   position: [number, number];
   user: UserLocation;
@@ -88,7 +86,6 @@ const PulsingMarker: React.FC<{
     const marker = markerRef.current;
     if (!marker) return;
 
-    // Add pulsing animation class
     const icon = marker.getElement();
     if (icon) {
       icon.classList.add('cyber-pulse');
