@@ -14,7 +14,6 @@ export async function handlePresence(
   const id = c.env.PRESENCE.idFromName('global');
   const stub = c.env.PRESENCE.get(id);
 
-  // Forward the raw request to the DO stub
-  // @ts-ignore: allow raw CF Request
+  // @ts-expect-error: allow raw CF Request
   return stub.fetch(c.req.raw as any);
 }

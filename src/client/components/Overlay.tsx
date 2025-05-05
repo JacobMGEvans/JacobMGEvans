@@ -1,5 +1,3 @@
-'use client';
-
 import type React from 'react';
 import { useState, useEffect, useRef } from 'react';
 import MapWindow, { type UserLocation } from './MapWindow';

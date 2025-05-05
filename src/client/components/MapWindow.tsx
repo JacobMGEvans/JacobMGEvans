@@ -1,9 +1,7 @@
-'use client';
-
 import type React from 'react';
 import { useEffect, useState, useRef } from 'react';
 import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet';
-import L from 'leaflet';
+import Leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 // Exported type for user location
@@ -23,7 +21,7 @@ interface MapWindowProps {
   onLocationsChange?: (locations: UserLocation[]) => void;
 }
 
-const cyberIcon = L.icon({
+const cyberIcon = Leaflet.icon({
   // TODO: temporary icon until we have a better one
   iconUrl: '/cyber-marker.svg',
   iconSize: [32, 32],
@@ -84,7 +82,7 @@ const PulsingMarker: React.FC<{
   user: UserLocation;
   onHover: (user: UserLocation | null) => void;
 }> = ({ position, user, onHover }) => {
-  const markerRef = useRef<L.Marker>(null);
+  const markerRef = useRef<Leaflet.Marker>(null);
 
   useEffect(() => {
     const marker = markerRef.current;
@@ -117,7 +115,7 @@ const PulsingMarker: React.FC<{
   );
 };
 
-// Generate random user locations around the world
+// Generate random user locations around the world - used for simulation mode
 const generateRandomUsers = (count: number): UserLocation[] => {
   const users: UserLocation[] = [];
   const affiliations = ['CIVILIAN', 'CORPO', 'NOMAD', 'NETRUNNER', 'FIXER'];
@@ -151,6 +149,7 @@ const MapWindow: React.FC<MapWindowProps> = ({
   // Connect to Durable Object WebSocket for real-time presence data
   useEffect(() => {
     setIsLoading(true);
+    //TODO: Should only be wss likely
     const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
     const wsUrl = `${protocol}://${window.location.host}/api/presence`;
     const ws = new WebSocket(wsUrl);

@@ -20,10 +20,6 @@
       "id": "d9cb2229574441cfb709311e59b91fd9"
     }
   ],
-  "vars": {
-    "TAILWIND_URL": "https://cdn.tailwindcss.com",
-    "KV_KEY": "tailwind-css"
-  },
   "durable_objects": {
     "bindings": [
       {

@@ -1,3 +1,5 @@
+import { DurableObject } from 'cloudflare:workers';
+
 export interface UserLocation {
   id: string;
   lat: number;
@@ -8,12 +10,13 @@ export interface UserLocation {
   lastSeen: string;
 }
 
-export class PresenceDO {
+export class PresenceDO extends DurableObject {
   private state: DurableObjectState;
   private users: Map<string, UserLocation> = new Map();
   private sessions: Map<string, WebSocket> = new Map();
 
   constructor(state: DurableObjectState, env: any) {
+    super(state, env);
     this.state = state;
     state.blockConcurrencyWhile(async () => {
       const entries = await state.storage.get<[string, UserLocation][]>(

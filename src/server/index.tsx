@@ -10,7 +10,9 @@ import { PresenceDO } from './durable-object/presence';
 
 // Environment bindings for Cloudflare Worker
 type Env = {
-  PRESENCE: DurableObjectNamespace<PresenceDO>;
+  Bindings: {
+    PRESENCE: DurableObjectNamespace<PresenceDO>;
+  };
 };
 
 const app = new Hono<Env>();
@@ -29,17 +31,9 @@ app.get('/blog', async (c) => {
 
 // Home and other route
 app.get('/', async (c) => {
-  const response = await fetch(
-    'https://raw.githubusercontent.com/JacobMGEvans/JacobMGEvans/main/README.html'
-  );
-  let readme = '';
-  if (response.ok) {
-    readme = (await response.text()).replace(/404:?\s*Not Found/gi, '').trim();
-  }
-  return c.render(<HomePage readme={readme} />);
+  return c.render(<HomePage readme={''} />);
 });
 
+// Export the Durable Object and the app
+export { PresenceDO }; // Ensure this line is present
 export default app;
-
-// Export the Durable Object class for Wrangler
-export { PresenceDO };
