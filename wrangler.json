@@ -1,7 +1,8 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "main": "./src/server/index.tsx",
-  "compatibility_date": "2025-03-21",
+  "compatibility_date": "2025-04-01",
+  "compatibility_flags": ["nodejs_compat"],
   "name": "website",
   "assets": {
     "directory": "dist"
@@ -23,5 +24,21 @@
     "TAILWIND_URL": "https://cdn.tailwindcss.com",
     "KV_KEY": "tailwind-css"
   },
-  "compatibility_flags": ["nodejs_compat"]
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "PRESENCE",
+        "class_name": "PresenceDO"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_classes": ["PresenceDO"]
+    }
+  ],
+  "observability": {
+    "enabled": true
+  }
 }

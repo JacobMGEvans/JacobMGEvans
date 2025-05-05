@@ -8,6 +8,8 @@ import { animate, stagger } from 'animejs';
 
 const Overlay: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  // Real-time list of locations
+  const [locations, setLocations] = useState<UserLocation[]>([]);
   // Track which user dot is hovered
   const [selectedUser, setSelectedUser] = useState<UserLocation | null>(null);
   // Current time for HUD header
@@ -178,7 +180,7 @@ const Overlay: React.FC = () => {
               <span>Global Positioning System</span>
               <div className="flex items-center gap-2">
                 <span className="inline-block w-2 h-2 bg-cyber-yellow animate-pulse"></span>
-                <span>Active Users: {Math.floor(Math.random() * 20) + 5}</span>
+                <span>Active Users: {locations.length}</span>
               </div>
             </div>
 
@@ -187,7 +189,10 @@ const Overlay: React.FC = () => {
 
             {/* Map content */}
             <div className="absolute inset-0 pt-8">
-              <MapWindow onUserHover={setSelectedUser} />
+              <MapWindow
+                onUserHover={setSelectedUser}
+                onLocationsChange={setLocations}
+              />
             </div>
           </div>
 
