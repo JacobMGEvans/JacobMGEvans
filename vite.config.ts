@@ -22,14 +22,14 @@ export default defineConfig({
     },
   },
   // Use this to proxy HTTP and WS for presence DO
-  // server: {
-  //   proxy: {
-  //     // proxy HTTP and WS for presence DO
-  //     '/api/presence': {
-  //       target: 'http://localhost:8787',
-  //       changeOrigin: true,
-  //       ws: true,
-  //     },
-  //   },
-  // },
+  server: {
+    proxy: {
+      // proxy HTTP and WS for presence DO
+      '/api/presence': {
+        target: 'http://localhost:8787',
+        changeOrigin: true,
+        ws: true,
+      },
+    },
+  },
 });

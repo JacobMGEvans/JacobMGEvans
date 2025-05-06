@@ -8,6 +8,7 @@ export type UserLocation = {
   status?: string;
   affiliation?: string;
   lastSeen: string;
+  ping?: number;
 };
 
 // I hate classes, but Durable Objects cant be used without them
@@ -43,6 +44,7 @@ export class PresenceDO extends DurableObject {
     if (request.method === 'POST') {
       try {
         const data = (await request.json()) as UserLocation;
+        console.log('DURABLE OBJECT:', data);
         data.lastSeen = new Date().toISOString();
         this.users.set(data.id, data);
         await this.state.storage.put('users', Array.from(this.users.entries()));

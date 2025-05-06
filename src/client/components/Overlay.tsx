@@ -223,9 +223,22 @@ const Overlay: React.FC = () => {
         <div>SYSTEM: OPERATIONAL</div>
         <div className="text-center">
           <span className="text-cyber-blue">CLOUDFLARE</span> DURABLE OBJECTS:{' '}
-          <span className="text-cyber-green">CONNECTED</span>
+          {!!selectedUser ? (
+            <span className="text-cyber-green">CONNECTED</span>
+          ) : (
+            <span className="text-cyber-red">DISCONNECTED</span>
+          )}
         </div>
-        <div>PING: {Math.floor(Math.random() * 30) + 10}ms</div>
+        {/* Figure out how to get real ping from selected user */}
+        {!!selectedUser && (
+          <div>
+            PING:{' '}
+            <span className="text-cyber-green">
+              {/* TODO:  Make ping value change color based on range of value green/yellow/red  */}
+              {selectedUser.ping ? `${selectedUser.ping}ms` : 'Tracing...'}{' '}
+            </span>
+          </div>
+        )}
       </div>
 
       {/* Add keyframe animations */}

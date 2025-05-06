@@ -12,6 +12,7 @@ export type UserLocation = {
   status?: string;
   affiliation?: string;
   lastSeen?: string;
+  ping?: number;
 };
 
 type MapWindowProps = {

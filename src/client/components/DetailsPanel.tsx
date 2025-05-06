@@ -82,6 +82,7 @@ export const DetailsPanel: React.FC<DetailsPanelProps> = ({ user }) => {
     [user?.id]
   );
 
+  // TODO: Eventually add more real data to the details panel
   return (
     <div className="h-full overflow-auto text-gray-200 font-mono p-6">
       {/* Scan frame with digital asset placeholder */}
