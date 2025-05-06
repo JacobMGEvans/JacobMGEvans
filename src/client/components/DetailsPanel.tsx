@@ -1,5 +1,5 @@
 import type React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import type { UserLocation } from './MapWindow';
 
 export type DetailsPanelProps = {
@@ -77,7 +77,10 @@ export const DetailsPanel: React.FC<DetailsPanelProps> = ({ user }) => {
     };
   };
 
-  const userDetails = user ? generateRandomDetails() : null;
+  const userDetails = useMemo(
+    () => (user ? generateRandomDetails() : null),
+    [user?.id]
+  );
 
   return (
     <div className="h-full overflow-auto text-gray-200 font-mono p-6">
