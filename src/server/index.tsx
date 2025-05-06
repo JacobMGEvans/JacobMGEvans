@@ -16,19 +16,15 @@ type Env = {
 
 const app = new Hono<Env>();
 
-// Apply the React renderer to all requests
 app.use('*', renderer);
 
-// Add the presence API route
 app.all('/api/presence', handlePresence);
 
-// Blog route
 app.get('/blog', async (c) => {
   const posts: BlogPost[] = await fetchBlogPosts();
   return c.render(<BlogPage posts={posts} />);
 });
 
-// Home and other route
 app.get('/', async (c) => {
   return c.render(<HomePage readme={''} />);
 });
