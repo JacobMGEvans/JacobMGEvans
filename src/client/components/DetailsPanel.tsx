@@ -1,19 +1,15 @@
 import type React from 'react';
 import { useState, useEffect } from 'react';
 import type { UserLocation } from './MapWindow';
-
-// Props accepted by DetailsPanel when a user ping is hovered
 interface DetailsPanelProps {
   user: UserLocation | null;
 }
 
-// Panel styled like Cyberpunk2077 scan detail window
 const DetailsPanel: React.FC<DetailsPanelProps> = ({ user }) => {
   const [scanProgress, setScanProgress] = useState(0);
   const [isScanning, setIsScanning] = useState(false);
   const [scanComplete, setScanComplete] = useState(false);
 
-  // Reset and start scan animation when user changes
   useEffect(() => {
     if (user) {
       setIsScanning(true);
@@ -41,7 +37,6 @@ const DetailsPanel: React.FC<DetailsPanelProps> = ({ user }) => {
     }
   }, [user]);
 
-  // Generate random user details for the demo
   const generateRandomDetails = () => {
     const backgrounds = [
       "Grew up in Night City's industrial zone",
@@ -211,7 +206,6 @@ const DetailsPanel: React.FC<DetailsPanelProps> = ({ user }) => {
         </div>
       </div>
 
-      {/* Add keyframe animations */}
       <style>{`
         @keyframes scanBar {
           0%,
