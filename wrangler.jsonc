@@ -1,6 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "main": "./src/server/index.tsx",
+  "account_id": "82ce384417a89117b2dd81b945a73acd",
   "compatibility_date": "2025-04-01",
   "compatibility_flags": ["nodejs_compat"],
   "name": "website",
@@ -20,6 +21,12 @@
       "id": "d9cb2229574441cfb709311e59b91fd9"
     }
   ],
+  "migrations": [
+    {
+      "tag": "v2",
+      "new_classes": ["PresenceDO"]
+    }
+  ],
   "durable_objects": {
     "bindings": [
       {
@@ -28,12 +35,6 @@
       }
     ]
   },
-  "migrations": [
-    {
-      "tag": "v1",
-      "new_classes": ["PresenceDO"]
-    }
-  ],
   "observability": {
     "enabled": true
   }
