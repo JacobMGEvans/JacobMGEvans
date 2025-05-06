@@ -27,19 +27,14 @@ const cyberIcon = Leaflet.icon({
   popupAnchor: [0, -16],
 });
 
-// Custom map style component
 const CyberpunkMapStyle = () => {
   const map = useMap();
 
   useEffect(() => {
-    // Apply cyberpunk styling to map
     const mapContainer = map.getContainer();
-
-    // Add cyberpunk filter to map
     mapContainer.style.filter =
       'hue-rotate(140deg) saturate(1.5) brightness(0.7) contrast(1.2)';
 
-    // Override leaflet controls styling
     const styleElement = document.createElement('style');
     styleElement.textContent = `
       .leaflet-control-zoom {
@@ -113,28 +108,28 @@ const PulsingMarker: React.FC<{
 };
 
 // Generate random user locations around the world - used for simulation mode
-const generateRandomUsers = (count: number): UserLocation[] => {
-  const users: UserLocation[] = [];
-  const affiliations = ['CIVILIAN', 'CORPO', 'NOMAD', 'NETRUNNER', 'FIXER'];
-  const statuses = ['ACTIVE', 'IDLE', 'OFFLINE', 'UNKNOWN'];
+// const generateRandomUsers = (count: number): UserLocation[] => {
+//   const users: UserLocation[] = [];
+//   const affiliations = ['CIVILIAN', 'CORPO', 'NOMAD', 'NETRUNNER', 'FIXER'];
+//   const statuses = ['ACTIVE', 'IDLE', 'OFFLINE', 'UNKNOWN'];
 
-  for (let i = 0; i < count; i++) {
-    users.push({
-      id: `user-${i}`,
-      lat: Math.random() * 140 - 70, // -70 to 70
-      lng: Math.random() * 340 - 170, // -170 to 170
-      name: `User-${Math.floor(Math.random() * 1000)}`,
-      affiliation:
-        affiliations[Math.floor(Math.random() * affiliations.length)],
-      status: statuses[Math.floor(Math.random() * statuses.length)],
-      lastSeen: new Date(
-        Date.now() - Math.floor(Math.random() * 86400000)
-      ).toISOString(),
-    });
-  }
+//   for (let i = 0; i < count; i++) {
+//     users.push({
+//       id: `user-${i}`,
+//       lat: Math.random() * 140 - 70, // -70 to 70
+//       lng: Math.random() * 340 - 170, // -170 to 170
+//       name: `User-${Math.floor(Math.random() * 1000)}`,
+//       affiliation:
+//         affiliations[Math.floor(Math.random() * affiliations.length)],
+//       status: statuses[Math.floor(Math.random() * statuses.length)],
+//       lastSeen: new Date(
+//         Date.now() - Math.floor(Math.random() * 86400000)
+//       ).toISOString(),
+//     });
+//   }
 
-  return users;
-};
+//   return users;
+// };
 
 const MapWindow: React.FC<MapWindowProps> = ({
   onUserHover,
