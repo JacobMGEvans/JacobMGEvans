@@ -8,7 +8,7 @@ import {
   sectionContainer,
 } from '../../../css-utilities';
 
-export function OssSectionComponent() {
+export function OssSection() {
   return (
     <section id="oss" className={sectionContainer('content-section')}>
       <h2 className={heading('h2')}>

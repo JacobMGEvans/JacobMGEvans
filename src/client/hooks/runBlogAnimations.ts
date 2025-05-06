@@ -1,5 +1,6 @@
 import { animate } from 'animejs';
 
+// TODO: A lot of Blog animation is redundant to the homepage animations, refactor later
 export default function runBlogAnimations() {
   console.log('Blog page loaded, initializing animations...');
 

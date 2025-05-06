@@ -2,10 +2,10 @@ import { useEffect } from 'react';
 import type { FC } from 'react';
 import type { BlogPost } from '../../utils/rss';
 import runBlogAnimations from '../hooks/runBlogAnimations';
-import { BackgroundElements } from '../components/background';
-import { HeaderComponent } from '../components/header';
-import { FooterComponent } from '../components/footer';
-import { BlogComponent } from '../components/blog';
+import { BackgroundElements } from '../components/Background';
+import { Header } from '../components/Header';
+import { Footer } from '../components/Footer';
+import { Blog } from '../components/Blog';
 
 export interface BlogPageProps {
   posts: BlogPost[];
@@ -19,7 +19,7 @@ const BlogPage: FC<BlogPageProps> = ({ posts }) => {
   return (
     <>
       <BackgroundElements />
-      <HeaderComponent />
+      <Header />
 
       <main className="container mx-auto px-4 py-8">
         <div className="py-24">
@@ -32,7 +32,7 @@ const BlogPage: FC<BlogPageProps> = ({ posts }) => {
             </a>
           </div>
           {posts.length > 0 ? (
-            <BlogComponent posts={posts} />
+            <Blog posts={posts} />
           ) : (
             <div className="text-center py-16 animate-fade-in">
               <div className="text-4xl mb-4 text-cyan-400">
@@ -44,7 +44,7 @@ const BlogPage: FC<BlogPageProps> = ({ posts }) => {
         </div>
       </main>
 
-      <FooterComponent />
+      <Footer />
     </>
   );
 };

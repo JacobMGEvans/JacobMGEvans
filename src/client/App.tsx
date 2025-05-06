@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import runSiteAnimations from './hooks/useSiteAnimations';
 import runBlogAnimations from './hooks/runBlogAnimations';
+import Overlay from './components/Overlay';
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -11,7 +12,7 @@ const App: React.FC = () => {
     }
   }, []);
 
-  return null;
+  return <Overlay />;
 };
 
 export default App;

@@ -1158,3 +1158,155 @@ p {
 .cp2077-text {
   font-family: var(--font-cyberpunk);
 }
+
+/* Cyberpunk HUD base panel styling */
+.hud-panel {
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid #0ff; /* neon cyan outline */
+  border-radius: 0.375rem;
+  backdrop-filter: blur(6px);
+  overflow: hidden;
+  color: #0ff;
+  font-family: 'Rajdhani', sans-serif;
+}
+
+/* Scanlines overlay effect */
+.hud-panel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+    to bottom,
+    transparent 48%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 52%
+  );
+  background-size: 100% 4px;
+  mix-blend-mode: overlay;
+  opacity: 0.2;
+  pointer-events: none;
+  animation: hud-scanlines 1.5s linear infinite;
+}
+
+@keyframes hud-scanlines {
+  0% {
+    background-position-y: 0;
+  }
+  100% {
+    background-position-y: 4px;
+  }
+}
+
+/* Mini-map panel styling */
+.hud-mini-map-panel {
+  width: 240px;
+  height: 240px;
+  border-color: #ff0; /* neon yellow */
+}
+
+/* Details panel styling */
+.hud-details-panel {
+  flex: 1;
+  border-color: #f00; /* scan red */
+  background-color: rgba(30, 0, 0, 0.5);
+  color: #f33;
+}
+
+/* Crosshair at center of screen */
+.hud-crosshair {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.hud-crosshair::before,
+.hud-crosshair::after {
+  content: '';
+  position: absolute;
+  background-color: rgba(0, 255, 255, 0.6);
+}
+.hud-crosshair::before {
+  width: 2px;
+  height: 40px;
+  left: calc(50% - 1px);
+  top: calc(50% - 20px);
+}
+.hud-crosshair::after {
+  height: 2px;
+  width: 40px;
+  top: calc(50% - 1px);
+  left: calc(50% - 20px);
+}
+
+/* Flicker/glitch effect */
+@keyframes hud-flicker {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+.hud-panel {
+  animation: hud-flicker 0.2s infinite alternate;
+}
+
+/* Panel corner brackets */
+.hud-panel::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 20px;
+  height: 20px;
+  border-top: 2px solid #0ff;
+  border-left: 2px solid #0ff;
+}
+.hud-panel::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 20px;
+  height: 20px;
+  border-bottom: 2px solid #0ff;
+  border-right: 2px solid #0ff;
+}
+
+/* Internal panel scanline animation */
+.panel-scanline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #0ff;
+  opacity: 0.5;
+  animation: panel-scan 1s linear infinite;
+  pointer-events: none;
+}
+@keyframes panel-scan {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: 100%;
+  }
+}
+
+/* Panel entrance animation */
+.animate-panel {
+  animation: panel-appear 0.45s ease-out forwards;
+  opacity: 0;
+  transform: scale(0.85);
+}
+@keyframes panel-appear {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

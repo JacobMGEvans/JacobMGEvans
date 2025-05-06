@@ -15,13 +15,10 @@ export function useAnimeScope(
   const scopeRef = useRef<any>(null);
 
   useEffect(() => {
-    // Only run in browser environment
     if (typeof window === 'undefined' || !rootRef.current) return;
 
-    // Create new scope
     scopeRef.current = createScope({ root: rootRef }).add(setupFn);
 
-    // Cleanup function
     return () => {
       if (scopeRef.current && scopeRef.current.revert) {
         scopeRef.current.revert();

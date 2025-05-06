@@ -1,6 +1,6 @@
 import { badge, flex, heading } from '../../../css-utilities';
 
-export function HeroComponent() {
+export function Hero() {
   return (
     <div className="hero min-h-[60vh] flex items-center justify-center relative overflow-hidden">
       <div className="absolute inset-0 z-0">
@@ -58,12 +58,13 @@ export function HeroComponent() {
         </div>
 
         <div className="mt-10 animate-fade-in relative inline-block cyber-element">
-          <a
-            href="#about"
+          <button
+            id="explore-button"
+            type="button"
             className="py-2 px-6 inline-block bg-transparent border border-mountain-blue text-mountain-blue uppercase font-heading text-sm tracking-wider hover:bg-mountain-blue hover:text-white transition-all duration-300 hover:shadow-[0_0_10px_rgba(0,240,255,0.5)]"
           >
             <span>Explore</span>
-          </a>
+          </button>
           <div className="absolute -bottom-1 -right-1 w-3 h-3 border-r border-b border-cyber-pink"></div>
           <div className="absolute -top-1 -left-1 w-3 h-3 border-l border-t border-cyber-pink"></div>
         </div>

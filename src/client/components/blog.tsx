@@ -7,7 +7,7 @@ interface BlogPost {
   content: string;
 }
 
-interface BlogComponentProps {
+interface BlogProps {
   posts: BlogPost[];
 }
 
@@ -23,7 +23,7 @@ function stripHtmlAndLimitLength(
   return text.length > maxLength ? `${text.substring(0, maxLength)}...` : text;
 }
 
-export const BlogComponent: FC<BlogComponentProps> = ({ posts }) => {
+export const Blog: FC<BlogProps> = ({ posts }) => {
   return (
     <section
       id="blog"

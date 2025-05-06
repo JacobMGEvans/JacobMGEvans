@@ -1,0 +1,101 @@
+<svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="digital-noise" x="0" y="0" width="100%" height="100%">
+         <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" result="noise"/>
+         <feDisplacementMap in="SourceGraphic" in2="noise" scale="1" xChannelSelector="R" yChannelSelector="G"/>
+         <feColorMatrix type="matrix" values="1 0 0 0 0
+                                              0 1 0 0 0
+                                              0 0 1 0 0
+                                              0 0 0 1.5 0"/> </filter>
+
+  </defs>
+
+  <style>
+    @keyframes cyberpunk-pulse {
+      0% {
+        r: 6;
+        opacity: 0.9;
+        transform: scale(1);
+      }
+      30% {
+         r: 8;
+         opacity: 0.7;
+         transform: scale(1.1);
+      }
+      60% {
+         r: 6;
+         opacity: 0.9;
+         transform: scale(1);
+      }
+      100% {
+        r: 6;
+        opacity: 0.9;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes scan-ring-expand {
+      0% {
+        r: 8;
+        opacity: 0.8;
+        stroke-width: 3;
+      }
+      100% {
+        r: 35;
+        opacity: 0;
+        stroke-width: 0;
+      }
+    }
+
+     @keyframes subtle-glitch {
+         0%, 100% { transform: translate(0, 0) skew(0deg); opacity: 1;}
+         10% { transform: translate(0.5px, 0.5px) skew(0.5deg); opacity: 0.95;}
+         12% { transform: translate(-0.5px, -0.5px) skew(-0.5deg); opacity: 1;}
+         30% { transform: translate(0.8px, 0.8px); opacity: 0.9;}
+         32% { transform: translate(-0.8px, -0.8px); opacity: 1;}
+         50% { transform: translate(0.3px, 0.3px) skew(0.3deg); opacity: 0.98;}
+         52% { transform: translate(-0.3px, -0.3px) skew(-0.3deg); opacity: 1;}
+         70% { transform: translate(0.6px, 0.6px); opacity: 0.9;}
+         72% { transform: translate(-0.6px, -0.6px); opacity: 1;}
+     }
+
+
+    .cyber-dot {
+      fill:rgb(15, 7, 255); /* Bright Red */
+      filter: url(#glow); /* Apply the glow filter */
+      transform-origin: 50% 50%;
+      animation: cyberpunk-pulse 1.8s infinite ease-in-out;
+    }
+
+    .scan-ring {
+        fill: none;
+        stroke:rgb(255, 251, 0); /* Electric Cyan */
+        stroke-width: 2;
+        stroke-dasharray: 6 6; /* Dashed line */
+        transform-origin: 50% 50%;
+        animation: scan-ring-expand 2.5s infinite ease-out;
+    }
+
+    .glitch-container {
+        animation: subtle-glitch 10s infinite steps(60, end); /* Infrequent, stepped glitch */
+         /* filter: url(#digital-noise); /* Apply optional digital noise filter */
+    }
+
+
+  </style>
+
+    <g class="glitch-container" transform="translate(10 10)"> <circle class="scan-ring" cx="30" cy="30" r="8"/>
+
+      <circle class="cyber-dot" cx="30" cy="30" r="6"/>
+    </g>
+
+
+</svg>
