@@ -12,7 +12,7 @@ const App: React.FC = () => {
     }
   }, []);
 
-  // return <Overlay />;
+  return <Overlay />;
 };
 
-export default App;
+export { App };

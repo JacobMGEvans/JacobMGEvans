@@ -4,21 +4,21 @@ import type { BlogPost } from '../utils/rss';
 import { fetchBlogPosts } from '../utils/rss';
 import HomePage from '../client/pages/HomePage';
 import BlogPage from '../client/pages/BlogPage';
-import { handlePresence } from './api/presence';
-import { DurableObjectNamespace } from '@cloudflare/workers-types';
-import type { PresenceDO } from './durable-objects/presence';
+// import { handlePresence } from './api/presence';
+// import { DurableObjectNamespace } from '@cloudflare/workers-types';
+// import type { PresenceDO } from './durable-objects/presence';
 
-type Env = {
-  Bindings: {
-    PRESENCE: DurableObjectNamespace<PresenceDO>;
-  };
-};
+// type Env = {
+//  Bindings: {
+//    PRESENCE: DurableObjectNamespace<PresenceDO>;
+//  };
+//};
 
-const app = new Hono<Env>();
+const app = new Hono();
 
 app.use('*', renderer);
 
-app.all('/api/presence', handlePresence);
+// app.all('/api/presence', handlePresence);
 
 app.get('/blog', async (c) => {
   const posts: BlogPost[] = await fetchBlogPosts();

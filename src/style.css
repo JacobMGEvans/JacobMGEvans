@@ -257,7 +257,7 @@ body::before {
   left: 0;
   width: 100%;
   height: 25vh;
-  background-image: url('/dark-mountain-cyberpunk.jpeg');
+  background-image: url('/dark-mountain-cyberpunk.webp');
   background-size: cover;
   background-position: bottom;
   z-index: -2;

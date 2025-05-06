@@ -13,6 +13,7 @@ export type UserLocation = {
   affiliation?: string;
   lastSeen?: string;
   ping?: number;
+  networkType?: string;
 };
 
 type MapWindowProps = {
@@ -132,12 +133,37 @@ const PulsingMarker: React.FC<{
 //   return users;
 // };
 
+// Function to generate mock locations
+const generateRandomLocations = (count: number): UserLocation[] => {
+  const users: UserLocation[] = [];
+  const affiliations = ['CIVILIAN', 'CORPO', 'NOMAD', 'NETRUNNER', 'FIXER'];
+  const statuses = ['ACTIVE', 'IDLE', 'OFFLINE', 'UNKNOWN'];
+
+  for (let i = 0; i < count; i++) {
+    users.push({
+      id: `user-${i}`,
+      lat: Math.random() * 140 - 70,
+      lng: Math.random() * 340 - 170,
+      name: `User-${Math.floor(Math.random() * 1000)}`,
+      affiliation:
+        affiliations[Math.floor(Math.random() * affiliations.length)],
+      status: statuses[Math.floor(Math.random() * statuses.length)],
+      lastSeen: new Date(
+        Date.now() - Math.floor(Math.random() * 86400000)
+      ).toISOString(),
+    });
+  }
+
+  return users;
+};
+
 const MapWindow: React.FC<MapWindowProps> = ({
   onUserHover,
   onLocationsChange,
 }) => {
   const [locations, setLocations] = useState<UserLocation[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [mockCount, setMockCount] = useState<number>(10);
 
   // Simulate a connection to the Presence Durable Object WebSocket
   // useEffect(() => {
@@ -196,8 +222,72 @@ const MapWindow: React.FC<MapWindowProps> = ({
   //   };
   // }, []);
 
+  // Generate mock and actual user location data
+  useEffect(() => {
+    setIsLoading(true);
+    const randomLocations = generateRandomLocations(mockCount);
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          const { latitude, longitude } = position.coords;
+          let pingTime = 0;
+          try {
+            const start = Date.now();
+            await fetch(window.location.href, {
+              method: 'HEAD',
+              cache: 'no-store',
+            });
+            pingTime = Date.now() - start;
+          } catch (e) {
+            console.error('Ping error:', e);
+          }
+          const networkType =
+            (navigator as any).connection?.effectiveType || 'unknown';
+          const localUser: UserLocation = {
+            id: 'local-user',
+            lat: latitude,
+            lng: longitude,
+            name: 'Local User',
+            status: 'ACTIVE',
+            affiliation: 'SELF',
+            lastSeen: new Date().toISOString(),
+            ping: pingTime,
+            networkType,
+          };
+          const allLocations = [...randomLocations, localUser];
+          setLocations(allLocations);
+          onLocationsChange?.(allLocations);
+          setIsLoading(false);
+        },
+        (error) => {
+          console.error('Geolocation error:', error);
+          setLocations(randomLocations);
+          onLocationsChange?.(randomLocations);
+          setIsLoading(false);
+        }
+      );
+    } else {
+      setLocations(randomLocations);
+      onLocationsChange?.(randomLocations);
+      setIsLoading(false);
+    }
+  }, [mockCount]);
+
   return (
     <div className="relative w-full h-full">
+      {/* Mock count control */}
+      <div className="absolute top-2 right-2 z-[400] bg-black/50 p-1 text-cyber-yellow font-mono text-xs rounded">
+        <label className="flex items-center">
+          Mock:
+          <input
+            type="number"
+            min={1}
+            value={mockCount}
+            onChange={(e) => setMockCount(Number(e.target.value))}
+            className="ml-1 w-10 bg-black text-cyber-yellow border border-cyber-yellow rounded text-xs"
+          />
+        </label>
+      </div>
       {isLoading && (
         <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-black/70 text-cyber-yellow font-mono">
           <div className="w-16 h-16 border-2 border-t-cyber-yellow border-r-cyber-pink border-b-cyber-blue border-l-transparent rounded-full animate-spin mb-4"></div>
@@ -205,7 +295,7 @@ const MapWindow: React.FC<MapWindowProps> = ({
             Initializing Map
           </div>
           <div className="text-xs text-cyber-blue mt-2">
-            Connecting to Durable Objects...
+            Generating mock locations...
           </div>
         </div>
       )}

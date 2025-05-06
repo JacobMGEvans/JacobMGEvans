@@ -146,8 +146,12 @@ export const DetailsPanel: React.FC<DetailsPanelProps> = ({ user }) => {
                 </span>
               </li>
               <li>
-                <span className="text-cyber-red">LAST PING:</span>{' '}
-                {new Date().toLocaleTimeString()}
+                <span className="text-cyber-red">PING:</span>{' '}
+                {user.ping ? `${user.ping}ms` : 'N/A'}
+              </li>
+              <li>
+                <span className="text-cyber-red">NETWORK:</span>{' '}
+                {user.networkType || 'unknown'}
               </li>
             </ul>
           </div>
