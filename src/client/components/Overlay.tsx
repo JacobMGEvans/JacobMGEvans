@@ -96,6 +96,7 @@ const Overlay: React.FC = () => {
         ref={scanLinesRef}
         className="absolute inset-0 pointer-events-none"
         style={{
+          // TODO: Improve the background image and improve the darkness of the background, as well as the crosshair
           backgroundImage:
             'linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.05) 51%, transparent 51%)',
           backgroundSize: '100% 4px',
@@ -129,8 +130,10 @@ const Overlay: React.FC = () => {
         </div>
       </div>
 
-      {/* Center crosshair */}
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+      <div
+        id="crosshair"
+        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+      >
         <div className="relative w-40 h-40">
           {/* Horizontal line */}
           <div className="absolute top-1/2 left-0 w-full h-[1px] bg-cyber-yellow opacity-60"></div>

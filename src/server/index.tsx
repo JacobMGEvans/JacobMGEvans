@@ -7,6 +7,7 @@ import BlogPage from '../client/pages/BlogPage';
 import { handlePresence } from './api/presence';
 import { DurableObjectNamespace } from '@cloudflare/workers-types';
 import type { PresenceDO } from './durable-objects/presence';
+import 'leaflet/dist/leaflet.css';
 
 type Env = {
   Bindings: {

@@ -1,5 +1,6 @@
 import { reactRenderer } from '@hono/react-renderer';
 import { Script, Link } from 'hono-vite-react-stack/components';
+import 'leaflet/dist/leaflet.css';
 
 export const renderer = reactRenderer(({ children }) => {
   return (
