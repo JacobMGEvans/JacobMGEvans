@@ -189,7 +189,8 @@ const MapWindow: React.FC<MapWindowProps> = ({
       }
     };
     ws.onerror = (err) => console.error('WebSocket error:', err);
-    ws.onclose = () => console.log('WebSocket closed');
+    ws.onclose = ({ code, reason }) =>
+      console.log('WebSocket closed:', code, reason);
     return () => {
       ws.close();
     };
