@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build && vite build --ssr",
-    "preview": "wrangler dev dist-server/index.js",
-    "deploy": "npm run build && wrangler deploy dist-server/index.js",
+    "preview": "pnpm build && wrangler dev dist-server/index.js",
+    "deploy": "pnpm build && wrangler deploy dist-server/index.js",
     "scan": "pnpm dev & npx react-scan@latest localhost:3000",
     "manage": "npx npm-check-updates"
   },

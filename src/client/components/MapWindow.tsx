@@ -22,7 +22,7 @@ type MapWindowProps = {
 const cyberIcon = Leaflet.icon({
   // TODO: temporary icon until we have a better one
   iconUrl: '/cyber-marker.svg',
-  iconSize: [32, 32],
+  iconSize: [50, 50],
   iconAnchor: [16, 16],
   popupAnchor: [0, -16],
 });
@@ -137,6 +137,37 @@ const MapWindow: React.FC<MapWindowProps> = ({
 }) => {
   const [locations, setLocations] = useState<UserLocation[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  // Simulate a connection to the Presence Durable Object WebSocket
+  // useEffect(() => {
+  //   setIsLoading(true);
+  //   const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
+  //   const ws = new WebSocket(
+  //     `${protocol}://${window.location.host}/api/presence`
+  //   );
+
+  //   ws.onopen = () => {
+  //     console.log('WebSocket connected to presence DO');
+  //     // send one test/user event
+  //     ws.send(
+  //       JSON.stringify({
+  //         id: crypto.randomUUID(),
+  //         lat: 37.7749,
+  //         lng: -122.4194,
+  //         name: 'Local Test',
+  //       })
+  //     );
+  //   };
+
+  //   ws.onmessage = (event) => {
+  //     const data = JSON.parse(event.data) as UserLocation[];
+  //     setLocations(data);
+  //     if (isLoading) setIsLoading(false);
+  //   };
+  //   ws.onerror = (err) => console.error(err);
+  //   ws.onclose = () => console.log('Socket closed');
+  //   return () => ws.close();
+  // }, []);
 
   // Connect to Presence Durable Object WebSocket for real-time presence data
   useEffect(() => {
