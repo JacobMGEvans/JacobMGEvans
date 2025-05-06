@@ -1,6 +1,6 @@
 import { DurableObject } from 'cloudflare:workers';
 
-export interface UserLocation {
+export type UserLocation = {
   id: string;
   lat: number;
   lng: number;
@@ -8,8 +8,9 @@ export interface UserLocation {
   status?: string;
   affiliation?: string;
   lastSeen: string;
-}
+};
 
+// I hate classes, but Durable Objects cant be used without them
 export class PresenceDO extends DurableObject {
   private state: DurableObjectState;
   private users: Map<string, UserLocation> = new Map();
@@ -29,7 +30,6 @@ export class PresenceDO extends DurableObject {
   }
 
   async fetch(request: Request): Promise<Response> {
-    // WebSocket upgrade
     if (request.headers.get('upgrade')?.toLowerCase() === 'websocket') {
       return this.handleWebSocket(request);
     }
@@ -73,7 +73,9 @@ export class PresenceDO extends DurableObject {
         this.users.set(data.id, data);
         await this.state.storage.put('users', Array.from(this.users.entries()));
         this.broadcast();
-      } catch {}
+      } catch (err) {
+        console.error('Error processing WebSocket message:', err);
+      }
     });
     server.addEventListener('close', () => this.sessions.delete(sessionId));
     server.addEventListener('error', () => this.sessions.delete(sessionId));
