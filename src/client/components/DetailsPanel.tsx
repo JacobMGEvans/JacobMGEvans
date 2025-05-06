@@ -40,27 +40,30 @@ export const DetailsPanel: React.FC<DetailsPanelProps> = ({ user }) => {
 
   const generateRandomDetails = () => {
     const backgrounds = [
-      "Grew up in Night City's industrial zone",
-      'Former Arasaka employee, went rogue',
-      'Nomad from the Aldecaldo clan',
-      'Street kid from Heywood',
+      'Grew up in industrial zone',
+      'Former Corpo employee, went rogue',
+      'Nomad from a desert clan',
+      'Street kid from a neighborhood',
       'Corpo rat, specialized in data mining',
     ];
 
     const skills = [
-      'Netrunning: Advanced',
+      'Net: Advanced',
       'Combat: Moderate',
       'Tech: Expert',
       'Stealth: Basic',
       'Hacking: Proficient',
+      'Hacking: Expert',
+      'Stealth: Expert',
+      'Net: Basic',
     ];
 
     const affiliations = [
-      'Maelstrom gang associate',
-      'Mox sympathizer',
-      'Militech contractor',
-      'Independent fixer',
-      'Trauma Team subscriber',
+      'Corpo',
+      'SuperNova Cult',
+      'Cyberware Smugglers',
+      'Independent',
+      'Netjogger',
     ];
 
     return {
