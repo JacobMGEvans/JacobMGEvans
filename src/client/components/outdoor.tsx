@@ -8,7 +8,7 @@ import {
   sectionContainer,
 } from '../../../css-utilities';
 
-export function OutdoorSectionComponent() {
+export function OutdoorSection() {
   return (
     <section id="outdoor" className={sectionContainer()}>
       <h2 className={heading('h2')}>Outdoor Life</h2>

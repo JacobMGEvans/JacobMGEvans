@@ -1,6 +1,6 @@
 import { badge, flex, heading } from '../../../css-utilities';
 
-export function HeroComponent() {
+export function Hero() {
   return (
     <div className="hero min-h-[60vh] flex items-center justify-center relative overflow-hidden">
       <div className="absolute inset-0 z-0">

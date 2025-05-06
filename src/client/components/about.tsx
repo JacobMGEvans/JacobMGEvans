@@ -6,7 +6,7 @@ import {
   sectionContainer,
 } from '../../../css-utilities';
 
-export function AboutSectionComponent() {
+export function AboutSection() {
   return (
     <section id="about" className={sectionContainer()}>
       <h2 className={heading('h2')}>Professional Journey</h2>

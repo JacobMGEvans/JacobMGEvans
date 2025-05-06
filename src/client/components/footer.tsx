@@ -5,7 +5,7 @@ import {
   socialIcon,
 } from '../../../css-utilities';
 
-export function FooterComponent() {
+export function Footer() {
   const currentYear = new Date().getFullYear();
   return (
     <footer className={footerStyle()}>

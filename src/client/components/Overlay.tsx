@@ -1,7 +1,7 @@
 import type React from 'react';
 import { useState, useEffect, useRef } from 'react';
 import MapWindow, { type UserLocation } from './MapWindow';
-import DetailsPanel from './DetailsPanel';
+import { DetailsPanel } from './DetailsPanel';
 import { animate, stagger } from 'animejs';
 
 const Overlay: React.FC = () => {

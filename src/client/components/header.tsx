@@ -7,7 +7,7 @@ const getNavLink = (section: string) => {
   return section.startsWith('/') ? section : `/${section}`;
 };
 
-export function HeaderComponent() {
+export function Header() {
   return (
     <header
       className={`sticky top-0 z-50 w-full p-4 ${gradientHeader()} backdrop-blur-md border-b border-gray-800 text-gray-100 flex flex-col md:flex-row justify-between items-center`}

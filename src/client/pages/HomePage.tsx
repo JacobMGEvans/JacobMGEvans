@@ -1,12 +1,12 @@
 import { FC, useEffect } from 'react';
 import runSiteAnimations from '../hooks/useSiteAnimations';
-import { BackgroundElements } from '../components/background';
-import { HeaderComponent } from '../components/header';
-import { HeroComponent } from '../components/hero';
-import { AboutSectionComponent } from '../components/about';
-import { OssSectionComponent } from '../components/open-source';
-import { OutdoorSectionComponent } from '../components/outdoor';
-import { FooterComponent } from '../components/footer';
+import { BackgroundElements } from '../components/Background';
+import { Header } from '../components/Header';
+import { Hero } from '../components/Hero';
+import { AboutSection } from '../components/About';
+import { OssSection } from '../components/OpenSource';
+import { Footer } from '../components/Footer';
+import { OutdoorSection } from '../components/Outdoor';
 
 export interface HomePageProps {
   readme: string;
@@ -20,13 +20,13 @@ const HomePage: FC<HomePageProps> = ({ readme }) => {
   return (
     <>
       <BackgroundElements />
-      <HeaderComponent />
-      <HeroComponent />
+      <Header />
+      <Hero />
 
       <main className="container mx-auto px-4 py-8">
-        <AboutSectionComponent />
-        <OssSectionComponent />
-        <OutdoorSectionComponent />
+        <AboutSection />
+        <OssSection />
+        <OutdoorSection />
 
         {readme && (
           <section
@@ -37,7 +37,7 @@ const HomePage: FC<HomePageProps> = ({ readme }) => {
         )}
       </main>
 
-      <FooterComponent />
+      <Footer />
     </>
   );
 };

@@ -1,11 +1,12 @@
 import type React from 'react';
 import { useState, useEffect } from 'react';
 import type { UserLocation } from './MapWindow';
-interface DetailsPanelProps {
-  user: UserLocation | null;
-}
 
-const DetailsPanel: React.FC<DetailsPanelProps> = ({ user }) => {
+export type DetailsPanelProps = {
+  user: UserLocation | null;
+};
+
+export const DetailsPanel: React.FC<DetailsPanelProps> = ({ user }) => {
   const [scanProgress, setScanProgress] = useState(0);
   const [isScanning, setIsScanning] = useState(false);
   const [scanComplete, setScanComplete] = useState(false);
@@ -220,5 +221,3 @@ const DetailsPanel: React.FC<DetailsPanelProps> = ({ user }) => {
     </div>
   );
 };
-
-export default DetailsPanel;
