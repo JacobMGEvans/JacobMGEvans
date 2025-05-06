@@ -9,7 +9,7 @@ importers:
   .:
     dependencies:
       '@cloudflare/workers-types':
-        specifier: '^4.20250504.0 '
+        specifier: ^4.20250504.0
         version: 4.20250504.0
       '@fortawesome/react-fontawesome':
         specifier: ^0.2.2
@@ -27,8 +27,8 @@ importers:
         specifier: ^4.7.8
         version: 4.7.8
       hono-vite-react-stack:
-        specifier: ^0.1.4
-        version: 0.1.4(hono@4.7.8)(vite@6.3.4(jiti@2.4.2)(lightningcss@1.29.2))(workerd@1.20250428.0)(wrangler@4.14.1(@cloudflare/workers-types@4.20250504.0))
+        specifier: ^0.2.0
+        version: 0.2.0(hono@4.7.8)(vite@6.3.4(jiti@2.4.2)(lightningcss@1.29.2))(workerd@1.20250428.0)(wrangler@4.14.1(@cloudflare/workers-types@4.20250504.0))
       leaflet:
         specifier: ^1.9.4
         version: 1.9.4
@@ -54,6 +54,9 @@ importers:
       '@cloudflare/vite-plugin':
         specifier: ^1.1.0
         version: 1.1.0(rollup@4.40.1)(vite@6.3.4(jiti@2.4.2)(lightningcss@1.29.2))(workerd@1.20250428.0)(wrangler@4.14.1(@cloudflare/workers-types@4.20250504.0))
+      '@hono/vite-build':
+        specifier: ^1.6.1
+        version: 1.6.1(hono@4.7.8)
       '@tailwindcss/cli':
         specifier: ^4.1.5
         version: 4.1.5
@@ -605,8 +608,8 @@ packages:
       react: ^19.0.0
       react-dom: ^19.0.0
 
-  '@hono/vite-build@1.6.0':
-    resolution: {integrity: sha512-7YJHgOVb4MnlTGI4anWTneJqRJ+h7xar6m4iz7Bnjf+QEdR6T6p5M8feqbwyQ89K1jFnGOshBVKdbUw1fPwbew==}
+  '@hono/vite-build@1.6.1':
+    resolution: {integrity: sha512-M60p0cAWgEbYiGa+1j35Ljqcef8s2N5EhpQMWrH1N6fSid5jKD2+D2t1+AntI8HZbgC5VDdpk4QzcEuLMPCgsA==}
     engines: {node: '>=18.14.1'}
     peerDependencies:
       hono: '*'
@@ -1248,8 +1251,8 @@ packages:
   graceful-fs@4.2.11:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
 
-  hono-vite-react-stack@0.1.4:
-    resolution: {integrity: sha512-8hMYSywsXJLJ0ol1Wy5SR4MJQZ0+1k9atdQCewyzrGwKZRQor2QPUWiuOj+dB6TPuY9K5AXRHhoIGfsDsrWieQ==}
+  hono-vite-react-stack@0.2.0:
+    resolution: {integrity: sha512-jZM8ZSw7Gi4slTsXNRIIA22/Kp5nIu+tFp/rdfh4z8m6l+oN4GroosWM4ds8QyCiIIZ+9uA/umqIvMksPlU7og==}
     engines: {node: '>=18.0.0'}
 
   hono@4.7.8:
@@ -2049,7 +2052,7 @@ snapshots:
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
-  '@hono/vite-build@1.6.0(hono@4.7.8)':
+  '@hono/vite-build@1.6.1(hono@4.7.8)':
     dependencies:
       hono: 4.7.8
 
@@ -2608,10 +2611,10 @@ snapshots:
 
   graceful-fs@4.2.11: {}
 
-  hono-vite-react-stack@0.1.4(hono@4.7.8)(vite@6.3.4(jiti@2.4.2)(lightningcss@1.29.2))(workerd@1.20250428.0)(wrangler@4.14.1(@cloudflare/workers-types@4.20250504.0)):
+  hono-vite-react-stack@0.2.0(hono@4.7.8)(vite@6.3.4(jiti@2.4.2)(lightningcss@1.29.2))(workerd@1.20250428.0)(wrangler@4.14.1(@cloudflare/workers-types@4.20250504.0)):
     dependencies:
       '@cloudflare/vite-plugin': 0.1.21(vite@6.3.4(jiti@2.4.2)(lightningcss@1.29.2))(workerd@1.20250428.0)(wrangler@4.14.1(@cloudflare/workers-types@4.20250504.0))
-      '@hono/vite-build': 1.6.0(hono@4.7.8)
+      '@hono/vite-build': 1.6.1(hono@4.7.8)
       '@tailwindcss/vite': 4.1.5(vite@6.3.4(jiti@2.4.2)(lightningcss@1.29.2))
       '@vitejs/plugin-react': 4.4.1(vite@6.3.4(jiti@2.4.2)(lightningcss@1.29.2))
       vite-plugin-ssr-hot-reload: 0.4.2

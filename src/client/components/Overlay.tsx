@@ -6,13 +6,10 @@ import { animate, stagger } from 'animejs';
 
 const Overlay: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  // Real-time list of locations
   const [locations, setLocations] = useState<UserLocation[]>([]);
-  // Track which user dot is hovered
   const [selectedUser, setSelectedUser] = useState<UserLocation | null>(null);
-  // Current time for HUD header
   const [currentTime, setCurrentTime] = useState(() => new Date());
-  // Refs for animation elements
+
   const overlayRef = useRef<HTMLDivElement>(null);
   const scanLinesRef = useRef<HTMLDivElement>(null);
 
@@ -21,7 +18,6 @@ const Overlay: React.FC = () => {
     return () => clearInterval(timer);
   }, []);
 
-  // Listen for Explore button clicks to open the overlay
   useEffect(() => {
     const exploreButton = document.getElementById('explore-button');
     if (!exploreButton) return;
@@ -35,7 +31,6 @@ const Overlay: React.FC = () => {
     };
   }, []);
 
-  // Animate overlay when it opens
   useEffect(() => {
     if (isOpen && overlayRef.current) {
       // Initial glitch effect
@@ -47,7 +42,6 @@ const Overlay: React.FC = () => {
         easing: 'steps(6)',
       });
 
-      // Scan line animation
       if (scanLinesRef.current) {
         animate(scanLinesRef.current, {
           opacity: [0, 0.3],
@@ -95,7 +89,7 @@ const Overlay: React.FC = () => {
       }}
     >
       {/* Cyberpunk HUD grid overlay */}
-      <div className="absolute inset-0 bg-[radial-gradient(#F6FF0033_1px,transparent_1px)] bg-[size:20px_20px] opacity-20 pointer-events-none"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(#F6FF0033_1px,transparent_1px)] bg-[size:20px_20px] opacity-20 pointer-events-none" />
 
       {/* Scanlines effect */}
       <div
@@ -107,10 +101,10 @@ const Overlay: React.FC = () => {
           backgroundSize: '100% 4px',
           opacity: 0.2,
         }}
-      ></div>
+      />
 
       {/* Digital noise effect */}
-      <div className="absolute inset-0 bg-noise opacity-10 pointer-events-none"></div>
+      <div className="absolute inset-0 bg-noise opacity-10 pointer-events-none" />
 
       {/* HUD header */}
       <div className="absolute top-0 left-0 right-0 flex justify-between items-center p-4 text-cyber-yellow font-mono text-sm">

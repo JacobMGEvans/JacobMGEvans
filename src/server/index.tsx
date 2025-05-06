@@ -6,7 +6,7 @@ import HomePage from '../client/pages/HomePage';
 import BlogPage from '../client/pages/BlogPage';
 import { handlePresence } from './api/presence';
 import { DurableObjectNamespace } from '@cloudflare/workers-types';
-import { PresenceDO } from './durable-object/presence';
+import { PresenceDO } from './durable-objects/presence';
 
 type Env = {
   Bindings: {
@@ -33,6 +33,4 @@ app.get('/', async (c) => {
   return c.render(<HomePage readme={''} />);
 });
 
-// Not sure if this will even work, doesnt seem to be...
-export { PresenceDO };
 export default app;

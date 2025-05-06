@@ -143,7 +143,7 @@ const MapWindow: React.FC<MapWindowProps> = ({
   const [locations, setLocations] = useState<UserLocation[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Connect to Durable Object WebSocket for real-time presence data
+  // Connect to Presence Durable Object WebSocket for real-time presence data
   useEffect(() => {
     setIsLoading(true);
     //TODO: Should only be wss likely
@@ -170,7 +170,6 @@ const MapWindow: React.FC<MapWindowProps> = ({
 
   return (
     <div className="relative w-full h-full">
-      {/* Loading overlay */}
       {isLoading && (
         <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-black/70 text-cyber-yellow font-mono">
           <div className="w-16 h-16 border-2 border-t-cyber-yellow border-r-cyber-pink border-b-cyber-blue border-l-transparent rounded-full animate-spin mb-4"></div>
@@ -183,7 +182,6 @@ const MapWindow: React.FC<MapWindowProps> = ({
         </div>
       )}
 
-      {/* Map container */}
       <MapContainer
         center={[20, 0]}
         zoom={2}
@@ -233,7 +231,6 @@ const MapWindow: React.FC<MapWindowProps> = ({
         <div className="w-full h-[1px] bg-cyber-yellow/30 animate-[mapScan_4s_ease-in-out_infinite]"></div>
       </div>
 
-      {/* Add keyframe animations */}
       <style>{`
         @keyframes mapScan {
           0%, 100% { transform: translateY(-10px); opacity: 0; }
