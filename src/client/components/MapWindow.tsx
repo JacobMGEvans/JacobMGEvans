@@ -171,30 +171,30 @@ const MapWindow: React.FC<MapWindowProps> = ({
   // }, []);
 
   // Connect to Presence Durable Object WebSocket for real-time presence data
-  useEffect(() => {
-    setIsLoading(true);
-    //TODO: Should only be wss likely
-    const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
-    const wsUrl = `${protocol}://${window.location.host}/api/presence`;
-    const ws = new WebSocket(wsUrl);
-    ws.onopen = () => console.log('WebSocket connected to presence DO');
-    ws.onmessage = (event) => {
-      try {
-        const data = JSON.parse(event.data) as UserLocation[];
-        setLocations(data);
-        onLocationsChange?.(data);
-        if (isLoading) setIsLoading(false);
-      } catch (err) {
-        console.error('Error parsing presence data:', err);
-      }
-    };
-    ws.onerror = (err) => console.error('WebSocket error:', err);
-    ws.onclose = ({ code, reason }) =>
-      console.log('WebSocket closed:', code, reason);
-    return () => {
-      ws.close();
-    };
-  }, []);
+  // useEffect(() => {
+  //   setIsLoading(true);
+  //   //TODO: Should only be wss likely
+  //   const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
+  //   const wsUrl = `${protocol}://${window.location.host}/api/presence`;
+  //   const ws = new WebSocket(wsUrl);
+  //   ws.onopen = () => console.log('WebSocket connected to presence DO');
+  //   ws.onmessage = (event) => {
+  //     try {
+  //       const data = JSON.parse(event.data) as UserLocation[];
+  //       setLocations(data);
+  //       onLocationsChange?.(data);
+  //       if (isLoading) setIsLoading(false);
+  //     } catch (err) {
+  //       console.error('Error parsing presence data:', err);
+  //     }
+  //   };
+  //   ws.onerror = (err) => console.error('WebSocket error:', err);
+  //   ws.onclose = ({ code, reason }) =>
+  //     console.log('WebSocket closed:', code, reason);
+  //   return () => {
+  //     ws.close();
+  //   };
+  // }, []);
 
   return (
     <div className="relative w-full h-full">
