@@ -6,7 +6,7 @@ import HomePage from '../client/pages/HomePage';
 import BlogPage from '../client/pages/BlogPage';
 import { handlePresence } from './api/presence';
 import { DurableObjectNamespace } from '@cloudflare/workers-types';
-import { PresenceDO } from './durable-objects/presence';
+import type { PresenceDO } from './durable-objects/presence';
 
 type Env = {
   Bindings: {
