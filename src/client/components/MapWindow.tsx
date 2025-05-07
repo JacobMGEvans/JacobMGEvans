@@ -139,11 +139,101 @@ const generateRandomLocations = (count: number): UserLocation[] => {
   const affiliations = ['CIVILIAN', 'CORPO', 'NOMAD', 'NETRUNNER', 'FIXER'];
   const statuses = ['ACTIVE', 'IDLE', 'OFFLINE', 'UNKNOWN'];
 
+  // Define approximate bounding boxes for landmasses
+  type GeoBox = {
+    name: string;
+    latRange: [number, number];
+    lngRange: [number, number];
+  };
+
+  const landmasses: GeoBox[] = [
+    { name: 'North America', latRange: [24, 70], lngRange: [-168, -52] },
+    { name: 'South America', latRange: [-56, 13], lngRange: [-81, -34] },
+    { name: 'Europe', latRange: [34, 71], lngRange: [-25, 60] },
+    { name: 'Africa', latRange: [-35, 38], lngRange: [-18, 52] },
+    { name: 'Asia', latRange: [0, 75], lngRange: [60, 180] },
+    { name: 'East Asia Islands', latRange: [20, 50], lngRange: [120, 150] },
+    { name: 'Indonesia/SEA Islands', latRange: [-11, 20], lngRange: [94, 141] },
+    {
+      name: 'Oceania (Australia/NZ)',
+      latRange: [-47, -10],
+      lngRange: [112, 178],
+    },
+  ];
+
+  // Define approximate bounding boxes for major oceans to exclude points
+  const oceans: GeoBox[] = [
+    // Pacific
+    { name: 'North Pacific 1', latRange: [0, 60], lngRange: [-180, -120] },
+    { name: 'North Pacific 2', latRange: [0, 60], lngRange: [140, 180] },
+    { name: 'South Pacific 1', latRange: [-60, 0], lngRange: [-180, -70] },
+    { name: 'South Pacific 2', latRange: [-60, 0], lngRange: [160, 180] },
+    // Atlantic
+    { name: 'North Atlantic', latRange: [0, 70], lngRange: [-80, -5] },
+    { name: 'South Atlantic', latRange: [-60, 0], lngRange: [-70, 20] },
+    // Indian
+    { name: 'Indian Ocean', latRange: [-50, 30], lngRange: [20, 110] },
+    // Arctic & Southern
+    { name: 'Arctic Ocean', latRange: [70, 90], lngRange: [-180, 180] },
+    { name: 'Southern Ocean', latRange: [-90, -55], lngRange: [-180, 180] },
+    // Smaller seas
+    { name: 'Caribbean Sea', latRange: [8, 22], lngRange: [-89, -60] },
+    { name: 'Gulf of Mexico', latRange: [18, 31], lngRange: [-98, -80] },
+    { name: 'Mediterranean Sea', latRange: [30, 46], lngRange: [-6, 37] },
+    { name: 'Sea of Japan', latRange: [33, 52], lngRange: [127, 142] },
+    { name: 'Bering Sea', latRange: [51, 66], lngRange: [162, -157] },
+  ];
+
+  const isPointInBox = (lat: number, lng: number, box: GeoBox) => {
+    return (
+      lat >= box.latRange[0] &&
+      lat <= box.latRange[1] &&
+      lng >= box.lngRange[0] &&
+      lng <= box.lngRange[1]
+    );
+  };
+
+  const isPointInAnyOcean = (lat: number, lng: number) => {
+    for (const ocean of oceans) {
+      if (isPointInBox(lat, lng, ocean)) {
+        return true;
+      }
+    }
+    return false;
+  };
+
   for (let i = 0; i < count; i++) {
+    let lat: number;
+    let lng: number;
+    let attempts = 0;
+    const MAX_ATTEMPTS = 10;
+
+    // Randomly select a landmass
+    const landmass = landmasses[Math.floor(Math.random() * landmasses.length)];
+
+    do {
+      lat =
+        Math.random() * (landmass.latRange[1] - landmass.latRange[0]) +
+        landmass.latRange[0];
+      lng =
+        Math.random() * (landmass.lngRange[1] - landmass.lngRange[0]) +
+        landmass.lngRange[0];
+      attempts++;
+    } while (isPointInAnyOcean(lat, lng) && attempts < MAX_ATTEMPTS);
+
+    // If still in an ocean after max attempts, it might be a small island or error in boxes, log for review if needed
+    // For now, we just use the last generated point even if it's potentially in water.
+    // A more sophisticated approach might pick a fallback or use a different landmass.
+    if (attempts === MAX_ATTEMPTS && isPointInAnyOcean(lat, lng)) {
+      console.warn(
+        `Max attempts reached for placing user ${i} on landmass ${landmass.name}. Point may be in water.`
+      );
+    }
+
     users.push({
       id: `user-${i}`,
-      lat: Math.random() * 140 - 70,
-      lng: Math.random() * 340 - 170,
+      lat: lat,
+      lng: lng,
       name: `User-${Math.floor(Math.random() * 1000)}`,
       affiliation:
         affiliations[Math.floor(Math.random() * affiliations.length)],
