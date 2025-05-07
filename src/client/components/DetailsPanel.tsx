@@ -88,7 +88,7 @@ export const DetailsPanel: React.FC<DetailsPanelProps> = ({ user }) => {
       {/* Scan frame with digital asset placeholder */}
       <div className="relative h-32 mb-6 border border-cyber-red/30 overflow-hidden">
         {/* Placeholder for scan-frame digital asset */}
-        <div className="absolute inset-0 bg-[url('/hud-scan-placeholder.png')] bg-center bg-no-repeat bg-contain"></div>
+        <div className="absolute inset-0 bg-center bg-no-repeat bg-contain"></div>
 
         {/* Scan progress overlay */}
         {isScanning && (
