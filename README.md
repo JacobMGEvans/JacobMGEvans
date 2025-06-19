@@ -21,6 +21,7 @@ Here's a little about me:
 - 🛠️ Hardware Tinkerer & Maker
 - 🏕️ Camping & Hiking Enthusiast
 - 🖖 Star Trek Fan (Trekkie)
+- 🎾 Pickleball
 - 🎲 Dungeons & Dragons Player ([Catch me on Twitch!](http://twitch.tv/jacobmgevans))
 
 I'm passionate about creating useful content, actively volunteering in technical communities, and contributing to open-source software. It's all part of my continuous journey of learning and growth.
