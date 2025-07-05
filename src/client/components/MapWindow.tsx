@@ -81,6 +81,10 @@ const MapWindow: React.FC<MapWindowProps> = ({
   const stylesAdded = useRef<boolean>(false);
   const mapLoaded = useRef<boolean>(false);
 
+  // TEMP: hard-code presence integration off in all builds.
+  // Flip to `false` when you want to re-enable the WebSocket/DO path.
+  const DISABLE_PRESENCE = true;
+
   useEffect(() => {
     if (!mapContainer.current || map.current) return;
 
@@ -202,10 +206,14 @@ const MapWindow: React.FC<MapWindowProps> = ({
     setLocations(validMockLocations);
     onLocationsChange?.(validMockLocations);
 
+    // If DO is disabled just populate mock data and bail out early.
+    if (DISABLE_PRESENCE) {
+      setIsLoading(false);
+      return undefined; // cleanup: none needed
+    }
+
     const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
     let host = window.location.host;
-    // When running via Vite dev server (localhost:5173/5174), bypass the proxy
-    // and connect directly to the Wrangler dev Worker which listens on 8787.
     if (import.meta.env.DEV && host.startsWith('localhost:517')) {
       host = 'localhost:8787';
     }
