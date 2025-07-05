@@ -21,14 +21,13 @@ export default defineConfig({
       external: ['cloudflare:workers'],
     },
   },
-  // Use this to proxy HTTP and WS for presence DO
-  // server: {
-  //   proxy: {
-  //     '/api/presence': {
-  //       target: 'http://localhost:8787',
-  //       changeOrigin: true,
-  //       ws: true,
-  //     },
-  //   },
-  // },
+  server: {
+    proxy: {
+      '/api/presence': {
+        target: 'ws://localhost:8787',
+        changeOrigin: true,
+        ws: true,
+      },
+    },
+  },
 });

@@ -75,6 +75,9 @@ const MapWindow: React.FC<MapWindowProps> = ({
   const [locations, setLocations] = useState<UserLocation[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [mockCount, setMockCount] = useState<number>(10);
+  const wsRef = useRef<WebSocket | null>(null);
+  const heartbeatRef = useRef<number | null>(null);
+  const geoWatchIdRef = useRef<number | null>(null);
   const stylesAdded = useRef<boolean>(false);
   const mapLoaded = useRef<boolean>(false);
 
@@ -200,100 +203,163 @@ const MapWindow: React.FC<MapWindowProps> = ({
     onLocationsChange?.(validMockLocations);
 
     const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
-    const wsUrl = `${protocol}://${window.location.host}/api/presence`;
-
-    try {
-      const ws = new WebSocket(wsUrl);
-
-      ws.onopen = () => {
-        console.log('WebSocket connected to presence DO');
-
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(
-            (position) => {
-              const { latitude, longitude } = position.coords;
-              const localUser: UserLocation = {
-                id: 'local-user',
-                lat: latitude,
-                lng: longitude,
-                name: 'Local User',
-                status: 'ACTIVE',
-                affiliation: 'SELF',
-                lastSeen: new Date().toISOString(),
-              };
-              ws.send(JSON.stringify(localUser));
-            },
-            (error) => console.error('Geolocation error:', error)
-          );
-        }
-      };
-
-      ws.onmessage = (event) => {
-        try {
-          const data = JSON.parse(event.data) as UserLocation[];
-          const validWSData = data.filter((location) => {
-            const isValid =
-              typeof location.lat === 'number' &&
-              typeof location.lng === 'number' &&
-              !isNaN(location.lat) &&
-              !isNaN(location.lng) &&
-              Math.abs(location.lat) <= 90 &&
-              Math.abs(location.lng) <= 180;
-
-            if (!isValid) {
-              console.error('Invalid WebSocket location received:', location);
-            }
-            return isValid;
-          });
-
-          const combinedData =
-            validWSData.length > 0
-              ? [...validWSData, ...validMockLocations]
-              : validMockLocations;
-
-          setLocations(combinedData);
-          onLocationsChange?.(combinedData);
-          setIsLoading(false);
-        } catch (err) {
-          console.error('Error parsing presence data:', err);
-          setLocations(validMockLocations);
-          onLocationsChange?.(validMockLocations);
-          setIsLoading(false);
-        }
-      };
-
-      ws.onerror = (error) => {
-        console.warn('WebSocket error:', error, 'using mock data only');
-        setLocations(validMockLocations);
-        onLocationsChange?.(validMockLocations);
-        setIsLoading(false);
-      };
-
-      ws.onclose = () => {
-        console.log('WebSocket closed, ensuring mock data is set');
-        setLocations(validMockLocations);
-        onLocationsChange?.(validMockLocations);
-        setIsLoading(false);
-      };
-
-      setTimeout(() => {
-        if (isLoading) {
-          console.log('WebSocket timeout, showing mock data');
-          setLocations(validMockLocations);
-          onLocationsChange?.(validMockLocations);
-          setIsLoading(false);
-        }
-      }, 2000);
-
-      return () => {
-        ws.close();
-      };
-    } catch (error) {
-      console.error('WebSocket connection failed:', error);
-      setLocations(validMockLocations);
-      onLocationsChange?.(validMockLocations);
-      setIsLoading(false);
+    let host = window.location.host;
+    // When running via Vite dev server (localhost:5173/5174), bypass the proxy
+    // and connect directly to the Wrangler dev Worker which listens on 8787.
+    if (import.meta.env.DEV && host.startsWith('localhost:517')) {
+      host = 'localhost:8787';
     }
+    const wsUrl = `${protocol}://${host}/api/presence`;
+
+    const connect = () => {
+      try {
+        const ws = new WebSocket(wsUrl);
+        wsRef.current = ws;
+
+        const sendHeartbeat = (user?: UserLocation) => {
+          if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
+            if (user) {
+              wsRef.current.send(JSON.stringify(user));
+            } else {
+              wsRef.current.send(
+                JSON.stringify({ type: 'ping', id: 'local-user' })
+              );
+            }
+          }
+        };
+
+        ws.onopen = () => {
+          console.log('WebSocket connected to presence DO');
+
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+              (position) => {
+                const { latitude, longitude } = position.coords;
+                const localUser: UserLocation = {
+                  id: 'local-user',
+                  lat: latitude,
+                  lng: longitude,
+                  name: 'Local User',
+                  status: 'ACTIVE',
+                  affiliation: 'SELF',
+                  lastSeen: new Date().toISOString(),
+                };
+                sendHeartbeat(localUser);
+
+                if (geoWatchIdRef.current === null) {
+                  geoWatchIdRef.current = navigator.geolocation.watchPosition(
+                    (pos) => {
+                      const updatedUser = {
+                        ...localUser,
+                        lat: pos.coords.latitude,
+                        lng: pos.coords.longitude,
+                        lastSeen: new Date().toISOString(),
+                      };
+                      sendHeartbeat(updatedUser);
+                    },
+                    (err) => console.error('Geolocation watch error:', err),
+                    { enableHighAccuracy: true, maximumAge: 15000 }
+                  );
+                }
+              },
+              (error) => console.error('Geolocation error:', error)
+            );
+          }
+
+          heartbeatRef.current = window.setInterval(() => {
+            sendHeartbeat();
+          }, 25000);
+        };
+
+        ws.onmessage = (event) => {
+          try {
+            const data = JSON.parse(event.data) as UserLocation[];
+            const validWSData = data.filter((location) => {
+              const isValid =
+                typeof location.lat === 'number' &&
+                typeof location.lng === 'number' &&
+                !isNaN(location.lat) &&
+                !isNaN(location.lng) &&
+                Math.abs(location.lat) <= 90 &&
+                Math.abs(location.lng) <= 180;
+
+              if (!isValid) {
+                console.error('Invalid WebSocket location received:', location);
+              }
+              return isValid;
+            });
+
+            const combinedData =
+              validWSData.length > 0
+                ? [...validWSData, ...validMockLocations]
+                : validMockLocations;
+
+            setLocations(combinedData);
+            onLocationsChange?.(combinedData);
+            setIsLoading(false);
+          } catch (err) {
+            console.error('Error parsing presence data:', err);
+            setLocations(validMockLocations);
+            onLocationsChange?.(validMockLocations);
+            setIsLoading(false);
+          }
+        };
+
+        ws.onerror = (error) => {
+          console.warn('WebSocket error:', error, 'using mock data only');
+          setLocations(validMockLocations);
+          onLocationsChange?.(validMockLocations);
+          setIsLoading(false);
+        };
+
+        ws.onclose = () => {
+          console.log('WebSocket closed, attempting reconnect in 5s');
+
+          if (heartbeatRef.current !== null) {
+            clearInterval(heartbeatRef.current);
+            heartbeatRef.current = null;
+          }
+          if (geoWatchIdRef.current !== null) {
+            navigator.geolocation.clearWatch(geoWatchIdRef.current);
+            geoWatchIdRef.current = null;
+          }
+
+          setLocations(validMockLocations);
+          onLocationsChange?.(validMockLocations);
+          setIsLoading(false);
+
+          setTimeout(connect, 5000);
+        };
+      } catch (connErr) {
+        console.error('WebSocket connection failed:', connErr);
+        setLocations(validMockLocations);
+        onLocationsChange?.(validMockLocations);
+        setIsLoading(false);
+      }
+    };
+
+    connect();
+
+    setTimeout(() => {
+      if (isLoading) {
+        console.log('WebSocket timeout, showing mock data');
+        setLocations(validMockLocations);
+        onLocationsChange?.(validMockLocations);
+        setIsLoading(false);
+      }
+    }, 2000);
+
+    return () => {
+      if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
+        wsRef.current.close();
+      }
+      if (heartbeatRef.current !== null) {
+        clearInterval(heartbeatRef.current);
+      }
+      if (geoWatchIdRef.current !== null) {
+        navigator.geolocation.clearWatch(geoWatchIdRef.current);
+      }
+    };
   }, [mockCount, onLocationsChange]);
 
   const addGeoJSONMarkers = (locations: UserLocation[]) => {
@@ -431,13 +497,11 @@ const MapWindow: React.FC<MapWindowProps> = ({
     });
   };
 
-  // !Update markers when locations change - WAIT FOR MAP TO LOAD
   useEffect(() => {
     if (!map.current || !locations.length || !mapLoaded.current) {
       return;
     }
 
-    //! Use GeoJSON approach for markers
     addGeoJSONMarkers(locations);
   }, [locations, onUserHover, mapLoaded]);
 
@@ -469,10 +533,8 @@ const MapWindow: React.FC<MapWindowProps> = ({
         </div>
       )}
 
-      {/* Map container */}
       <div ref={mapContainer} className="w-full h-full" />
 
-      {/* Map overlay elements */}
       <div className="absolute top-2 left-2 z-[400] text-cyber-yellow font-mono text-xs">
         <div className="flex items-center">
           <div className="w-2 h-2 bg-cyber-yellow mr-1 animate-pulse"></div>
@@ -487,11 +549,9 @@ const MapWindow: React.FC<MapWindowProps> = ({
         </div>
       </div>
 
-      {/* Grid overlay */}
       <div className="absolute inset-0 z-[401] pointer-events-none border border-cyber-yellow/20"></div>
       <div className="absolute inset-0 z-[401] pointer-events-none bg-[linear-gradient(0deg,rgba(246,255,0,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(246,255,0,0.05)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
 
-      {/* Scan effect */}
       <div className="absolute inset-0 z-[402] pointer-events-none overflow-hidden">
         <div className="w-full h-[1px] bg-cyber-yellow/30 animate-[mapScan_4s_ease-in-out_infinite]"></div>
       </div>
