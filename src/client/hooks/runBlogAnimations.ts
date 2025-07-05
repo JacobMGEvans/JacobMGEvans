@@ -4,14 +4,12 @@ import { animate } from 'animejs';
 export default function runBlogAnimations() {
   console.log('Blog page loaded, initializing animations...');
 
-  // Add cyberpunk grid overlay to content sections
   document.querySelectorAll('.content-section').forEach((section) => {
     const gridOverlay = document.createElement('div');
     gridOverlay.classList.add('grid-overlay');
     section.appendChild(gridOverlay);
   });
 
-  // Animate fade-in elements
   const observer = new IntersectionObserver(
     (entries, obs) => {
       entries.forEach((entry) => {
@@ -32,7 +30,6 @@ export default function runBlogAnimations() {
     .querySelectorAll<HTMLElement>('.animate-fade-in')
     .forEach((el) => observer.observe(el));
 
-  // Parallax and scanline effects
   window.addEventListener('scroll', () => {
     const scrollY = window.scrollY;
     const mountains = document.querySelector('.parallax-mountains');
@@ -50,7 +47,6 @@ export default function runBlogAnimations() {
     }
   });
 
-  // Dark forest tracks animation
   const tracks = document.querySelector('.wolf-tracks');
   if (tracks instanceof HTMLElement) {
     animate(tracks, {
@@ -68,7 +64,6 @@ export default function runBlogAnimations() {
     });
   }
 
-  // Enhanced glow animations
   animate('.glow-animate', {
     boxShadow: [
       '0 0 0px rgba(0, 240, 255, 0.3), 0 0 0px rgba(223, 0, 254, 0.3)',
@@ -80,7 +75,6 @@ export default function runBlogAnimations() {
     duration: 2000,
   });
 
-  // Cyberpunk glitch effect for headings
   document.querySelectorAll<HTMLElement>('.cyber-glitch').forEach((el) => {
     el.addEventListener('mouseover', () => {
       animate(el, {

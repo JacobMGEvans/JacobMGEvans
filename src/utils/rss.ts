@@ -28,8 +28,6 @@ export async function fetchBlogPosts(): Promise<BlogPost[]> {
     // console.log('XML snippet:', xml.substring(0, 500) + '...');
 
     const posts: BlogPost[] = [];
-
-    // Extract items (posts) from the RSS feed
     const itemRegex = /<item>([\s\S]*?)<\/item>/g;
     let match;
     let count = 0;
@@ -39,19 +37,10 @@ export async function fetchBlogPosts(): Promise<BlogPost[]> {
       const itemContent = match[1];
 
       try {
-        // Extract post details
         const title = decodeHtmlEntities(extractTag(itemContent, 'title'));
         const link = extractTag(itemContent, 'link');
         const pubDate = extractTag(itemContent, 'pubDate');
         const content = extractTag(itemContent, 'description');
-
-        // console.log(`Parsing item ${count}:`, {
-        //   title,
-        //   link,
-        //   pubDate: pubDate.substring(0, 20) + '...',
-        // });
-
-        // Extract categories
         const categories: string[] = [];
         const categoryRegex = /<category>(.*?)<\/category>/g;
         let catMatch;

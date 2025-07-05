@@ -20,7 +20,6 @@ type MapWindowProps = {
   onLocationsChange?: (locations: UserLocation[]) => void;
 };
 
-// Function to generate mock locations
 const generateRandomLocations = (count: number): UserLocation[] => {
   const users: UserLocation[] = [];
   const affiliations = ['CIVILIAN', 'CORPO', 'NOMAD', 'NETRUNNER', 'FIXER'];
@@ -79,7 +78,6 @@ const MapWindow: React.FC<MapWindowProps> = ({
   const stylesAdded = useRef<boolean>(false);
   const mapLoaded = useRef<boolean>(false);
 
-  // Initialize map only once
   useEffect(() => {
     if (!mapContainer.current || map.current) return;
 
@@ -108,21 +106,18 @@ const MapWindow: React.FC<MapWindowProps> = ({
         zoom: 2,
       });
 
-      // Add cyberpunk styling once
       map.current.on('load', () => {
         mapLoaded.current = true;
 
         if (!stylesAdded.current) {
           stylesAdded.current = true;
 
-          // Apply cyberpunk filter
           const canvas = map.current?.getCanvas();
           if (canvas) {
             canvas.style.filter =
               'hue-rotate(140deg) saturate(1.5) brightness(0.7) contrast(1.2)';
           }
 
-          // Add control styling - FIXED CSS SYNTAX
           const styleElement = document.createElement('style');
           styleElement.id = 'maplibre-cyber-styles';
           styleElement.textContent = `
@@ -160,7 +155,6 @@ const MapWindow: React.FC<MapWindowProps> = ({
 
     return () => {
       if (map.current) {
-        // Clean up GeoJSON markers
         if (map.current.getSource('user-locations')) {
           if (map.current.getLayer('user-locations-pulse')) {
             map.current.removeLayer('user-locations-pulse');
@@ -175,7 +169,6 @@ const MapWindow: React.FC<MapWindowProps> = ({
         map.current = null;
       }
       mapLoaded.current = false;
-      // Clean up styles
       const existingStyles = document.getElementById('maplibre-cyber-styles');
       if (existingStyles) {
         existingStyles.remove();
@@ -184,14 +177,10 @@ const MapWindow: React.FC<MapWindowProps> = ({
     };
   }, []);
 
-  // Handle user locations and real-time presence
   useEffect(() => {
     setIsLoading(true);
 
-    // Generate mock locations as primary data source
     const mockLocations = generateRandomLocations(mockCount);
-
-    // Validate mock locations
     const validMockLocations = mockLocations.filter((location) => {
       const isValid =
         typeof location.lat === 'number' &&
@@ -207,11 +196,9 @@ const MapWindow: React.FC<MapWindowProps> = ({
       return isValid;
     });
 
-    // Set mock locations immediately to ensure we have data
     setLocations(validMockLocations);
     onLocationsChange?.(validMockLocations);
 
-    // Try to connect to WebSocket for real presence data
     const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
     const wsUrl = `${protocol}://${window.location.host}/api/presence`;
 
@@ -221,7 +208,6 @@ const MapWindow: React.FC<MapWindowProps> = ({
       ws.onopen = () => {
         console.log('WebSocket connected to presence DO');
 
-        // Try to add local user location
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(
             (position) => {
@@ -245,8 +231,6 @@ const MapWindow: React.FC<MapWindowProps> = ({
       ws.onmessage = (event) => {
         try {
           const data = JSON.parse(event.data) as UserLocation[];
-
-          // Validate WebSocket data
           const validWSData = data.filter((location) => {
             const isValid =
               typeof location.lat === 'number' &&
@@ -262,7 +246,6 @@ const MapWindow: React.FC<MapWindowProps> = ({
             return isValid;
           });
 
-          // Only combine with mock data if we have valid WS data
           const combinedData =
             validWSData.length > 0
               ? [...validWSData, ...validMockLocations]
@@ -293,7 +276,6 @@ const MapWindow: React.FC<MapWindowProps> = ({
         setIsLoading(false);
       };
 
-      // Set a timeout to ensure we show mock data even if WS takes too long
       setTimeout(() => {
         if (isLoading) {
           console.log('WebSocket timeout, showing mock data');
@@ -314,11 +296,9 @@ const MapWindow: React.FC<MapWindowProps> = ({
     }
   }, [mockCount, onLocationsChange]);
 
-  // Function to add GeoJSON markers (more reliable than DOM markers)
   const addGeoJSONMarkers = (locations: UserLocation[]) => {
     if (!map.current || !mapLoaded.current) return;
 
-    // Create GeoJSON feature collection
     const geojson = {
       type: 'FeatureCollection' as const,
       features: locations.map((location, index) => ({
@@ -337,7 +317,6 @@ const MapWindow: React.FC<MapWindowProps> = ({
       })),
     };
 
-    // Remove existing source and layers
     if (map.current.getSource('user-locations')) {
       if (map.current.getLayer('user-locations-pulse')) {
         map.current.removeLayer('user-locations-pulse');
@@ -348,13 +327,11 @@ const MapWindow: React.FC<MapWindowProps> = ({
       map.current.removeSource('user-locations');
     }
 
-    // Add source
     map.current.addSource('user-locations', {
       type: 'geojson',
       data: geojson,
     });
 
-    // Add circle layer
     map.current.addLayer({
       id: 'user-locations-circles',
       type: 'circle',
@@ -389,7 +366,6 @@ const MapWindow: React.FC<MapWindowProps> = ({
       },
     });
 
-    // Add pulsing outer ring for cyberpunk effect
     map.current.addLayer({
       id: 'user-locations-pulse',
       type: 'circle',
@@ -424,7 +400,6 @@ const MapWindow: React.FC<MapWindowProps> = ({
       },
     });
 
-    // Add click handlers for both layers
     const layers = ['user-locations-circles', 'user-locations-pulse'];
 
     layers.forEach((layerId) => {
@@ -456,19 +431,18 @@ const MapWindow: React.FC<MapWindowProps> = ({
     });
   };
 
-  // Update markers when locations change - WAIT FOR MAP TO LOAD
+  // !Update markers when locations change - WAIT FOR MAP TO LOAD
   useEffect(() => {
     if (!map.current || !locations.length || !mapLoaded.current) {
       return;
     }
 
-    // Use GeoJSON approach for markers
+    //! Use GeoJSON approach for markers
     addGeoJSONMarkers(locations);
   }, [locations, onUserHover, mapLoaded]);
 
   return (
     <div className="relative w-full h-full">
-      {/* Mock count control */}
       <div className="absolute top-2 right-2 z-[400] bg-black/20 p-1 text-cyber-yellow font-mono text-[10px] rounded opacity-60 hover:opacity-100 transition-opacity">
         <label className="flex items-center">
           Mock:

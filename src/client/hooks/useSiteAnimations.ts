@@ -1,7 +1,6 @@
 import { animate, stagger } from 'animejs';
 
 export default function runSiteAnimations() {
-  // Add cyberpunk grid overlay to content sections
   const addCyberElements = () => {
     document.querySelectorAll('.content-section').forEach((section) => {
       const gridOverlay = document.createElement('div');
@@ -33,7 +32,6 @@ export default function runSiteAnimations() {
     duration: 800,
   });
 
-  // Cyberpunk glitch effect for headings
   document.querySelectorAll<HTMLElement>('.cyber-glitch').forEach((el) => {
     el.addEventListener('mouseover', () => {
       animate(el, {
@@ -52,7 +50,6 @@ export default function runSiteAnimations() {
     });
   });
 
-  // Animated fade-in elements
   const observer = new IntersectionObserver(
     (entries, obs) => {
       entries.forEach((entry) => {
@@ -73,7 +70,6 @@ export default function runSiteAnimations() {
     .querySelectorAll<HTMLElement>('.animate-fade-in')
     .forEach((el) => observer.observe(el));
 
-  // Enhanced parallax and scanline effects
   const handleScroll = () => {
     const scrollY = window.scrollY;
     const mountains = document.querySelector('.parallax-mountains');
@@ -92,7 +88,6 @@ export default function runSiteAnimations() {
   };
   window.addEventListener('scroll', handleScroll);
 
-  // Dark forest tracks animation
   const tracks = document.querySelector('.wolf-tracks');
   if (tracks instanceof HTMLElement) {
     animate(tracks, {
@@ -110,7 +105,6 @@ export default function runSiteAnimations() {
     });
   }
 
-  // Enhanced glow animations
   animate('.glow-animate', {
     boxShadow: [
       '0 0 0px rgba(0, 240, 255, 0.3), 0 0 0px rgba(223, 0, 254, 0.3)',
@@ -132,7 +126,6 @@ export default function runSiteAnimations() {
     duration: 2000,
   });
 
-  // Random "digital noise" flicker effect
   document
     .querySelectorAll<HTMLElement>('.tech-badge, .cyber-element')
     .forEach((el) => {
@@ -146,7 +139,6 @@ export default function runSiteAnimations() {
       }, 2000);
     });
 
-  // Add IDs to important sections
   document.querySelectorAll<HTMLHeadingElement>('h2').forEach((header) => {
     const text = header.textContent?.toLowerCase() || '';
     if (

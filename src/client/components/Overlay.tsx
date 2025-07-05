@@ -50,7 +50,6 @@ const Overlay: React.FC = () => {
         });
       }
 
-      // Animate panels with delay
       animate(overlayRef.current, {
         scale: [0.8, 1],
         opacity: [0, 1],
@@ -64,7 +63,6 @@ const Overlay: React.FC = () => {
   if (!isOpen) return null;
 
   const handleClose = () => {
-    // Animate closing with glitch effect
     if (overlayRef.current) {
       animate(overlayRef.current, {
         opacity: [1, 0.7, 0.3, 0.5, 0.1, 0],
