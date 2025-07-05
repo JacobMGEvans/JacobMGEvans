@@ -1,8 +1,7 @@
 import type React from 'react';
 import { useEffect, useState, useRef } from 'react';
-import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet';
-import Leaflet from 'leaflet';
-import 'leaflet/dist/leaflet.css';
+import maplibregl from 'maplibre-gl';
+import 'maplibre-gl/dist/maplibre-gl.css';
 
 export type UserLocation = {
   id: string;
@@ -21,132 +20,13 @@ type MapWindowProps = {
   onLocationsChange?: (locations: UserLocation[]) => void;
 };
 
-const cyberIcon = Leaflet.icon({
-  // TODO: temporary icon until we have a better one
-  iconUrl: '/cyber-marker.svg',
-  iconSize: [50, 50],
-  iconAnchor: [16, 16],
-  popupAnchor: [0, -16],
-});
-
-const CyberpunkMapStyle = () => {
-  const map = useMap();
-
-  useEffect(() => {
-    const mapContainer = map.getContainer();
-    mapContainer.style.filter =
-      'hue-rotate(140deg) saturate(1.5) brightness(0.7) contrast(1.2)';
-
-    const styleElement = document.createElement('style');
-    styleElement.textContent = `
-      .leaflet-control-zoom {
-        border: 1px solid #F6FF00 !important;
-        background: rgba(0, 0, 0, 0.7) !important;
-      }
-      .leaflet-control-zoom a {
-        color: #F6FF00 !important;
-        background: rgba(0, 0, 0, 0.7) !important;
-      }
-      .leaflet-control-zoom a:hover {
-        color: #00F0FF !important;
-        background: rgba(0, 0, 0, 0.9) !important;
-      }
-      .leaflet-control-attribution {
-        background: rgba(0, 0, 0, 0.7) !important;
-        color: #F6FF00 !important;
-        font-family: monospace !important;
-        font-size: 8px !important;
-      }
-      .leaflet-control-attribution a {
-        color: #00F0FF !important;
-      }
-    `;
-    document.head.appendChild(styleElement);
-
-    return () => {
-      document.head.removeChild(styleElement);
-    };
-  }, [map]);
-
-  return null;
-};
-
-// Pulsing effect for markers - Also built into the Marker SVG
-const PulsingMarker: React.FC<{
-  position: [number, number];
-  user: UserLocation;
-  onHover: (user: UserLocation | null) => void;
-}> = ({ position, user, onHover }) => {
-  const markerRef = useRef<Leaflet.Marker>(null);
-
-  useEffect(() => {
-    const marker = markerRef.current;
-    if (!marker) return;
-
-    const icon = marker.getElement();
-    if (icon) {
-      icon.classList.add('cyber-pulse');
-    }
-
-    return () => {
-      if (icon) {
-        icon.classList.remove('cyber-pulse');
-      }
-    };
-  }, []);
-
-  return (
-    <Marker
-      ref={markerRef}
-      position={position}
-      icon={cyberIcon}
-      eventHandlers={{
-        mouseover: () => onHover(user),
-        mouseout: () => onHover(null),
-        click: () => onHover(user),
-      }}
-    />
-  );
-};
-
-// Generate random user locations around the world - used for simulation mode
-// const generateRandomUsers = (count: number): UserLocation[] => {
-//   const users: UserLocation[] = [];
-//   const affiliations = ['CIVILIAN', 'CORPO', 'NOMAD', 'NETRUNNER', 'FIXER'];
-//   const statuses = ['ACTIVE', 'IDLE', 'OFFLINE', 'UNKNOWN'];
-
-//   for (let i = 0; i < count; i++) {
-//     users.push({
-//       id: `user-${i}`,
-//       lat: Math.random() * 140 - 70, // -70 to 70
-//       lng: Math.random() * 340 - 170, // -170 to 170
-//       name: `User-${Math.floor(Math.random() * 1000)}`,
-//       affiliation:
-//         affiliations[Math.floor(Math.random() * affiliations.length)],
-//       status: statuses[Math.floor(Math.random() * statuses.length)],
-//       lastSeen: new Date(
-//         Date.now() - Math.floor(Math.random() * 86400000)
-//       ).toISOString(),
-//     });
-//   }
-
-//   return users;
-// };
-
 // Function to generate mock locations
 const generateRandomLocations = (count: number): UserLocation[] => {
   const users: UserLocation[] = [];
   const affiliations = ['CIVILIAN', 'CORPO', 'NOMAD', 'NETRUNNER', 'FIXER'];
   const statuses = ['ACTIVE', 'IDLE', 'OFFLINE', 'UNKNOWN'];
 
-  // Define approximate bounding boxes for landmasses
-  type GeoBox = {
-    name: string;
-    latRange: [number, number];
-    lngRange: [number, number];
-  };
-
-  const landmasses: GeoBox[] = [
+  const landmasses = [
     { name: 'North America', latRange: [24, 70], lngRange: [-168, -52] },
     { name: 'South America', latRange: [-56, 13], lngRange: [-81, -34] },
     { name: 'Europe', latRange: [34, 71], lngRange: [-25, 60] },
@@ -161,74 +41,14 @@ const generateRandomLocations = (count: number): UserLocation[] => {
     },
   ];
 
-  // Define approximate bounding boxes for major oceans to exclude points
-  const oceans: GeoBox[] = [
-    // Pacific
-    { name: 'North Pacific 1', latRange: [0, 60], lngRange: [-180, -120] },
-    { name: 'North Pacific 2', latRange: [0, 60], lngRange: [140, 180] },
-    { name: 'South Pacific 1', latRange: [-60, 0], lngRange: [-180, -70] },
-    { name: 'South Pacific 2', latRange: [-60, 0], lngRange: [160, 180] },
-    // Atlantic
-    { name: 'North Atlantic', latRange: [0, 70], lngRange: [-80, -5] },
-    { name: 'South Atlantic', latRange: [-60, 0], lngRange: [-70, 20] },
-    // Indian
-    { name: 'Indian Ocean', latRange: [-50, 30], lngRange: [20, 110] },
-    // Arctic & Southern
-    { name: 'Arctic Ocean', latRange: [70, 90], lngRange: [-180, 180] },
-    { name: 'Southern Ocean', latRange: [-90, -55], lngRange: [-180, 180] },
-    // Smaller seas
-    { name: 'Caribbean Sea', latRange: [8, 22], lngRange: [-89, -60] },
-    { name: 'Gulf of Mexico', latRange: [18, 31], lngRange: [-98, -80] },
-    { name: 'Mediterranean Sea', latRange: [30, 46], lngRange: [-6, 37] },
-    { name: 'Sea of Japan', latRange: [33, 52], lngRange: [127, 142] },
-    { name: 'Bering Sea', latRange: [51, 66], lngRange: [162, -157] },
-  ];
-
-  const isPointInBox = (lat: number, lng: number, box: GeoBox) => {
-    return (
-      lat >= box.latRange[0] &&
-      lat <= box.latRange[1] &&
-      lng >= box.lngRange[0] &&
-      lng <= box.lngRange[1]
-    );
-  };
-
-  const isPointInAnyOcean = (lat: number, lng: number) => {
-    for (const ocean of oceans) {
-      if (isPointInBox(lat, lng, ocean)) {
-        return true;
-      }
-    }
-    return false;
-  };
-
   for (let i = 0; i < count; i++) {
-    let lat: number;
-    let lng: number;
-    let attempts = 0;
-    const MAX_ATTEMPTS = 10;
-
-    // Randomly select a landmass
     const landmass = landmasses[Math.floor(Math.random() * landmasses.length)];
-
-    do {
-      lat =
-        Math.random() * (landmass.latRange[1] - landmass.latRange[0]) +
-        landmass.latRange[0];
-      lng =
-        Math.random() * (landmass.lngRange[1] - landmass.lngRange[0]) +
-        landmass.lngRange[0];
-      attempts++;
-    } while (isPointInAnyOcean(lat, lng) && attempts < MAX_ATTEMPTS);
-
-    // If still in an ocean after max attempts, it might be a small island or error in boxes, log for review if needed
-    // For now, we just use the last generated point even if it's potentially in water.
-    // A more sophisticated approach might pick a fallback or use a different landmass.
-    if (attempts === MAX_ATTEMPTS && isPointInAnyOcean(lat, lng)) {
-      console.warn(
-        `Max attempts reached for placing user ${i} on landmass ${landmass.name}. Point may be in water.`
-      );
-    }
+    const lat =
+      Math.random() * (landmass.latRange[1] - landmass.latRange[0]) +
+      landmass.latRange[0];
+    const lng =
+      Math.random() * (landmass.lngRange[1] - landmass.lngRange[0]) +
+      landmass.lngRange[0];
 
     users.push({
       id: `user-${i}`,
@@ -251,133 +71,418 @@ const MapWindow: React.FC<MapWindowProps> = ({
   onUserHover,
   onLocationsChange,
 }) => {
+  const mapContainer = useRef<HTMLDivElement>(null);
+  const map = useRef<maplibregl.Map | null>(null);
   const [locations, setLocations] = useState<UserLocation[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [mockCount, setMockCount] = useState<number>(10);
+  const stylesAdded = useRef<boolean>(false);
+  const mapLoaded = useRef<boolean>(false);
 
-  // Simulate a connection to the Presence Durable Object WebSocket
-  // useEffect(() => {
-  //   setIsLoading(true);
-  //   const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
-  //   const ws = new WebSocket(
-  //     `${protocol}://${window.location.host}/api/presence`
-  //   );
-
-  //   ws.onopen = () => {
-  //     console.log('WebSocket connected to presence DO');
-  //     // send one test/user event
-  //     ws.send(
-  //       JSON.stringify({
-  //         id: crypto.randomUUID(),
-  //         lat: 37.7749,
-  //         lng: -122.4194,
-  //         name: 'Local Test',
-  //       })
-  //     );
-  //   };
-
-  //   ws.onmessage = (event) => {
-  //     const data = JSON.parse(event.data) as UserLocation[];
-  //     setLocations(data);
-  //     if (isLoading) setIsLoading(false);
-  //   };
-  //   ws.onerror = (err) => console.error(err);
-  //   ws.onclose = () => console.log('Socket closed');
-  //   return () => ws.close();
-  // }, []);
-
-  // Connect to Presence Durable Object WebSocket for real-time presence data
-  // useEffect(() => {
-  //   setIsLoading(true);
-  //   //TODO: Should only be wss likely
-  //   const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
-  //   const wsUrl = `${protocol}://${window.location.host}/api/presence`;
-  //   const ws = new WebSocket(wsUrl);
-  //   ws.onopen = () => console.log('WebSocket connected to presence DO');
-  //   ws.onmessage = (event) => {
-  //     try {
-  //       const data = JSON.parse(event.data) as UserLocation[];
-  //       setLocations(data);
-  //       onLocationsChange?.(data);
-  //       if (isLoading) setIsLoading(false);
-  //     } catch (err) {
-  //       console.error('Error parsing presence data:', err);
-  //     }
-  //   };
-  //   ws.onerror = (err) => console.error('WebSocket error:', err);
-  //   ws.onclose = ({ code, reason }) =>
-  //     console.log('WebSocket closed:', code, reason);
-  //   return () => {
-  //     ws.close();
-  //   };
-  // }, []);
-
-  // Generate mock and actual user location data
+  // Initialize map only once
   useEffect(() => {
-    setIsLoading(true);
-    const randomLocations = generateRandomLocations(mockCount);
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        async (position) => {
-          const { latitude, longitude } = position.coords;
-          let pingTime = 0;
-          try {
-            const start = Date.now();
-            await fetch(window.location.href, {
-              method: 'HEAD',
-              cache: 'no-store',
-            });
-            pingTime = Date.now() - start;
-          } catch (e) {
-            console.error('Ping error:', e);
-          }
-          const networkType =
-            (navigator as any).connection?.effectiveType || 'unknown';
-          const localUser: UserLocation = {
-            id: 'local-user',
-            lat: latitude,
-            lng: longitude,
-            name: 'Local User',
-            status: 'ACTIVE',
-            affiliation: 'SELF',
-            lastSeen: new Date().toISOString(),
-            ping: pingTime,
-            networkType,
-          };
-          const allLocations = [...randomLocations, localUser];
-          setLocations(allLocations);
-          onLocationsChange?.(allLocations);
-          setIsLoading(false);
+    if (!mapContainer.current || map.current) return;
+
+    try {
+      map.current = new maplibregl.Map({
+        container: mapContainer.current,
+        style: {
+          version: 8,
+          sources: {
+            'osm-tiles': {
+              type: 'raster',
+              tiles: ['https://tile.openstreetmap.org/{z}/{x}/{y}.png'],
+              tileSize: 256,
+              attribution: '© OpenStreetMap | CP2077 Styled',
+            },
+          },
+          layers: [
+            {
+              id: 'osm-tiles',
+              type: 'raster',
+              source: 'osm-tiles',
+            },
+          ],
         },
-        (error) => {
-          console.error('Geolocation error:', error);
-          setLocations(randomLocations);
-          onLocationsChange?.(randomLocations);
-          setIsLoading(false);
+        center: [0, 20],
+        zoom: 2,
+      });
+
+      // Add cyberpunk styling once
+      map.current.on('load', () => {
+        mapLoaded.current = true;
+
+        if (!stylesAdded.current) {
+          stylesAdded.current = true;
+
+          // Apply cyberpunk filter
+          const canvas = map.current?.getCanvas();
+          if (canvas) {
+            canvas.style.filter =
+              'hue-rotate(140deg) saturate(1.5) brightness(0.7) contrast(1.2)';
+          }
+
+          // Add control styling - FIXED CSS SYNTAX
+          const styleElement = document.createElement('style');
+          styleElement.id = 'maplibre-cyber-styles';
+          styleElement.textContent = `
+            .maplibregl-ctrl-group {
+              border: 1px solid #F6FF00 !important;
+              background: rgba(0, 0, 0, 0.7) !important;
+              border-radius: 0 !important;
+            }
+            .maplibregl-ctrl button {
+              color: #F6FF00 !important;
+              background: rgba(0, 0, 0, 0.7) !important;
+              border: none !important;
+            }
+            .maplibregl-ctrl button:hover {
+              color: #00F0FF !important;
+              background: rgba(0, 0, 0, 0.9) !important;
+            }
+            .maplibregl-ctrl-attrib {
+              background: rgba(0, 0, 0, 0.7) !important;
+              color: #F6FF00 !important;
+              font-family: monospace !important;
+              font-size: 8px !important;
+            }
+            .maplibregl-ctrl-attrib a {
+              color: #00F0FF !important;
+            }
+          `;
+          document.head.appendChild(styleElement);
         }
-      );
-    } else {
-      setLocations(randomLocations);
-      onLocationsChange?.(randomLocations);
+      });
+    } catch (error) {
+      console.error('Error initializing map:', error);
       setIsLoading(false);
     }
-  }, [mockCount]);
+
+    return () => {
+      if (map.current) {
+        // Clean up GeoJSON markers
+        if (map.current.getSource('user-locations')) {
+          if (map.current.getLayer('user-locations-pulse')) {
+            map.current.removeLayer('user-locations-pulse');
+          }
+          if (map.current.getLayer('user-locations-circles')) {
+            map.current.removeLayer('user-locations-circles');
+          }
+          map.current.removeSource('user-locations');
+        }
+
+        map.current.remove();
+        map.current = null;
+      }
+      mapLoaded.current = false;
+      // Clean up styles
+      const existingStyles = document.getElementById('maplibre-cyber-styles');
+      if (existingStyles) {
+        existingStyles.remove();
+      }
+      stylesAdded.current = false;
+    };
+  }, []);
+
+  // Handle user locations and real-time presence
+  useEffect(() => {
+    setIsLoading(true);
+
+    // Generate mock locations as primary data source
+    const mockLocations = generateRandomLocations(mockCount);
+
+    // Validate mock locations
+    const validMockLocations = mockLocations.filter((location) => {
+      const isValid =
+        typeof location.lat === 'number' &&
+        typeof location.lng === 'number' &&
+        !isNaN(location.lat) &&
+        !isNaN(location.lng) &&
+        Math.abs(location.lat) <= 90 &&
+        Math.abs(location.lng) <= 180;
+
+      if (!isValid) {
+        console.error('Invalid mock location generated:', location);
+      }
+      return isValid;
+    });
+
+    // Set mock locations immediately to ensure we have data
+    setLocations(validMockLocations);
+    onLocationsChange?.(validMockLocations);
+
+    // Try to connect to WebSocket for real presence data
+    const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
+    const wsUrl = `${protocol}://${window.location.host}/api/presence`;
+
+    try {
+      const ws = new WebSocket(wsUrl);
+
+      ws.onopen = () => {
+        console.log('WebSocket connected to presence DO');
+
+        // Try to add local user location
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              const { latitude, longitude } = position.coords;
+              const localUser: UserLocation = {
+                id: 'local-user',
+                lat: latitude,
+                lng: longitude,
+                name: 'Local User',
+                status: 'ACTIVE',
+                affiliation: 'SELF',
+                lastSeen: new Date().toISOString(),
+              };
+              ws.send(JSON.stringify(localUser));
+            },
+            (error) => console.error('Geolocation error:', error)
+          );
+        }
+      };
+
+      ws.onmessage = (event) => {
+        try {
+          const data = JSON.parse(event.data) as UserLocation[];
+
+          // Validate WebSocket data
+          const validWSData = data.filter((location) => {
+            const isValid =
+              typeof location.lat === 'number' &&
+              typeof location.lng === 'number' &&
+              !isNaN(location.lat) &&
+              !isNaN(location.lng) &&
+              Math.abs(location.lat) <= 90 &&
+              Math.abs(location.lng) <= 180;
+
+            if (!isValid) {
+              console.error('Invalid WebSocket location received:', location);
+            }
+            return isValid;
+          });
+
+          // Only combine with mock data if we have valid WS data
+          const combinedData =
+            validWSData.length > 0
+              ? [...validWSData, ...validMockLocations]
+              : validMockLocations;
+
+          setLocations(combinedData);
+          onLocationsChange?.(combinedData);
+          setIsLoading(false);
+        } catch (err) {
+          console.error('Error parsing presence data:', err);
+          setLocations(validMockLocations);
+          onLocationsChange?.(validMockLocations);
+          setIsLoading(false);
+        }
+      };
+
+      ws.onerror = (error) => {
+        console.warn('WebSocket error:', error, 'using mock data only');
+        setLocations(validMockLocations);
+        onLocationsChange?.(validMockLocations);
+        setIsLoading(false);
+      };
+
+      ws.onclose = () => {
+        console.log('WebSocket closed, ensuring mock data is set');
+        setLocations(validMockLocations);
+        onLocationsChange?.(validMockLocations);
+        setIsLoading(false);
+      };
+
+      // Set a timeout to ensure we show mock data even if WS takes too long
+      setTimeout(() => {
+        if (isLoading) {
+          console.log('WebSocket timeout, showing mock data');
+          setLocations(validMockLocations);
+          onLocationsChange?.(validMockLocations);
+          setIsLoading(false);
+        }
+      }, 2000);
+
+      return () => {
+        ws.close();
+      };
+    } catch (error) {
+      console.error('WebSocket connection failed:', error);
+      setLocations(validMockLocations);
+      onLocationsChange?.(validMockLocations);
+      setIsLoading(false);
+    }
+  }, [mockCount, onLocationsChange]);
+
+  // Function to add GeoJSON markers (more reliable than DOM markers)
+  const addGeoJSONMarkers = (locations: UserLocation[]) => {
+    if (!map.current || !mapLoaded.current) return;
+
+    // Create GeoJSON feature collection
+    const geojson = {
+      type: 'FeatureCollection' as const,
+      features: locations.map((location, index) => ({
+        type: 'Feature' as const,
+        properties: {
+          id: location.id,
+          name: location.name || location.id,
+          status: location.status || 'UNKNOWN',
+          affiliation: location.affiliation || 'CIVILIAN',
+          index: index,
+        },
+        geometry: {
+          type: 'Point' as const,
+          coordinates: [location.lng, location.lat],
+        },
+      })),
+    };
+
+    // Remove existing source and layers
+    if (map.current.getSource('user-locations')) {
+      if (map.current.getLayer('user-locations-pulse')) {
+        map.current.removeLayer('user-locations-pulse');
+      }
+      if (map.current.getLayer('user-locations-circles')) {
+        map.current.removeLayer('user-locations-circles');
+      }
+      map.current.removeSource('user-locations');
+    }
+
+    // Add source
+    map.current.addSource('user-locations', {
+      type: 'geojson',
+      data: geojson,
+    });
+
+    // Add circle layer
+    map.current.addLayer({
+      id: 'user-locations-circles',
+      type: 'circle',
+      source: 'user-locations',
+      paint: {
+        'circle-radius': [
+          'interpolate',
+          ['linear'],
+          ['zoom'],
+          2,
+          4,
+          10,
+          12,
+          15,
+          20,
+        ],
+        'circle-color': '#F6FF00',
+        'circle-stroke-color': '#00F0FF',
+        'circle-stroke-width': [
+          'interpolate',
+          ['linear'],
+          ['zoom'],
+          2,
+          1,
+          10,
+          2,
+          15,
+          3,
+        ],
+        'circle-opacity': 0.9,
+        'circle-stroke-opacity': 1,
+      },
+    });
+
+    // Add pulsing outer ring for cyberpunk effect
+    map.current.addLayer({
+      id: 'user-locations-pulse',
+      type: 'circle',
+      source: 'user-locations',
+      paint: {
+        'circle-radius': [
+          'interpolate',
+          ['linear'],
+          ['zoom'],
+          2,
+          6,
+          10,
+          18,
+          15,
+          30,
+        ],
+        'circle-color': 'transparent',
+        'circle-stroke-color': '#F6FF00',
+        'circle-stroke-width': 1,
+        'circle-stroke-opacity': [
+          'interpolate',
+          ['linear'],
+          ['*', ['get', 'index'], 0.5],
+          0,
+          0.3,
+          5,
+          0.1,
+          10,
+          0.3,
+        ],
+        'circle-opacity': 0,
+      },
+    });
+
+    // Add click handlers for both layers
+    const layers = ['user-locations-circles', 'user-locations-pulse'];
+
+    layers.forEach((layerId) => {
+      map.current!.on('click', layerId, (e) => {
+        if (e.features && e.features[0]) {
+          const properties = e.features[0].properties;
+          const location = locations.find((loc) => loc.id === properties.id);
+          if (location) {
+            onUserHover(location);
+          }
+        }
+      });
+
+      map.current!.on('mouseenter', layerId, (e) => {
+        if (e.features && e.features[0]) {
+          const properties = e.features[0].properties;
+          const location = locations.find((loc) => loc.id === properties.id);
+          if (location) {
+            onUserHover(location);
+          }
+        }
+        map.current!.getCanvas().style.cursor = 'pointer';
+      });
+
+      map.current!.on('mouseleave', layerId, () => {
+        onUserHover(null);
+        map.current!.getCanvas().style.cursor = '';
+      });
+    });
+  };
+
+  // Update markers when locations change - WAIT FOR MAP TO LOAD
+  useEffect(() => {
+    if (!map.current || !locations.length || !mapLoaded.current) {
+      return;
+    }
+
+    // Use GeoJSON approach for markers
+    addGeoJSONMarkers(locations);
+  }, [locations, onUserHover, mapLoaded]);
 
   return (
     <div className="relative w-full h-full">
       {/* Mock count control */}
-      <div className="absolute top-2 right-2 z-[400] bg-black/50 p-1 text-cyber-yellow font-mono text-xs rounded">
+      <div className="absolute top-2 right-2 z-[400] bg-black/20 p-1 text-cyber-yellow font-mono text-[10px] rounded opacity-60 hover:opacity-100 transition-opacity">
         <label className="flex items-center">
           Mock:
           <input
             type="number"
             min={1}
+            max={50}
             value={mockCount}
             onChange={(e) => setMockCount(Number(e.target.value))}
-            className="ml-1 w-10 bg-black text-cyber-yellow border border-cyber-yellow rounded text-xs"
+            className="ml-1 w-8 bg-black/50 text-cyber-yellow border border-cyber-yellow/50 rounded text-[10px] px-1"
           />
         </label>
       </div>
+
       {isLoading && (
         <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-black/70 text-cyber-yellow font-mono">
           <div className="w-16 h-16 border-2 border-t-cyber-yellow border-r-cyber-pink border-b-cyber-blue border-l-transparent rounded-full animate-spin mb-4"></div>
@@ -385,35 +490,13 @@ const MapWindow: React.FC<MapWindowProps> = ({
             Initializing Map
           </div>
           <div className="text-xs text-cyber-blue mt-2">
-            Generating mock locations...
+            Loading presence network...
           </div>
         </div>
       )}
 
-      <MapContainer
-        center={[20, 0]}
-        zoom={2}
-        scrollWheelZoom={true}
-        zoomControl={true}
-        style={{ height: '100%', width: '100%', background: '#111' }}
-        className="z-0"
-      >
-        <CyberpunkMapStyle />
-
-        <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution="&copy; OpenStreetMap | CP2077 Styled"
-        />
-
-        {locations.map((user) => (
-          <PulsingMarker
-            key={user.id}
-            position={[user.lat, user.lng]}
-            user={user}
-            onHover={onUserHover}
-          />
-        ))}
-      </MapContainer>
+      {/* Map container */}
+      <div ref={mapContainer} className="w-full h-full" />
 
       {/* Map overlay elements */}
       <div className="absolute top-2 left-2 z-[400] text-cyber-yellow font-mono text-xs">
@@ -444,16 +527,6 @@ const MapWindow: React.FC<MapWindowProps> = ({
           0%, 100% { transform: translateY(-10px); opacity: 0; }
           10%, 90% { opacity: 0.3; }
           50% { transform: translateY(100%); opacity: 0.3; }
-        }
-        
-        :global(.cyber-pulse) {
-          animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-          0% { transform: scale(1); opacity: 1; }
-          50% { transform: scale(1.1); opacity: 0.8; }
-          100% { transform: scale(1); opacity: 1; }
         }
       `}</style>
     </div>
