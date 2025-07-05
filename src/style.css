@@ -36,13 +36,10 @@
   html {
     font-family: var(--font-electronic);
   }
-  /* Combined body styles */
   body {
-    /* Color from base layer, assuming it's the intended text color */
     color: var(--color-white);
-    /* Background styles from later definition, overriding base background-color */
     font-family: var(--font-electronic);
-    background-color: #0f172a; /* This color will be visible where the background image/gradient is transparent */
+    background-color: #0f172a;
     background-image: url('https://4kwallpapers.com/images/walls/thumbs_3t/8010.jpg');
     background-size: cover;
     background-attachment: fixed;
@@ -52,7 +49,6 @@
   }
 }
 
-/* Body pseudo-element for gradient overlay */
 body::before {
   content: '';
   position: absolute;
@@ -241,7 +237,6 @@ body::before {
   .animate-fade-in {
     opacity: 0;
     transform: translateY(20px);
-    /* Apply the animation */
     animation: fadeIn 0.5s ease-out forwards;
   }
 
@@ -250,7 +245,6 @@ body::before {
   }
 }
 
-/* Parallax mountains background element */
 .parallax-mountains {
   position: fixed;
   bottom: 0;
@@ -295,14 +289,12 @@ body::before {
   opacity: 0.15;
 }
 
-/* Background noise utility */
 .bg-noise {
   background-image: url(/grainy.svg);
   background-repeat: repeat;
   background-size: 200px;
 }
 
-/* Base heading styles */
 h1,
 h2,
 h3,
@@ -313,7 +305,6 @@ h6 {
   letter-spacing: 1px;
 }
 
-/* Keyframes */
 @keyframes shimmer {
   0% {
     transform: translateX(-100%) rotate(45deg);
@@ -389,7 +380,6 @@ h6 {
 
 .cyber-glitch::before,
 .cyber-glitch::after {
-  /* Want the content to be dynamic to the inner text */
   content: attr(data-text);
   position: absolute;
   top: 0;
@@ -429,7 +419,6 @@ h6 {
   animation: scan-move-with-calm 8s ease-in-out infinite;
 }
 
-/* Digital Rain Effect */
 .digital-rain {
   z-index: 5;
   transition: opacity 0.3s;
@@ -472,7 +461,6 @@ h6 {
   opacity: 0.6;
 }
 
-/* Cyberpunk 2077 Glitch Effect */
 .cp2077-glitch {
   position: relative;
   display: flex;
@@ -501,7 +489,6 @@ h6 {
 
 .cp2077-text::before,
 .cp2077-text::after {
-  /* Want the content to be dynamic to the inner text */
   content: attr(data-text);
   position: absolute;
   top: 0;
