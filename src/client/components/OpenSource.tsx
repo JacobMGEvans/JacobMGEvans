@@ -17,28 +17,28 @@ export function OssSection() {
       <div className={flex('row', 'flex-wrap justify-center gap-6 mb-6')}>
         <a href="https://dev.to/jacobmgevans" className={previewContainer()}>
           <img
-            src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktober2019.webp"
+            src="/hacktober2019.webp"
             alt="2019 Hacktoberfest Contributor"
             className={ossPreviewImage()}
           />
         </a>
         <a href="https://dev.to/jacobmgevans" className={previewContainer()}>
           <img
-            src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktober2020.webp"
+            src="/hacktober2020.webp"
             alt="2020 Hacktoberfest Contributor"
             className={ossPreviewImage()}
           />
         </a>
         <a href="https://dev.to/jacobmgevans" className={previewContainer()}>
           <img
-            src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/hacktober2021.webp"
+            src="/hacktober2021.webp"
             alt="2021 Hacktoberfest Contributor"
             className={ossPreviewImage()}
           />
         </a>
         <a href="https://osrg.t3.gg/" className={previewContainer()}>
           <img
-            src="https://github.com/JacobMGEvans/JacobMGEvans/raw/main/public/osrg.webp"
+            src="/osrg.webp"
             alt="Open Source Raid Guild Member"
             className={ossPreviewImage()}
           />
