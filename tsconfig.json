@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "ES2024",
     "lib": ["ES2024", "DOM", "DOM.Iterable"],
+    "composite": true,
     "module": "ESNext",
     "skipLibCheck": true,
     "moduleResolution": "bundler",
@@ -12,7 +13,11 @@
     "jsx": "react-jsx",
     "strict": true,
     "noUnusedLocals": true,
-    "types": ["vite/client", "@cloudflare/workers-types"]
+    "types": [
+      "vite/client",
+      "@cloudflare/workers-types",
+      "@hono/react-renderer"
+    ]
   },
-  "include": ["src", "components", "src/utils"]
+  "include": ["src", "components", "src/utils", "src/types", "alchemy.run.ts"]
 }

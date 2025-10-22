@@ -1,5 +1,9 @@
 #Wrangler cache
 .wrangler*
+
+# Alchemy cache/state
+.alchemy*
+
 # wrangler + Hono Vite React Stack plugin
 /dist-server
 

@@ -1,5 +1,4 @@
-import { FC, useEffect } from 'react';
-import runSiteAnimations from '../hooks/useSiteAnimations';
+import { FC } from 'react';
 import { BackgroundElements } from '../components/Background';
 import { Header } from '../components/Header';
 import { Hero } from '../components/Hero';
@@ -13,10 +12,6 @@ export interface HomePageProps {
 }
 
 const HomePage: FC<HomePageProps> = ({ readme }) => {
-  useEffect(() => {
-    runSiteAnimations();
-  }, []);
-
   return (
     <>
       <BackgroundElements />

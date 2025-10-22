@@ -4,23 +4,11 @@ import type { BlogPost } from '../utils/rss';
 import { fetchBlogPosts } from '../utils/rss';
 import HomePage from '../client/pages/HomePage';
 import BlogPage from '../client/pages/BlogPage';
-import { handlePresence } from './api/presence';
-import { DurableObjectNamespace } from '@cloudflare/workers-types';
-import { PresenceDO } from './durable-objects/presence';
+import { website } from '../../alchemy.run';
 
-export { PresenceDO };
-
-type Env = {
-  Bindings: {
-    PRESENCE: DurableObjectNamespace<PresenceDO>;
-  };
-};
-
-const app = new Hono<Env>();
+const app = new Hono<{ Bindings: typeof website.bindings }>();
 
 app.use('*', renderer);
-
-app.all('/api/presence', handlePresence);
 
 app.get('/blog', async (c) => {
   const posts: BlogPost[] = await fetchBlogPosts();

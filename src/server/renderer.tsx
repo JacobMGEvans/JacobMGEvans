@@ -1,12 +1,15 @@
 import { reactRenderer } from '@hono/react-renderer';
-import { Script, Link } from 'hono-vite-react-stack/components';
 
 export const renderer = reactRenderer(({ children }) => {
+  // TODO: There is probably something better for this, need to research more
+  const isProd = import.meta.env.PROD ?? import.meta.env.MODE === 'production';
+
   return (
     <html lang="en">
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
@@ -26,12 +29,26 @@ export const renderer = reactRenderer(({ children }) => {
           rel="stylesheet"
         />
 
-        <Script />
-        <Link href="/src/style.css" rel="stylesheet" />
+        {isProd ? (
+          <>
+            <link rel="stylesheet" href="/assets/index.css" />
+          </>
+        ) : (
+          <>
+            <script type="module" src="/@vite/client"></script>
+            <link rel="stylesheet" href="/src/style.css" />
+          </>
+        )}
       </head>
       <body>
         <div id="root">{children}</div>
         <div id="client-root"></div>
+
+        {isProd ? (
+          <script type="module" src="/assets/index.js"></script>
+        ) : (
+          <script type="module" src="/src/client/index.tsx"></script>
+        )}
       </body>
     </html>
   );

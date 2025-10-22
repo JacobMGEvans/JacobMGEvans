@@ -1,6 +1,6 @@
-import { animate, stagger } from 'animejs';
-
-export default function runSiteAnimations() {
+export default async function runSiteAnimations() {
+  //! Need a better way to handle this, maybe a hook?
+  const { animate, stagger } = await import('animejs');
   const addCyberElements = () => {
     document.querySelectorAll('.content-section').forEach((section) => {
       const gridOverlay = document.createElement('div');

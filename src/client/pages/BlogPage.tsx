@@ -1,7 +1,5 @@
-import { useEffect } from 'react';
 import type { FC } from 'react';
 import type { BlogPost } from '../../utils/rss';
-import runBlogAnimations from '../hooks/runBlogAnimations';
 import { BackgroundElements } from '../components/Background';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
@@ -12,10 +10,6 @@ export interface BlogPageProps {
 }
 
 const BlogPage: FC<BlogPageProps> = ({ posts }) => {
-  useEffect(() => {
-    runBlogAnimations();
-  }, []);
-
   return (
     <>
       <BackgroundElements />

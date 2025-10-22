@@ -1,7 +1,7 @@
-import { animate } from 'animejs';
-
 // TODO: A lot of Blog animation is redundant to the homepage animations, refactor later
-export default function runBlogAnimations() {
+export default async function runBlogAnimations() {
+  //! Need a better way to handle this, maybe a hook?
+  const { animate } = await import('animejs');
   console.log('Blog page loaded, initializing animations...');
 
   document.querySelectorAll('.content-section').forEach((section) => {

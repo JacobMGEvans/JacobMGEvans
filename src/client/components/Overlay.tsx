@@ -2,7 +2,6 @@ import type React from 'react';
 import { useState, useEffect, useRef } from 'react';
 import MapWindow, { type UserLocation } from './MapWindow';
 import { DetailsPanel } from './DetailsPanel';
-import { animate, stagger } from 'animejs';
 
 const Overlay: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -33,29 +32,34 @@ const Overlay: React.FC = () => {
 
   useEffect(() => {
     if (isOpen && overlayRef.current) {
-      // Initial glitch effect
-      animate(overlayRef.current, {
-        opacity: [0, 0.3, 0.1, 0.7, 0.2, 1],
-        translateX: ['-5px', '5px', '0px', '-3px', '3px', '0px'],
-        translateY: ['3px', '-3px', '0px', '2px', '-2px', '0px'],
-        duration: 800,
-        easing: 'steps(6)',
-      });
+      //! Need a better way to handle this, maybe a hook? Dynamically import anime.js only in the browser
+      import('animejs').then(({ animate, stagger }) => {
+        if (!overlayRef.current) return;
 
-      if (scanLinesRef.current) {
-        animate(scanLinesRef.current, {
-          opacity: [0, 0.3],
-          duration: 400,
-          easing: 'easeOutQuad',
+        // Initial glitch effect
+        animate(overlayRef.current, {
+          opacity: [0, 0.3, 0.1, 0.7, 0.2, 1],
+          translateX: ['-5px', '5px', '0px', '-3px', '3px', '0px'],
+          translateY: ['3px', '-3px', '0px', '2px', '-2px', '0px'],
+          duration: 800,
+          easing: 'steps(6)',
         });
-      }
 
-      animate(overlayRef.current, {
-        scale: [0.8, 1],
-        opacity: [0, 1],
-        delay: stagger(150),
-        duration: 600,
-        easing: 'easeOutExpo',
+        if (scanLinesRef.current) {
+          animate(scanLinesRef.current, {
+            opacity: [0, 0.3],
+            duration: 400,
+            easing: 'easeOutQuad',
+          });
+        }
+
+        animate(overlayRef.current, {
+          scale: [0.8, 1],
+          opacity: [0, 1],
+          delay: stagger(150),
+          duration: 600,
+          easing: 'easeOutExpo',
+        });
       });
     }
   }, [isOpen]);
@@ -64,15 +68,20 @@ const Overlay: React.FC = () => {
 
   const handleClose = () => {
     if (overlayRef.current) {
-      animate(overlayRef.current, {
-        opacity: [1, 0.7, 0.3, 0.5, 0.1, 0],
-        translateX: ['0px', '3px', '-3px', '5px', '-2px'],
-        translateY: ['0px', '-2px', '2px', '-4px', '1px'],
-        duration: 500,
-        easing: 'steps(5)',
-        complete: () => {
-          setIsOpen(false);
-        },
+      // Dynamically import anime.js only in the browser
+      import('animejs').then(({ animate }) => {
+        if (!overlayRef.current) return;
+
+        animate(overlayRef.current, {
+          opacity: [1, 0.7, 0.3, 0.5, 0.1, 0],
+          translateX: ['0px', '3px', '-3px', '5px', '-2px'],
+          translateY: ['0px', '-2px', '2px', '-4px', '1px'],
+          duration: 500,
+          easing: 'steps(5)',
+          complete: () => {
+            setIsOpen(false);
+          },
+        });
       });
     }
   };
@@ -147,7 +156,6 @@ const Overlay: React.FC = () => {
         </div>
       </div>
 
-      {/* Close button */}
       <button
         onClick={handleClose}
         className="absolute top-4 right-4 z-50 flex items-center justify-center w-8 h-8 text-cyber-pink hover:text-cyber-yellow transition-colors duration-300"
@@ -224,14 +232,14 @@ const Overlay: React.FC = () => {
         <div>SYSTEM: OPERATIONAL</div>
         <div className="text-center">
           <span className="text-cyber-blue">CLOUDFLARE</span> DURABLE OBJECTS:{' '}
-          {!!selectedUser ? (
+          {selectedUser !== null ? (
             <span className="text-cyber-green">CONNECTED</span>
           ) : (
             <span className="text-cyber-red">DISCONNECTED</span>
           )}
         </div>
         {/* Figure out how to get real ping from selected user */}
-        {!!selectedUser && (
+        {selectedUser !== null && (
           <div>
             PING:{' '}
             <span className="text-cyber-green">

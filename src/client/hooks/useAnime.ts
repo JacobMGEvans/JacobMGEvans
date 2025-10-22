@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react';
-import { createScope } from 'animejs';
 
 /**
  * A hook that uses anime.js v4's scope functionality
@@ -17,7 +16,12 @@ export function useAnimeScope(
   useEffect(() => {
     if (typeof window === 'undefined' || !rootRef.current) return;
 
-    scopeRef.current = createScope({ root: rootRef }).add(setupFn);
+    //! Need a better way to handle this, maybe a hook?
+    import('animejs').then(({ createScope }) => {
+      if (!rootRef.current) return;
+
+      scopeRef.current = createScope({ root: rootRef }).add(setupFn);
+    });
 
     return () => {
       if (scopeRef.current && scopeRef.current.revert) {
