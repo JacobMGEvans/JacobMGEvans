@@ -15,7 +15,7 @@
 Here's a little about me:
 
 - 👨‍👩‍👧‍👦 Father & Husband
-- 💻 FullStack Developer (Working with Cloudflare Workers!)
+- 💻 Principal Engineer (Working with Cloudflare Workers!)
 - ♾️ Autistic & Neurodiversity Advocate
 - 🇺🇸 US Air Force Veteran
 - 🛠️ Hardware Tinkerer & Maker
